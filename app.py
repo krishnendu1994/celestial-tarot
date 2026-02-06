@@ -93,6 +93,12 @@ def home():
 def reading():
     aikey="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";
     return render_template("reading.html", user=current_user, aikey=aikey)
+@app.route("/cards")
+def cards():
+    return render_template("cards.html", user=current_user)
+@app.route("/guidance")
+def guidance():
+    return render_template("guidance.html", user=current_user)
 if __name__ == "__main__":
     app.run(debug=True)
 

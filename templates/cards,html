@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Tarot Cards | Celestial Tarot</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+            --primary: #8B5FBF;
+            --primary-dark: #6B3FA0;
+            --secondary: #FF6B8B;
+            --accent: #00C9B7;
+            --light: #F8F5FF;
+            --dark: #2D2B55;
+            --text: #333333;
+            --text-light: #666666;
+            --border: #E6E1F0;
+            --shadow: 0 10px 30px rgba(139, 95, 191, 0.1);
+            --transition: all 0.3s ease;
+            --radius: 15px;
+        }
+        
+        /* ===== Global Styles ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            background-color: white;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--dark);
+            line-height: 1.3;
+        }
+        
+        p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 16px 38px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            letter-spacing: 0.5px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(139, 95, 191, 0.2);
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* ===== Header & Navigation ===== */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 12px;
+            font-size: 1.8rem;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 40px;
+        }
+        
+        nav ul li a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--dark);
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        nav ul li a.active {
+            color: var(--primary);
+        }
+        
+        nav ul li a.active:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        
+        /* ===== Cards Container ===== */
+        .cards-container {
+            padding: 180px 0 100px;
+            margin-top: 80px;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                        url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        /* ===== Cards Filter ===== */
+        .cards-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 12px 28px;
+            background: var(--light);
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        /* ===== Cards Grid ===== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        /* Individual Card Design */
+        .card-item {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(139, 95, 191, 0.15);
+        }
+        
+        .card-image {
+            height: 250px;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .card-item:hover .card-image img {
+            transform: scale(1.05);
+        }
+        
+        .card-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .card-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--dark);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .card-type {
+            background: var(--light);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .card-meaning {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            flex: 1;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .card-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .keyword {
+            background: var(--light);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--primary-dark);
+        }
+        
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .card-element {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .card-icon {
+            font-size: 1.5rem;
+        }
+        
+        /* ===== Arcanas Section ===== */
+        .arcanas-section {
+            margin-top: 80px;
+        }
+        
+        .arcana-type {
+            margin-bottom: 60px;
+        }
+        
+        .arcana-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        }
+        
+        .arcana-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .arcana-title {
+            font-size: 1.8rem;
+            color: var(--dark);
+        }
+        
+        .arcana-description {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 800px;
+        }
+        
+        /* ===== Back to Top ===== */
+        .back-to-top {
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        /* ===== Footer ===== */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 80px 0 40px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h4 {
+            color: white;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-col h4:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-col p, .footer-col a {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 12px;
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .footer-col a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 42px;
+            height: 42px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            padding-left: 0;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* ===== Responsive Design ===== */
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .cards-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 15px 0;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                padding: 30px 20px;
+                transform: translateY(-150%);
+                transition: var(--transition);
+            }
+            
+            nav.active {
+                transform: translateY(0);
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 0 0 20px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .cards-container {
+                padding: 150px 0 80px;
+            }
+            
+            section {
+                padding: 70px 0;
+            }
+            
+            .cards-filter {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="/" class="logo">
+                <i class="fas fa-crystal-ball"></i>
+                Celestial<span>Tarot</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="tarot-reading.html">Tarot Reading</a></li>
+                    <li><a href="cards.html" class="active">All Cards</a></li>
+                    <li><a href="guidance.html">Guidance</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Cards Container -->
+    <div class="cards-container">
+        <div class="container">
+            <div class="section-title">
+                <h2>Complete Tarot Deck</h2>
+                <p>Explore all 78 tarot cards with detailed meanings, interpretations, and insights. Click on any card to learn more about its significance in readings.</p>
+            </div>
+            
+            <!-- Cards Filter -->
+            <div class="cards-filter">
+                <button class="filter-btn active" data-filter="all">All Cards</button>
+                <button class="filter-btn" data-filter="major">Major Arcana</button>
+                <button class="filter-btn" data-filter="cups">Cups</button>
+                <button class="filter-btn" data-filter="wands">Wands</button>
+                <button class="filter-btn" data-filter="swords">Swords</button>
+                <button class="filter-btn" data-filter="pentacles">Pentacles</button>
+            </div>
+            
+            <!-- Cards Grid -->
+            <div class="cards-grid" id="cardsGrid">
+                <!-- Cards will be loaded here by JavaScript -->
+            </div>
+            
+            <!-- Arcanas Section -->
+            <div class="arcanas-section">
+                <div class="section-title">
+                    <h2>Understanding Tarot Arcana</h2>
+                    <p>Learn about the different types of tarot cards and their significance in readings.</p>
+                </div>
+                
+                <div class="arcana-type" id="majorArcana">
+                    <div class="arcana-header">
+                        <div class="arcana-icon">🌟</div>
+                        <h3 class="arcana-title">Major Arcana</h3>
+                    </div>
+                    <p class="arcana-description">
+                        The Major Arcana consists of 22 cards that represent significant life events, spiritual lessons, and archetypal energies. These cards speak to major turning points and profound transformations in one's life journey.
+                    </p>
+                </div>
+                
+                <div class="arcana-type" id="minorArcana">
+                    <div class="arcana-header">
+                        <div class="arcana-icon">🃏</div>
+                        <h3 class="arcana-title">Minor Arcana</h3>
+                    </div>
+                    <p class="arcana-description">
+                        The Minor Arcana consists of 56 cards divided into four suits: Cups, Wands, Swords, and Pentacles. These cards represent day-to-day events, challenges, and experiences that shape our lives.
+                    </p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px;">
+                        <div class="suit-info">
+                            <h4 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                                <span style="font-size: 1.5rem;">💧</span> Cups
+                            </h4>
+                            <p>Element: Water. Represents emotions, relationships, love, and intuition. The suit of Cups deals with matters of the heart and emotional connections.</p>
+                        </div>
+                        
+                        <div class="suit-info">
+                            <h4 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                                <span style="font-size: 1.5rem;">🔥</span> Wands
+                            </h4>
+                            <p>Element: Fire. Represents creativity, passion, energy, and ambition. The suit of Wands deals with inspiration, action, and personal growth.</p>
+                        </div>
+                        
+                        <div class="suit-info">
+                            <h4 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                                <span style="font-size: 1.5rem;">⚔️</span> Swords
+                            </h4>
+                            <p>Element: Air. Represents intellect, thoughts, communication, and challenges. The suit of Swords deals with mental clarity, truth, and decision-making.</p>
+                        </div>
+                        
+                        <div class="suit-info">
+                            <h4 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                                <span style="font-size: 1.5rem;">💰</span> Pentacles
+                            </h4>
+                            <p>Element: Earth. Represents material aspects, finances, career, and physical health. The suit of Pentacles deals with practical matters and manifesting goals.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Back to Top -->
+            <div class="back-to-top">
+                <a href="#top" class="btn-secondary">
+                    <i class="fas fa-arrow-up"></i> Back to Top
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Celestial Tarot</h4>
+                    <p>Powered by real AI for authentic, personalized tarot readings.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="/">Home</a>
+                    <a href="tarot-reading.html">Tarot Reading</a>
+                    <a href="cards.html" class="active">All Cards</a>
+                    <a href="guidance.html">Learn Tarot</a>
+                    <a href="about.html">About Us</a>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Card Categories</h4>
+                    <a href="#majorArcana">Major Arcana</a>
+                    <a href="#minorArcana">Minor Arcana</a>
+                    <a href="#cups">Cups</a>
+                    <a href="#wands">Wands</a>
+                    <a href="#swords">Swords</a>
+                    <a href="#pentacles">Pentacles</a>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>AI Integration</h4>
+                    <p><i class="fas fa-robot"></i> Free AI Readings</p>
+                    <p><i class="fas fa-gem"></i> DeepSeek & Gemini AI</p>
+                    <p><i class="fas fa-bolt"></i> Real-time interpretations</p>
+                    <p style="margin-top: 20px; font-size: 0.9rem;">No API key required • Completely free</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Celestial Tarot. All rights reserved. | <a href="#" style="color: var(--accent);">Privacy Policy</a> | <a href="#" style="color: var(--accent);">Terms of Service</a></p>
+                <p style="margin-top: 10px; font-size: 0.85rem;">This system uses OpenRouter AI to generate authentic tarot interpretations. Readings are for guidance purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== Mobile Menu Toggle =====
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // ===== Tarot Card Data =====
+        const tarotDeck = {
+            major: [
+                { id: 0, name: "The Fool", meaning: "New beginnings, innocence, spontaneity, a free spirit", icon: "👤", element: "Air", shortMeaning: "New beginnings, innocence", color: "#FFD700", keywords: ["beginnings", "faith", "spontaneity", "free spirit"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/RWS_Tarot_00_Fool.jpg/800px-RWS_Tarot_00_Fool.jpg" },
+                { id: 1, name: "The Magician", meaning: "Manifestation, resourcefulness, power, inspired action", icon: "⚡", element: "Air", shortMeaning: "Manifestation, power", color: "#3498db", keywords: ["manifestation", "power", "skill", "concentration"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/RWS_Tarot_01_Magician.jpg/800px-RWS_Tarot_01_Magician.jpg" },
+                { id: 2, name: "The High Priestess", meaning: "Intuition, unconscious knowledge, divine feminine, mystery", icon: "🌙", element: "Water", shortMeaning: "Intuition, mystery", color: "#8e44ad", keywords: ["intuition", "mystery", "subconscious", "divine feminine"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/RWS_Tarot_02_High_Priestess.jpg/800px-RWS_Tarot_02_High_Priestess.jpg" },
+                { id: 3, name: "The Empress", meaning: "Femininity, beauty, nature, abundance, nurturing", icon: "👑", element: "Earth", shortMeaning: "Femininity, abundance", color: "#2ecc71", keywords: ["femininity", "abundance", "nature", "nurturing"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/RWS_Tarot_03_Empress.jpg/800px-RWS_Tarot_03_Empress.jpg" },
+                { id: 4, name: "The Emperor", meaning: "Authority, structure, control, fatherhood, foundation", icon: "🏛️", element: "Fire", shortMeaning: "Authority, structure", color: "#e74c3c", keywords: ["authority", "structure", "control", "foundation"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/RWS_Tarot_04_Emperor.jpg/800px-RWS_Tarot_04_Emperor.jpg" },
+                { id: 5, name: "The Hierophant", meaning: "Tradition, conformity, morality, ethics, spiritual guidance", icon: "⛪", element: "Earth", shortMeaning: "Tradition, conformity", color: "#f39c12", keywords: ["tradition", "conformity", "morality", "beliefs"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/RWS_Tarot_05_Hierophant.jpg/800px-RWS_Tarot_05_Hierophant.jpg" },
+                { id: 6, name: "The Lovers", meaning: "Love, harmony, relationships, values alignment, choices", icon: "💑", element: "Air", shortMeaning: "Love, relationships", color: "#e84393", keywords: ["love", "relationships", "alignment", "choices"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/RWS_Tarot_06_Lovers.jpg/800px-RWS_Tarot_06_Lovers.jpg" },
+                { id: 7, name: "The Chariot", meaning: "Control, willpower, success, action, determination", icon: "🛡️", element: "Water", shortMeaning: "Control, willpower", color: "#00cec9", keywords: ["control", "willpower", "success", "determination"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/RWS_Tarot_07_Chariot.jpg/800px-RWS_Tarot_07_Chariot.jpg" },
+                { id: 8, name: "Strength", meaning: "Courage, persuasion, influence, compassion, inner strength", icon: "🦁", element: "Fire", shortMeaning: "Courage, compassion", color: "#e17055", keywords: ["courage", "compassion", "influence", "inner strength"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/RWS_Tarot_08_Strength.jpg/800px-RWS_Tarot_08_Strength.jpg" },
+                { id: 9, name: "The Hermit", meaning: "Soul-searching, introspection, being alone, inner guidance", icon: "🧙", element: "Earth", shortMeaning: "Introspection, solitude", color: "#636e72", keywords: ["introspection", "solitude", "inner guidance", "searching"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/RWS_Tarot_09_Hermit.jpg/800px-RWS_Tarot_09_Hermit.jpg" },
+                { id: 10, name: "Wheel of Fortune", meaning: "Good luck, karma, life cycles, destiny, turning points", icon: "🔄", element: "Fire", shortMeaning: "Luck, destiny, cycles", color: "#a29bfe", keywords: ["luck", "destiny", "cycles", "turning points"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/RWS_Tarot_10_Wheel_of_Fortune.jpg/800px-RWS_Tarot_10_Wheel_of_Fortune.jpg" },
+                { id: 11, name: "Justice", meaning: "Justice, fairness, truth, cause and effect, law", icon: "⚖️", element: "Air", shortMeaning: "Justice, fairness", color: "#0984e3", keywords: ["justice", "fairness", "truth", "karma"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/RWS_Tarot_11_Justice.jpg/800px-RWS_Tarot_11_Justice.jpg" },
+                { id: 12, name: "The Hanged Man", meaning: "Surrender, new perspective, enlightenment, sacrifice", icon: "🙃", element: "Water", shortMeaning: "Surrender, new perspective", color: "#00b894", keywords: ["surrender", "perspective", "enlightenment", "sacrifice"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/RWS_Tarot_12_Hanged_Man.jpg/800px-RWS_Tarot_12_Hanged_Man.jpg" },
+                { id: 13, name: "Death", meaning: "Endings, change, transformation, transition, rebirth", icon: "💀", element: "Water", shortMeaning: "Endings, transformation", color: "#2d3436", keywords: ["endings", "transformation", "transition", "rebirth"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/RWS_Tarot_13_Death.jpg/800px-RWS_Tarot_13_Death.jpg" },
+                { id: 14, name: "Temperance", meaning: "Balance, moderation, patience, purpose, meaning", icon: "⚗️", element: "Fire", shortMeaning: "Balance, moderation", color: "#fd79a8", keywords: ["balance", "moderation", "patience", "purpose"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/RWS_Tarot_14_Temperance.jpg/800px-RWS_Tarot_14_Temperance.jpg" },
+                { id: 15, name: "The Devil", meaning: "Shadow self, attachment, addiction, restriction, bondage", icon: "😈", element: "Earth", shortMeaning: "Shadow self, addiction", color: "#6c5ce7", keywords: ["shadow self", "addiction", "restriction", "bondage"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/RWS_Tarot_15_Devil.jpg/800px-RWS_Tarot_15_Devil.jpg" },
+                { id: 16, name: "The Tower", meaning: "Sudden change, upheaval, chaos, revelation, awakening", icon: "🏰", element: "Fire", shortMeaning: "Sudden change, upheaval", color: "#d63031", keywords: ["sudden change", "upheaval", "chaos", "awakening"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/RWS_Tarot_16_Tower.jpg/800px-RWS_Tarot_16_Tower.jpg" },
+                { id: 17, name: "The Star", meaning: "Hope, faith, purpose, renewal, spirituality, inspiration", icon: "⭐", element: "Air", shortMeaning: "Hope, faith, inspiration", color: "#74b9ff", keywords: ["hope", "faith", "inspiration", "spirituality"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/RWS_Tarot_17_Star.jpg/800px-RWS_Tarot_17_Star.jpg" },
+                { id: 18, name: "The Moon", meaning: "Illusion, fear, anxiety, subconscious, intuition", icon: "🌕", element: "Water", shortMeaning: "Illusion, fear, intuition", color: "#a29bfe", keywords: ["illusion", "fear", "intuition", "subconscious"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/RWS_Tarot_18_Moon.jpg/800px-RWS_Tarot_18_Moon.jpg" },
+                { id: 19, name: "The Sun", meaning: "Joy, success, celebration, positivity, vitality", icon: "☀️", element: "Fire", shortMeaning: "Joy, success, vitality", color: "#fdcb6e", keywords: ["joy", "success", "positivity", "vitality"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/RWS_Tarot_19_Sun.jpg/800px-RWS_Tarot_19_Sun.jpg" },
+                { id: 20, name: "Judgement", meaning: "Judgement, rebirth, inner calling, absolution, awakening", icon: "📯", element: "Fire", shortMeaning: "Judgement, rebirth", color: "#00cec9", keywords: ["judgement", "rebirth", "awakening", "absolution"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/RWS_Tarot_20_Judgement.jpg/800px-RWS_Tarot_20_Judgement.jpg" },
+                { id: 21, name: "The World", meaning: "Completion, integration, accomplishment, travel, fulfillment", icon: "🌍", element: "Earth", shortMeaning: "Completion, accomplishment", color: "#55efc4", keywords: ["completion", "accomplishment", "integration", "fulfillment"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/RWS_Tarot_21_World.jpg/800px-RWS_Tarot_21_World.jpg" }
+            ],
+            cups: [
+                { id: 22, name: "Ace of Cups", meaning: "New love, compassion, creativity, spiritual awakening, emotional beginning", icon: "💧", element: "Water", shortMeaning: "New love, emotional beginning", color: "#3498db", keywords: ["love", "compassion", "creativity", "emotional start"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Cups01.jpg/800px-Cups01.jpg" },
+                { id: 23, name: "Two of Cups", meaning: "Unified love, partnership, mutual attraction, connection, harmony", icon: "💑", element: "Water", shortMeaning: "Partnership, mutual attraction", color: "#e84393", keywords: ["partnership", "attraction", "connection", "harmony"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Cups02.jpg/800px-Cups02.jpg" },
+                { id: 24, name: "Three of Cups", meaning: "Celebration, friendship, creativity, community, joyous gatherings", icon: "🎉", element: "Water", shortMeaning: "Celebration, friendship", color: "#9b59b6", keywords: ["celebration", "friendship", "community", "joy"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Cups03.jpg/500px-Cups03.jpg" },
+                { id: 25, name: "Four of Cups", meaning: "Meditation, contemplation, reevaluation, apathy, missed opportunities", icon: "🧘", element: "Water", shortMeaning: "Contemplation, apathy", color: "#34495e", keywords: ["contemplation", "apathy", "reevaluation", "withdrawal"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Cups04.jpg/500px-Cups04.jpg" },
+                { id: 26, name: "Five of Cups", meaning: "Loss, regret, disappointment, mourning, focusing on the negative", icon: "😔", element: "Water", shortMeaning: "Loss, regret, disappointment", color: "#7f8c8d", keywords: ["loss", "regret", "disappointment", "grief"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Cups05.jpg/500px-Cups05.jpg" },
+                { id: 27, name: "Six of Cups", meaning: "Innocence, nostalgia, childhood memories, simplicity, familiarity", icon: "🎠", element: "Water", shortMeaning: "Nostalgia, childhood memories", color: "#f1c40f", keywords: ["nostalgia", "memories", "innocence", "simplicity"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Cups06.jpg/500px-Cups06.jpg" },
+                { id: 28, name: "Seven of Cups", meaning: "Choices, imagination, wishful thinking, opportunities, illusions", icon: "🌈", element: "Water", shortMeaning: "Choices, imagination, illusions", color: "#1abc9c", keywords: ["choices", "imagination", "opportunities", "illusions"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Cups07.jpg/500px-Cups07.jpg" },
+                { id: 29, name: "Eight of Cups", meaning: "Walking away, disillusionment, leaving behind, searching for meaning", icon: "🚶", element: "Water", shortMeaning: "Walking away, disillusionment", color: "#95a5a6", keywords: ["walking away", "disillusionment", "searching", "abandonment"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Cups08.jpg/500px-Cups08.jpg" },
+                { id: 30, name: "Nine of Cups", meaning: "Contentment, satisfaction, gratitude, wish fulfilled, emotional stability", icon: "😊", element: "Water", shortMeaning: "Contentment, wish fulfilled", color: "#f39c12", keywords: ["contentment", "satisfaction", "gratitude", "wishes"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Cups09.jpg/500px-Cups09.jpg" },
+                { id: 31, name: "Ten of Cups", meaning: "Divine love, blissful relationships, harmony, happy family, emotional fulfillment", icon: "🏡", element: "Water", shortMeaning: "Blissful relationships, harmony", color: "#2ecc71", keywords: ["harmony", "family", "emotional fulfillment", "bliss"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Cups10.jpg/500px-Cups10.jpg" },
+                { id: 32, name: "Page of Cups", meaning: "Creative opportunities, intuitive messages, curiosity, new feelings", icon: "🧚", element: "Water", shortMeaning: "Creative opportunities, intuitive messages", color: "#3498db", keywords: ["creativity", "intuition", "curiosity", "new feelings"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Cups11.jpg/500px-Cups11.jpg" },
+                { id: 33, name: "Knight of Cups", meaning: "Romance, charm, imagination, following heart, poetic nature", icon: "🤠", element: "Water", shortMeaning: "Romance, charm, following heart", color: "#9b59b6", keywords: ["romance", "charm", "imagination", "poetic"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Cups12.jpg/500px-Cups12.jpg" },
+                { id: 34, name: "Queen of Cups", meaning: "Compassion, emotional security, intuition, calm, nurturing love", icon: "👸", element: "Water", shortMeaning: "Compassion, emotional security", color: "#e84393", keywords: ["compassion", "intuition", "nurturing", "calm"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Cups13.jpg/500px-Cups13.jpg" },
+                { id: 35, name: "King of Cups", meaning: "Emotional balance, compassion, diplomacy, control of feelings", icon: "🤴", element: "Water", shortMeaning: "Emotional balance, compassion", color: "#0984e3", keywords: ["emotional balance", "compassion", "diplomacy", "control"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Cups14.jpg/500px-Cups14.jpg" }
+            ],
+            wands: [
+                { id: 36, name: "Ace of Wands", meaning: "Inspiration, new opportunities, growth, potential, creative spark", icon: "🔥", element: "Fire", shortMeaning: "Inspiration, new opportunities", color: "#e74c3c", keywords: ["inspiration", "opportunities", "growth", "creative spark"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Wands01.jpg/800px-Wands01.jpg" },
+                { id: 37, name: "Two of Wands", meaning: "Future planning, progress, decisions, discovery, leaving comfort zone", icon: "🗺️", element: "Fire", shortMeaning: "Future planning, decisions", color: "#d35400", keywords: ["planning", "decisions", "progress", "discovery"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Wands02.jpg/500px-Wands02.jpg" },
+                { id: 38, name: "Three of Wands", meaning: "Expansion, foresight, overseas opportunities, progress, leadership", icon: "👁️", element: "Fire", shortMeaning: "Expansion, foresight", color: "#f39c12", keywords: ["expansion", "foresight", "opportunities", "leadership"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Wands03.jpg/500px-Wands03.jpg" },
+                { id: 39, name: "Four of Wands", meaning: "Celebration, harmony, marriage, home, community, stability", icon: "🏠", element: "Fire", shortMeaning: "Celebration, harmony, home", color: "#2ecc71", keywords: ["celebration", "harmony", "home", "community"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Wands04.jpg/500px-Wands04.jpg" },
+                { id: 40, name: "Five of Wands", meaning: "Conflict, disagreements, competition, tension, rivals", icon: "⚔️", element: "Fire", shortMeaning: "Conflict, competition, tension", color: "#c0392b", keywords: ["conflict", "competition", "tension", "rivalry"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Wands05.jpg/500px-Wands05.jpg" },
+                { id: 41, name: "Six of Wands", meaning: "Victory, success, public recognition, progress, self-confidence", icon: "🏆", element: "Fire", shortMeaning: "Victory, success, recognition", color: "#f1c40f", keywords: ["victory", "success", "recognition", "confidence"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Wands06.jpg/500px-Wands06.jpg" },
+                { id: 42, name: "Seven of Wands", meaning: "Challenge, competition, perseverance, defense, maintaining control", icon: "🛡️", element: "Fire", shortMeaning: "Challenge, perseverance", color: "#7f8c8d", keywords: ["challenge", "perseverance", "defense", "control"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Wands07.jpg/500px-Wands07.jpg" },
+                { id: 43, name: "Eight of Wands", meaning: "Swift action, movement, quick decisions, travel, rapid progress", icon: "💨", element: "Fire", shortMeaning: "Swift action, movement", color: "#3498db", keywords: ["action", "movement", "progress", "travel"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Wands08.jpg/500px-Wands08.jpg" },
+                { id: 44, name: "Nine of Wands", meaning: "Resilience, courage, persistence, boundaries, defensive position", icon: "🛡️", element: "Fire", shortMeaning: "Resilience, persistence", color: "#8e44ad", keywords: ["resilience", "courage", "persistence", "boundaries"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Tarot_Nine_of_Wands.jpg/500px-Tarot_Nine_of_Wands.jpg" },
+                { id: 45, name: "Ten of Wands", meaning: "Burden, responsibility, hard work, completion, stress", icon: "💼", element: "Fire", shortMeaning: "Burden, responsibility, hard work", color: "#2c3e50", keywords: ["burden", "responsibility", "hard work", "stress"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Wands10.jpg/500px-Wands10.jpg" },
+                { id: 46, name: "Page of Wands", meaning: "Exploration, excitement, freedom, discovery, enthusiasm", icon: "🧚", element: "Fire", shortMeaning: "Exploration, excitement, freedom", color: "#e74c3c", keywords: ["exploration", "excitement", "freedom", "enthusiasm"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Wands11.jpg/500px-Wands11.jpg" },
+                { id: 47, name: "Knight of Wands", meaning: "Action, adventure, fearlessness, energy, passion", icon: "🤠", element: "Fire", shortMeaning: "Action, adventure, passion", color: "#f39c12", keywords: ["action", "adventure", "passion", "energy"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Wands12.jpg/500px-Wands12.jpg" },
+                { id: 48, name: "Queen of Wands", meaning: "Courage, determination, joy, vibrancy, confidence", icon: "👸", element: "Fire", shortMeaning: "Courage, determination, confidence", color: "#f1c40f", keywords: ["courage", "determination", "confidence", "vibrancy"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Wands13.jpg/500px-Wands13.jpg" },
+                { id: 49, name: "King of Wands", meaning: "Natural-born leader, vision, entrepreneur, charisma, taking action", icon: "🤴", element: "Fire", shortMeaning: "Leadership, vision, charisma", color: "#d35400", keywords: ["leadership", "vision", "charisma", "action"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Wands14.jpg/500px-Wands14.jpg" }
+            ],
+            swords: [
+                { id: 50, name: "Ace of Swords", meaning: "Breakthrough, clarity, sharp mind, new idea, truth", icon: "⚔️", element: "Air", shortMeaning: "Breakthrough, clarity, truth", color: "#95a5a6", keywords: ["breakthrough", "clarity", "truth", "new idea"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Swords01.jpg/500px-Swords01.jpg" },
+                { id: 51, name: "Two of Swords", meaning: "Difficult decisions, indecision, stalemate, blocked emotions", icon: "⚖️", element: "Air", shortMeaning: "Indecision, stalemate", color: "#7f8c8d", keywords: ["indecision", "stalemate", "choices", "blocked"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Swords02.jpg/500px-Swords02.jpg" },
+                { id: 52, name: "Three of Swords", meaning: "Heartbreak, emotional pain, sorrow, grief, separation", icon: "💔", element: "Air", shortMeaning: "Heartbreak, sorrow, grief", color: "#c0392b", keywords: ["heartbreak", "sorrow", "grief", "pain"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Swords03.jpg/500px-Swords03.jpg" },
+                { id: 53, name: "Four of Swords", meaning: "Rest, restoration, contemplation, recuperation, meditation", icon: "😴", element: "Air", shortMeaning: "Rest, restoration, contemplation", color: "#3498db", keywords: ["rest", "restoration", "contemplation", "recuperation"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Swords04.jpg/500px-Swords04.jpg" },
+                { id: 54, name: "Five of Swords", meaning: "Conflict, tension, loss, defeat, betrayal, winning at all costs", icon: "😞", element: "Air", shortMeaning: "Conflict, defeat, betrayal", color: "#2c3e50", keywords: ["conflict", "defeat", "betrayal", "tension"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Swords05.jpg/500px-Swords05.jpg" },
+                { id: 55, name: "Six of Swords", meaning: "Transition, change, rite of passage, release, moving on", icon: "⛵", element: "Air", shortMeaning: "Transition, change, moving on", color: "#00cec9", keywords: ["transition", "change", "moving on", "release"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Swords06.jpg/500px-Swords06.jpg" },
+                { id: 56, name: "Seven of Swords", meaning: "Betrayal, deception, getting away with something, stealth, strategy", icon: "🦹", element: "Air", shortMeaning: "Betrayal, deception, strategy", color: "#636e72", keywords: ["betrayal", "deception", "strategy", "stealth"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Swords07.jpg/500px-Swords07.jpg" },
+                { id: 57, name: "Eight of Swords", meaning: "Restriction, confusion, powerlessness, victim mentality", icon: "😖", element: "Air", shortMeaning: "Restriction, confusion, powerlessness", color: "#2c3e50", keywords: ["restriction", "confusion", "powerlessness", "victim"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Swords08.jpg/500px-Swords08.jpg" },
+                { id: 58, name: "Nine of Swords", meaning: "Anxiety, worry, fear, depression, nightmares, guilt", icon: "😰", element: "Air", shortMeaning: "Anxiety, worry, fear", color: "#34495e", keywords: ["anxiety", "worry", "fear", "guilt"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Swords09.jpg/500px-Swords09.jpg" },
+                { id: 59, name: "Ten of Swords", meaning: "Painful endings, deep wounds, betrayal, loss, rock bottom", icon: "🗡️", element: "Air", shortMeaning: "Painful endings, betrayal", color: "#2c3e50", keywords: ["endings", "betrayal", "pain", "rock bottom"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Swords10.jpg/500px-Swords10.jpg" },
+                { id: 60, name: "Page of Swords", meaning: "Curiosity, restlessness, mental energy, new ideas, vigilance", icon: "🧚", element: "Air", shortMeaning: "Curiosity, mental energy, new ideas", color: "#3498db", keywords: ["curiosity", "mental energy", "ideas", "vigilance"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Swords11.jpg/500px-Swords11.jpg" },
+                { id: 61, name: "Knight of Swords", meaning: "Ambitious, action-oriented, direct communication, haste, impulsiveness", icon: "🤠", element: "Air", shortMeaning: "Ambition, action, directness", color: "#7f8c8d", keywords: ["ambition", "action", "directness", "haste"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Swords12.jpg/500px-Swords12.jpg" },
+                { id: 62, name: "Queen of Swords", meaning: "Independent, unbiased judgment, clear boundaries, perceptive, honest", icon: "👸", element: "Air", shortMeaning: "Independence, clear judgment, honesty", color: "#95a5a6", keywords: ["independence", "judgment", "honesty", "perceptive"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Swords13.jpg/500px-Swords13.jpg" },
+                { id: 63, name: "King of Swords", meaning: "Mental clarity, intellectual power, authority, truth, command", icon: "🤴", element: "Air", shortMeaning: "Mental clarity, authority, truth", color: "#2c3e50", keywords: ["clarity", "authority", "truth", "intellect"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Swords14.jpg/500px-Swords14.jpg" }
+            ],
+            pentacles: [
+                { id: 64, name: "Ace of Pentacles", meaning: "New financial opportunity, prosperity, new job, manifestation", icon: "💰", element: "Earth", shortMeaning: "Financial opportunity, prosperity", color: "#27ae60", keywords: ["opportunity", "prosperity", "manifestation", "wealth"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Pents01.jpg/500px-Pents01.jpg" },
+                { id: 65, name: "Two of Pentacles", meaning: "Balance, adaptability, time management, prioritization, juggling", icon: "⚖️", element: "Earth", shortMeaning: "Balance, adaptability, juggling", color: "#2ecc71", keywords: ["balance", "adaptability", "juggling", "priorities"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Pents02.jpg/500px-Pents02.jpg" },
+                { id: 66, name: "Three of Pentacles", meaning: "Teamwork, collaboration, learning, implementation, mastery", icon: "👥", element: "Earth", shortMeaning: "Teamwork, collaboration, learning", color: "#f39c12", keywords: ["teamwork", "collaboration", "learning", "mastery"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Pents03.jpg/500px-Pents03.jpg" },
+                { id: 67, name: "Four of Pentacles", meaning: "Conservation, frugality, security, control, possessiveness", icon: "💎", element: "Earth", shortMeaning: "Security, control, possessiveness", color: "#d35400", keywords: ["security", "control", "possessiveness", "conservation"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Pents04.jpg/500px-Pents04.jpg" },
+                { id: 68, name: "Five of Pentacles", meaning: "Financial loss, poverty, isolation, worry, hardship", icon: "😔", element: "Earth", shortMeaning: "Financial loss, hardship, isolation", color: "#7f8c8d", keywords: ["loss", "hardship", "isolation", "poverty"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Pents05.jpg/500px-Pents05.jpg" },
+                { id: 69, name: "Six of Pentacles", meaning: "Generosity, charity, giving, receiving, sharing wealth, balance", icon: "🤲", element: "Earth", shortMeaning: "Generosity, charity, sharing", color: "#27ae60", keywords: ["generosity", "charity", "sharing", "balance"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Pents06.jpg/500px-Pents06.jpg" },
+                { id: 70, name: "Seven of Pentacles", meaning: "Long-term view, sustainable results, perseverance, patience, investment", icon: "🌱", element: "Earth", shortMeaning: "Patience, long-term view, investment", color: "#2ecc71", keywords: ["patience", "long-term", "investment", "perseverance"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Pents07.jpg/500px-Pents07.jpg" },
+                { id: 71, name: "Eight of Pentacles", meaning: "Apprenticeship, repetitive tasks, mastery, skill development, diligence", icon: "🔨", element: "Earth", shortMeaning: "Skill development, mastery, diligence", color: "#f39c12", keywords: ["skill", "mastery", "diligence", "craftsmanship"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Pents08.jpg/500px-Pents08.jpg" },
+                { id: 72, name: "Nine of Pentacles", meaning: "Abundance, luxury, self-sufficiency, financial independence, rewards", icon: "🏡", element: "Earth", shortMeaning: "Abundance, self-sufficiency, luxury", color: "#27ae60", keywords: ["abundance", "self-sufficiency", "luxury", "rewards"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Pents09.jpg/500px-Pents09.jpg" },
+                { id: 73, name: "Ten of Pentacles", meaning: "Wealth, financial security, family, long-term success, legacy", icon: "👨‍👩‍👧‍👦", element: "Earth", shortMeaning: "Wealth, family, legacy, security", color: "#2ecc71", keywords: ["wealth", "family", "legacy", "security"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Pents10.jpg/500px-Pents10.jpg" },
+                { id: 74, name: "Page of Pentacles", meaning: "Manifestation, financial opportunity, new skill development, ambition", icon: "🧚", element: "Earth", shortMeaning: "Manifestation, opportunity, ambition", color: "#27ae60", keywords: ["manifestation", "opportunity", "ambition", "learning"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Pents11.jpg/500px-Pents11.jpg" },
+                { id: 75, name: "Knight of Pentacles", meaning: "Efficiency, routine, conservatism, responsibility, hard work", icon: "🤠", element: "Earth", shortMeaning: "Efficiency, responsibility, hard work", color: "#d35400", keywords: ["efficiency", "responsibility", "hard work", "routine"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Pents12.jpg/500px-Pents12.jpg" },
+                { id: 76, name: "Queen of Pentacles", meaning: "Nurturing, practical, provides for others, financially independent, down-to-earth", icon: "👸", element: "Earth", shortMeaning: "Nurturing, practical, financial independence", color: "#2ecc71", keywords: ["nurturing", "practical", "financial independence", "grounded"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Pents13.jpg/500px-Pents13.jpg" },
+                { id: 77, name: "King of Pentacles", meaning: "Wealth, business, leadership, security, abundance, reliability", icon: "🤴", element: "Earth", shortMeaning: "Wealth, business, leadership, reliability", color: "#f39c12", keywords: ["wealth", "business", "leadership", "reliability"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Pents14.jpg/500px-Pents14.jpg" }
+            ]
+        };
+
+        // ===== Initialize Cards =====
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCards();
+            setupEventListeners();
+        });
+
+        function initializeCards() {
+            const cardsGrid = document.getElementById('cardsGrid');
+            cardsGrid.innerHTML = '';
+            
+            // Combine all cards
+            let allCards = [];
+            Object.keys(tarotDeck).forEach(suit => {
+                tarotDeck[suit].forEach(card => {
+                    allCards.push({
+                        ...card,
+                        type: suit
+                    });
+                });
+            });
+            
+            // Display all cards initially
+            displayCards(allCards);
+        }
+
+        function displayCards(cards) {
+            const cardsGrid = document.getElementById('cardsGrid');
+            cardsGrid.innerHTML = '';
+            
+            cards.forEach(card => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'card-item';
+                cardElement.setAttribute('data-type', card.type);
+                
+                const typeName = getTypeName(card.type);
+                const typeColor = getTypeColor(card.type);
+                
+                cardElement.innerHTML = `
+                    <div class="card-image">
+                        <img src="${card.image}" alt="${card.name}" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="card-name">${card.name}</h3>
+                            <span class="card-type" style="background: ${typeColor}20; color: ${typeColor};">${typeName}</span>
+                        </div>
+                        <p class="card-meaning">${card.meaning}</p>
+                        <div class="card-keywords">
+                            ${card.keywords.map(keyword => `<span class="keyword">${keyword}</span>`).join('')}
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-element">
+                                <span class="card-icon">${card.icon}</span>
+                                <span>${card.element}</span>
+                            </div>
+                            <div style="font-size: 0.9rem; color: var(--text-light);">
+                                ${getTypeSymbol(card.type)}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                cardsGrid.appendChild(cardElement);
+            });
+        }
+
+        function filterCards(filterType) {
+            let filteredCards = [];
+            
+            if (filterType === 'all') {
+                Object.keys(tarotDeck).forEach(suit => {
+                    filteredCards = filteredCards.concat(tarotDeck[suit].map(card => ({
+                        ...card,
+                        type: suit
+                    })));
+                });
+            } else {
+                filteredCards = tarotDeck[filterType].map(card => ({
+                    ...card,
+                    type: filterType
+                }));
+            }
+            
+            displayCards(filteredCards);
+            
+            // Scroll to top of cards
+            if (filterType !== 'all') {
+                document.getElementById('cardsGrid').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Helper functions
+        function getTypeColor(type) {
+            switch(type) {
+                case 'major': return '#8B5FBF';
+                case 'cups': return '#3498db';
+                case 'wands': return '#e74c3c';
+                case 'swords': return '#95a5a6';
+                case 'pentacles': return '#27ae60';
+                default: return '#8B5FBF';
+            }
+        }
+
+        function getTypeSymbol(type) {
+            switch(type) {
+                case 'major': return '🌟 Major Arcana';
+                case 'cups': return '💧 Cups';
+                case 'wands': return '🔥 Wands';
+                case 'swords': return '⚔️ Swords';
+                case 'pentacles': return '💰 Pentacles';
+                default: return '🃏 Tarot';
+            }
+        }
+
+        function getTypeName(type) {
+            switch(type) {
+                case 'major': return 'Major Arcana';
+                case 'cups': return 'Cups';
+                case 'wands': return 'Wands';
+                case 'swords': return 'Swords';
+                case 'pentacles': return 'Pentacles';
+                default: return 'Tarot';
+            }
+        }
+
+        function setupEventListeners() {
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Update active filter button
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter cards
+                    const filterType = this.dataset.filter;
+                    filterCards(filterType);
+                });
+            });
+            
+            // Mobile menu
+            mobileMenuBtn.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Close mobile menu on link click
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

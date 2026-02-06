@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angel Guidance & Messages | Celestial Tarot</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+            --primary: #8B5FBF;
+            --primary-dark: #6B3FA0;
+            --secondary: #FF6B8B;
+            --accent: #00C9B7;
+            --light: #F8F5FF;
+            --dark: #2D2B55;
+            --text: #333333;
+            --text-light: #666666;
+            --border: #E6E1F0;
+            --shadow: 0 10px 30px rgba(139, 95, 191, 0.1);
+            --transition: all 0.3s ease;
+            --radius: 15px;
+        }
+        
+        /* ===== Global Styles ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            background-color: white;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--dark);
+            line-height: 1.3;
+        }
+        
+        p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 16px 38px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            letter-spacing: 0.5px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(139, 95, 191, 0.2);
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* ===== Header & Navigation ===== */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 12px;
+            font-size: 1.8rem;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 40px;
+        }
+        
+        nav ul li a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--dark);
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        nav ul li a.active {
+            color: var(--primary);
+        }
+        
+        nav ul li a.active:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        
+        /* ===== Guidance Container ===== */
+        .guidance-container {
+            padding: 180px 0 100px;
+            margin-top: 80px;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                        url('https://images.unsplash.com/photo-1500964757637-c85e8a162699?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        /* ===== Hero Section ===== */
+        .hero-section {
+            text-align: center;
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(139, 95, 191, 0.05), rgba(0, 201, 183, 0.05));
+            border-radius: var(--radius);
+            margin-bottom: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        /* ===== Angel Messages Section ===== */
+        .messages-section {
+            margin-bottom: 80px;
+        }
+        
+        .messages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .message-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .message-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(139, 95, 191, 0.15);
+        }
+        
+        .message-header {
+            padding: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .message-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .message-title {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+        
+        .message-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .message-content {
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .message-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text);
+            margin-bottom: 25px;
+            flex: 1;
+        }
+        
+        .message-affirmation {
+            background: var(--light);
+            padding: 20px;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--accent);
+            font-style: italic;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+        }
+        
+        /* ===== Daily Guidance Section ===== */
+        .daily-guidance {
+            background: linear-gradient(135deg, rgba(139, 95, 191, 0.03), rgba(255, 107, 139, 0.03));
+            padding: 60px;
+            border-radius: var(--radius);
+            margin-bottom: 80px;
+            border: 2px solid var(--border);
+            position: relative;
+        }
+        
+        .daily-guidance:before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            border-radius: var(--radius);
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        .daily-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .daily-message {
+            text-align: center;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--dark);
+            margin-bottom: 40px;
+            padding: 30px;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .message-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        /* ===== Angel Numbers Section ===== */
+        .numbers-section {
+            margin-bottom: 80px;
+        }
+        
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+        
+        .number-card {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        
+        .number-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 30px rgba(139, 95, 191, 0.15);
+        }
+        
+        .number-display {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .number-title {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .number-meaning {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* ===== Meditation Section ===== */
+        .meditation-section {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 80px 40px;
+            border-radius: var(--radius);
+            margin-bottom: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .meditation-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .meditation-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        
+        .meditation-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: white;
+        }
+        
+        .meditation-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .meditation-step {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: white;
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 0 auto 20px;
+        }
+        
+        .step-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .step-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        
+        /* ===== Footer ===== */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 80px 0 40px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h4 {
+            color: white;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-col h4:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-col p, .footer-col a {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 12px;
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .footer-col a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 42px;
+            height: 42px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            padding-left: 0;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* ===== Responsive Design ===== */
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .messages-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .meditation-steps {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 15px 0;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                padding: 30px 20px;
+                transform: translateY(-150%);
+                transition: var(--transition);
+            }
+            
+            nav.active {
+                transform: translateY(0);
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 0 0 20px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .guidance-container {
+                padding: 150px 0 80px;
+            }
+            
+            section {
+                padding: 70px 0;
+            }
+            
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .daily-guidance {
+                padding: 40px;
+            }
+            
+            .meditation-section {
+                padding: 60px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .messages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .numbers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .message-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .daily-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="/" class="logo">
+                <i class="fas fa-crystal-ball"></i>
+                Celestial<span>Tarot</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="reading">Tarot Reading</a></li>
+                    <li><a href="cards">All Cards</a></li>
+                    <li><a href="guidance" class="active">Guidance</a></li>
+                    <li><a href="about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Guidance Container -->
+    <div class="guidance-container">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h1 class="hero-title">Angel Guidance & Messages</h1>
+                <p class="hero-subtitle">
+                    Receive divine guidance, angelic messages, and spiritual insights. Connect with your guardian angels and discover the signs they're sending you.
+                </p>
+                <div class="message-actions">
+                    <button class="btn" id="getDailyMessage">
+                        <i class="fas fa-feather-alt"></i> Get Daily Message
+                    </button>
+                    <button class="btn-secondary" id="angelMeditation">
+                        <i class="fas fa-spa"></i> Angel Meditation
+                    </button>
+                </div>
+            </section>
+            
+            <!-- Angel Messages Section -->
+            <section class="messages-section">
+                <div class="section-title">
+                    <h2>Angel Messages & Guidance</h2>
+                    <p>These are messages from the angels specifically for you. Read them with an open heart and mind.</p>
+                </div>
+                
+                <div class="messages-grid" id="angelMessagesGrid">
+                    <!-- Angel messages will be loaded here -->
+                </div>
+                
+                <div style="text-align: center; margin-top: 50px;">
+                    <button class="btn" id="loadMoreMessages">
+                        <i class="fas fa-angel"></i> Load More Messages
+                    </button>
+                </div>
+            </section>
+            
+            <!-- Daily Guidance Section -->
+            <section class="daily-guidance">
+                <h2 class="daily-title">
+                    <i class="fas fa-sun"></i> Today's Angel Message
+                </h2>
+                <div class="daily-message" id="dailyMessage">
+                    <!-- Daily message will appear here -->
+                </div>
+                <div class="message-actions">
+                    <button class="btn" id="shareMessage">
+                        <i class="fas fa-share-alt"></i> Share This Message
+                    </button>
+                    <button class="btn-secondary" id="saveMessage">
+                        <i class="fas fa-bookmark"></i> Save to Journal
+                    </button>
+                </div>
+            </section>
+            
+            <!-- Angel Numbers Section -->
+            <section class="numbers-section">
+                <div class="section-title">
+                    <h2>Angel Numbers & Their Meanings</h2>
+                    <p>Seeing repeating numbers? These are angel numbers - divine messages from your angels.</p>
+                </div>
+                
+                <div class="numbers-grid" id="angelNumbersGrid">
+                    <!-- Angel numbers will be loaded here -->
+                </div>
+            </section>
+            
+            <!-- Meditation Section -->
+            <section class="meditation-section">
+                <div class="meditation-content">
+                    <h2 class="meditation-title">Connect with Your Angels</h2>
+                    <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 30px; opacity: 0.9;">
+                        A simple meditation practice to connect with your guardian angels and receive their guidance.
+                    </p>
+                    
+                    <div class="meditation-steps">
+                        <div class="meditation-step">
+                            <div class="step-number">1</div>
+                            <h3 class="step-title">Find a Quiet Space</h3>
+                            <p class="step-description">Sit comfortably in a quiet space where you won't be disturbed for 10-15 minutes.</p>
+                        </div>
+                        
+                        <div class="meditation-step">
+                            <div class="step-number">2</div>
+                            <h3 class="step-title">Set Your Intention</h3>
+                            <p class="step-description">Close your eyes and set the intention to connect with your guardian angels for guidance and support.</p>
+                        </div>
+                        
+                        <div class="meditation-step">
+                            <div class="step-number">3</div>
+                            <h3 class="step-title">Breathe Deeply</h3>
+                            <p class="step-description">Take slow, deep breaths. Inhale peace, exhale tension. Feel yourself relaxing completely.</p>
+                        </div>
+                        
+                        <div class="meditation-step">
+                            <div class="step-number">4</div>
+                            <h3 class="step-title">Invite Your Angels</h3>
+                            <p class="step-description">Mentally invite your guardian angels to join you. Feel their loving presence surrounding you.</p>
+                        </div>
+                        
+                        <div class="meditation-step">
+                            <div class="step-number">5</div>
+                            <h3 class="step-title">Ask for Guidance</h3>
+                            <p class="step-description">Ask your angels for guidance on any situation. Listen with your heart, not your ears.</p>
+                        </div>
+                        
+                        <div class="meditation-step">
+                            <div class="step-number">6</div>
+                            <h3 class="step-title">Receive & Thank</h3>
+                            <p class="step-description">Receive any messages, feelings, or insights. Thank your angels and gently return to awareness.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 50px;">
+                        <button class="btn" style="background: white; color: var(--primary);">
+                            <i class="fas fa-play-circle"></i> Start Guided Meditation
+                        </button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Journal Section -->
+            <section style="text-align: center;">
+                <div class="section-title">
+                    <h2>Angel Message Journal</h2>
+                    <p>Keep track of the angel messages you receive and your spiritual insights.</p>
+                </div>
+                
+                <div style="max-width: 600px; margin: 0 auto;">
+                    <textarea id="angelJournal" placeholder="Write your angel messages, insights, or experiences here..." style="
+                        width: 100%;
+                        height: 200px;
+                        padding: 20px;
+                        border: 2px solid var(--border);
+                        border-radius: var(--radius);
+                        font-family: 'Cormorant Garamond', serif;
+                        font-size: 1.1rem;
+                        resize: vertical;
+                        margin-bottom: 20px;
+                    "></textarea>
+                    
+                    <div class="message-actions">
+                        <button class="btn" id="saveJournal">
+                            <i class="fas fa-save"></i> Save to Journal
+                        </button>
+                        <button class="btn-secondary" id="clearJournal">
+                            <i class="fas fa-trash-alt"></i> Clear
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Celestial Tarot</h4>
+                    <p>Powered by real AI for authentic, personalized tarot readings.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="/">Home</a>
+                    <a href="reading">Tarot Reading</a>
+                    <a href="cards">All Cards</a>
+                    <a href="guidance" class="active">Guidance</a>
+                    <a href="about">About Us</a>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Angel Guidance</h4>
+                    <a href="#angelMessages">Angel Messages</a>
+                    <a href="#dailyGuidance">Daily Guidance</a>
+                    <a href="#angelNumbers">Angel Numbers</a>
+                    <a href="#meditation">Angel Meditation</a>
+                    <a href="#journal">Message Journal</a>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>AI Integration</h4>
+                    <p><i class="fas fa-robot"></i> Free AI Readings</p>
+                    <p><i class="fas fa-gem"></i> DeepSeek & Gemini AI</p>
+                    <p><i class="fas fa-bolt"></i> Real-time interpretations</p>
+                    <p style="margin-top: 20px; font-size: 0.9rem;">No API key required • Completely free</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Celestial Tarot. All rights reserved. | <a href="#" style="color: var(--accent);">Privacy Policy</a> | <a href="#" style="color: var(--accent);">Terms of Service</a></p>
+                <p style="margin-top: 10px; font-size: 0.85rem;">This system uses OpenRouter AI to generate authentic tarot interpretations. Readings are for guidance purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== Mobile Menu Toggle =====
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // ===== Angel Messages Data =====
+        const angelMessages = [
+            {
+                id: 1,
+                title: "Divine Protection",
+                subtitle: "From Archangel Michael",
+                icon: "🛡️",
+                message: "You are surrounded by a shield of divine protection. The angels are watching over you, keeping you safe from harm. Trust that you are always protected, even when you feel vulnerable.",
+                affirmation: "I am safe, protected, and surrounded by divine light."
+            },
+            {
+                id: 2,
+                title: "Love & Compassion",
+                subtitle: "From Archangel Chamuel",
+                icon: "💖",
+                message: "Open your heart to love - both giving and receiving. The angels remind you that love is your natural state. Practice compassion with yourself and others, and watch how your relationships transform.",
+                affirmation: "My heart is open to giving and receiving love freely."
+            },
+            {
+                id: 3,
+                title: "Creative Inspiration",
+                subtitle: "From Archangel Gabriel",
+                icon: "🎨",
+                message: "Your creative ideas are divinely inspired. The angels are guiding your creative process. Trust your intuition and take inspired action on your creative projects.",
+                affirmation: "Divine inspiration flows through me effortlessly."
+            },
+            {
+                id: 4,
+                title: "Healing & Restoration",
+                subtitle: "From Archangel Raphael",
+                icon: "🌿",
+                message: "Healing energy is flowing to you now. Whether physical, emotional, or spiritual healing is needed, the angels are working to restore your well-being. Trust in the healing process.",
+                affirmation: "Healing energy flows through every cell of my being."
+            },
+            {
+                id: 5,
+                title: "Abundance Flow",
+                subtitle: "From Archangel Ariel",
+                icon: "💰",
+                message: "The universe is abundant and wants to provide for you. Release scarcity thinking and open yourself to receive. Your needs are being met in divine timing and perfect ways.",
+                affirmation: "I am open to receiving abundant blessings in all forms."
+            },
+            {
+                id: 6,
+                title: "Peace & Calm",
+                subtitle: "From Archangel Sandalphon",
+                icon: "🕊️",
+                message: "Peace is your birthright. When you feel anxious or overwhelmed, call upon the angels to help you find your center. Breathe deeply and know that all is well.",
+                affirmation: "Peace flows through me with every breath I take."
+            },
+            {
+                id: 7,
+                title: "Divine Guidance",
+                subtitle: "From Your Guardian Angels",
+                icon: "👼",
+                message: "You are never alone. Your guardian angels are always with you, guiding your steps. Pay attention to synchronicities, gut feelings, and repeating signs - these are messages from your angels.",
+                affirmation: "I trust the guidance I receive from my angels."
+            },
+            {
+                id: 8,
+                title: "New Beginnings",
+                subtitle: "From Archangel Jophiel",
+                icon: "🌅",
+                message: "A new chapter is beginning in your life. The angels are helping you release the old and embrace the new. Trust this transition and know it's for your highest good.",
+                affirmation: "I welcome new beginnings with an open heart and mind."
+            }
+        ];
+
+        // ===== Angel Numbers Data =====
+        const angelNumbers = [
+            {
+                number: "111",
+                title: "New Beginnings",
+                meaning: "A powerful manifestation number. Your thoughts are rapidly manifesting. Focus on what you want, not what you fear."
+            },
+            {
+                number: "222",
+                title: "Balance & Harmony",
+                meaning: "Things are working out behind the scenes. Keep the faith and trust that everything is aligning for your highest good."
+            },
+            {
+                number: "333",
+                title: "Ascended Masters",
+                meaning: "The ascended masters are with you, offering love and guidance. You are surrounded by spiritual support."
+            },
+            {
+                number: "444",
+                title: "Angel Protection",
+                meaning: "Your angels are surrounding you with protection and love. You have nothing to fear."
+            },
+            {
+                number: "555",
+                title: "Major Changes",
+                meaning: "Big changes are coming. These changes are positive and will bring growth and new opportunities."
+            },
+            {
+                number: "666",
+                title: "Balance Thoughts",
+                meaning: "Your thoughts are out of balance. Focus on spirituality and service. Release fears about material world."
+            },
+            {
+                number: "777",
+                title: "Divine Guidance",
+                meaning: "You are on the right path. Continue following your intuition and spiritual practices."
+            },
+            {
+                number: "888",
+                title: "Abundance Flow",
+                meaning: "Financial and material abundance is coming your way. A phase of your life is ending successfully."
+            },
+            {
+                number: "999",
+                title: "Completion",
+                meaning: "A phase in your life is ending. Release what no longer serves you to make room for the new."
+            },
+            {
+                number: "000",
+                title: "Divine Connection",
+                meaning: "You are one with the universe. A reminder of your spiritual nature and connection to Source."
+            },
+            {
+                number: "1212",
+                title: "Spiritual Growth",
+                meaning: "Your spiritual awakening is accelerating. Stay positive as you ascend to higher consciousness."
+            },
+            {
+                number: "1010",
+                title: "Divine Timing",
+                meaning: "Everything is happening in perfect divine timing. Trust the journey and stay optimistic."
+            }
+        ];
+
+        // ===== Daily Messages =====
+        const dailyMessages = [
+            "Trust the journey. The path may be unclear, but every step is guided.",
+            "Your angels want you to know: You are loved beyond measure.",
+            "Take time to breathe today. Peace is found in the space between thoughts.",
+            "The answer you seek is within your heart. Listen quietly.",
+            "Release what weighs you down. You are meant to fly, not carry burdens.",
+            "Your presence is a gift to the world. Shine your light today.",
+            "Miracles happen when you least expect them. Stay open and receptive.",
+            "Your intuition is your superpower. Trust those gentle nudges.",
+            "Healing happens in layers. Be patient and compassionate with yourself.",
+            "Abundance flows to you when you operate from a place of gratitude."
+        ];
+
+        // ===== DOM Elements =====
+        const angelMessagesGrid = document.getElementById('angelMessagesGrid');
+        const angelNumbersGrid = document.getElementById('angelNumbersGrid');
+        const dailyMessageEl = document.getElementById('dailyMessage');
+        const getDailyMessageBtn = document.getElementById('getDailyMessage');
+        const loadMoreMessagesBtn = document.getElementById('loadMoreMessages');
+        const angelJournal = document.getElementById('angelJournal');
+        const saveJournalBtn = document.getElementById('saveJournal');
+        const clearJournalBtn = document.getElementById('clearJournal');
+        const shareMessageBtn = document.getElementById('shareMessage');
+        const saveMessageBtn = document.getElementById('saveMessage');
+        const angelMeditationBtn = document.getElementById('angelMeditation');
+
+        // ===== Initialize Page =====
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAngelMessages();
+            initializeAngelNumbers();
+            setDailyMessage();
+            loadSavedJournal();
+            setupEventListeners();
+        });
+
+        function initializeAngelMessages() {
+            // Display first 4 messages
+            displayMessages(angelMessages.slice(0, 4));
+        }
+
+        function displayMessages(messages) {
+            messages.forEach(message => {
+                const messageCard = document.createElement('div');
+                messageCard.className = 'message-card';
+                messageCard.innerHTML = `
+                    <div class="message-header">
+                        <span class="message-icon">${message.icon}</span>
+                        <h3 class="message-title">${message.title}</h3>
+                        <p class="message-subtitle">${message.subtitle}</p>
+                    </div>
+                    <div class="message-content">
+                        <p class="message-text">${message.message}</p>
+                        <div class="message-affirmation">
+                            <i class="fas fa-quote-left" style="margin-right: 5px;"></i>
+                            ${message.affirmation}
+                        </div>
+                    </div>
+                `;
+                angelMessagesGrid.appendChild(messageCard);
+            });
+        }
+
+        function initializeAngelNumbers() {
+            angelNumbers.forEach(number => {
+                const numberCard = document.createElement('div');
+                numberCard.className = 'number-card';
+                numberCard.innerHTML = `
+                    <div class="number-display">${number.number}</div>
+                    <h3 class="number-title">${number.title}</h3>
+                    <p class="number-meaning">${number.meaning}</p>
+                `;
+                angelNumbersGrid.appendChild(numberCard);
+            });
+        }
+
+        function setDailyMessage() {
+            // Use date to get consistent daily message
+            const today = new Date();
+            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+            const messageIndex = dayOfYear % dailyMessages.length;
+            dailyMessageEl.textContent = dailyMessages[messageIndex];
+        }
+
+        function getRandomMessage() {
+            const randomIndex = Math.floor(Math.random() * dailyMessages.length);
+            dailyMessageEl.textContent = dailyMessages[randomIndex];
+            
+            // Show notification
+            showNotification('New angel message received!', 'success');
+        }
+
+        function loadSavedJournal() {
+            const savedJournal = localStorage.getItem('celestialAngelJournal');
+            if (savedJournal) {
+                angelJournal.value = savedJournal;
+            }
+        }
+
+        function saveJournal() {
+            const journalText = angelJournal.value;
+            if (journalText.trim()) {
+                localStorage.setItem('celestialAngelJournal', journalText);
+                showNotification('Journal saved successfully!', 'success');
+            } else {
+                showNotification('Please write something before saving.', 'warning');
+            }
+        }
+
+        function clearJournal() {
+            if (confirm('Are you sure you want to clear your journal? This cannot be undone.')) {
+                angelJournal.value = '';
+                localStorage.removeItem('celestialAngelJournal');
+                showNotification('Journal cleared.', 'info');
+            }
+        }
+
+        function shareMessage() {
+            const message = dailyMessageEl.textContent;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Today\'s Angel Message',
+                    text: message,
+                    url: window.location.href
+                });
+            } else {
+                // Fallback: Copy to clipboard
+                navigator.clipboard.writeText(message).then(() => {
+                    showNotification('Message copied to clipboard!', 'success');
+                });
+            }
+        }
+
+        function saveMessageToJournal() {
+            const message = dailyMessageEl.textContent;
+            const date = new Date().toLocaleDateString();
+            const journalEntry = `\n\n[${date}] Angel Message: ${message}`;
+            
+            // Get current journal content
+            let currentJournal = angelJournal.value;
+            
+            // Add new entry
+            angelJournal.value = currentJournal + journalEntry;
+            
+            // Save to localStorage
+            localStorage.setItem('celestialAngelJournal', angelJournal.value);
+            
+            showNotification('Message saved to your journal!', 'success');
+        }
+
+        function startAngelMeditation() {
+            showNotification('Starting Angel Meditation... Find a quiet space.', 'info');
+            
+            // Play meditation audio if available
+            const audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+            audio.volume = 0.3;
+            
+            // Show meditation guide
+            const meditationGuide = `
+                <div style="
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0,0,0,0.8);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 10000;
+                    color: white;
+                    text-align: center;
+                    padding: 20px;
+                ">
+                    <div style="max-width: 600px;">
+                        <h2 style="color: white; margin-bottom: 30px;">Angel Meditation</h2>
+                        <div style="
+                            background: rgba(255,255,255,0.1);
+                            padding: 30px;
+                            border-radius: var(--radius);
+                            margin-bottom: 20px;
+                            text-align: left;
+                        ">
+                            <p style="margin-bottom: 15px;"><strong>Step 1:</strong> Find a comfortable seated position</p>
+                            <p style="margin-bottom: 15px;"><strong>Step 2:</strong> Close your eyes and take 3 deep breaths</p>
+                            <p style="margin-bottom: 15px;"><strong>Step 3:</strong> Visualize a golden light surrounding you</p>
+                            <p style="margin-bottom: 15px;"><strong>Step 4:</strong> Invite your angels to join you</p>
+                            <p style="margin-bottom: 15px;"><strong>Step 5:</strong> Sit in silence for 5-10 minutes</p>
+                            <p><strong>Step 6:</strong> When ready, gently open your eyes</p>
+                        </div>
+                        <button onclick="this.parentElement.parentElement.remove(); audio.pause();" class="btn" style="margin-top: 20px;">
+                            End Meditation
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', meditationGuide);
+            
+            // Play audio
+            audio.play().catch(e => console.log('Audio play failed:', e));
+        }
+
+        function showNotification(message, type = 'info') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? 'var(--accent)' : type === 'warning' ? 'var(--secondary)' : 'var(--primary)'};
+                color: white;
+                padding: 15px 25px;
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                z-index: 1000;
+                animation: slideIn 0.3s ease;
+                font-family: 'Montserrat', sans-serif;
+            `;
+            
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Add CSS for animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        let displayedMessages = 4;
+        function loadMoreMessages() {
+            if (displayedMessages < angelMessages.length) {
+                const nextMessages = angelMessages.slice(displayedMessages, displayedMessages + 4);
+                displayMessages(nextMessages);
+                displayedMessages += 4;
+                
+                if (displayedMessages >= angelMessages.length) {
+                    loadMoreMessagesBtn.style.display = 'none';
+                }
+            }
+        }
+
+        function setupEventListeners() {
+            // Buttons
+            getDailyMessageBtn.addEventListener('click', getRandomMessage);
+            loadMoreMessagesBtn.addEventListener('click', loadMoreMessages);
+            saveJournalBtn.addEventListener('click', saveJournal);
+            clearJournalBtn.addEventListener('click', clearJournal);
+            shareMessageBtn.addEventListener('click', shareMessage);
+            saveMessageBtn.addEventListener('click', saveMessageToJournal);
+            angelMeditationBtn.addEventListener('click', startAngelMeditation);
+            
+            // Mobile menu
+            mobileMenuBtn.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Close mobile menu on link click
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
