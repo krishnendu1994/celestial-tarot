@@ -418,7 +418,7 @@
         
         .card-deck {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(74px, 1fr));
             gap: 25px;
             max-height: 600px;
             overflow-y: auto;
@@ -476,9 +476,15 @@
         }
         
         .tarot-card-back {
-            background: linear-gradient(45deg, #8e44ad, #3498db);
+            background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Waite%E2%80%93Smith_Tarot_Roses_and_Lilies_cropped.jpg/250px-Waite%E2%80%93Smith_Tarot_Roses_and_Lilies_cropped.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
             color: white;
         }
+        /* .tarot-card-inner.selected {
+            border: 6px solid #8e44ad;
+            
+        } */
         
         .tarot-card:hover {
             transform: translateY(-10px) scale(1.03);
@@ -571,7 +577,7 @@
         }
         
         .selected-card-item {
-            width: 180px;
+            width: 150px;
             text-align: center;
         }
         
@@ -591,7 +597,7 @@
         
         .selected-card-name {
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 14px;
             margin-bottom: 5px;
         }
         
@@ -810,6 +816,9 @@
             position: relative;
             padding-bottom: 15px;
         }
+        .tarot-card-inner.selected {
+            opacity: 0.3;
+        }
         
         .footer-col h4:after {
             content: '';
@@ -849,7 +858,7 @@
             justify-content: center;
             font-size: 1.1rem;
         }
-        
+        .back{ border: none !important; }
         .social-links a:hover {
             background-color: var(--primary);
             transform: translateY(-3px);
@@ -872,7 +881,7 @@
             }
             
             .card-deck {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(74px, 1fr));
             }
             
             .position-card {
@@ -881,7 +890,7 @@
             }
             
             .insights-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(74px, 1fr));
             }
         }
         
@@ -940,7 +949,7 @@
             }
             
             .card-deck {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(74px, 1fr));
             }
             
             .tarot-card {
@@ -978,7 +987,7 @@
             }
             
             .card-deck {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(74px, 1fr));
                 gap: 15px;
             }
             
@@ -1003,40 +1012,67 @@
             opacity: 1;
             transform: translate(0, 0) rotate(0deg) scale(1);
         }
+        /* Add to existing CSS */
 .tarot-card {
     transition: 
-        transform 1s cubic-bezier(0.22, 1, 0.36, 1),
-        opacity 0.6s ease;
-    will-change: transform;
+        transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        opacity 0.4s ease,
+        z-index 0.1s linear;
+    will-change: transform, z-index;
 }
 
-.deck-stacking .tarot-card {
+/* Shuffle container styles */
+.card-deck {
+    position: relative;
+    min-height: 400px;
+    transition: all 0.3s ease;
+}
+
+/* During shuffle animation */
+.shuffling .tarot-card {
     pointer-events: none;
 }
 
-.riffle-stack {
-    /* position: relative; */
+.shuffling .card-deck {
+    overflow: visible;
 }
 
-.riffle-anim {
-    /* position: absolute !important; */
-    transition: transform 0.7s ease, opacity 0.6s ease;
-    z-index: 999;
+/* Shuffle button styles */
+.shuffle-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
 }
 
-.riffle-left {
-    transform: translateX(-120px) rotate(-8deg);
+.shuffle-controls button {
+    padding: 12px 25px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(139, 95, 191, 0.2);
 }
 
-.riffle-right {
-    transform: translateX(120px) rotate(8deg);
+.shuffle-controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 95, 191, 0.3);
 }
 
-.riffle-merge {
-    transform: translateX(0) rotate(0deg);
-    opacity: 1;
+.shuffle-controls button:active {
+    transform: translateY(0);
 }
 
+.shuffle-controls button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
 
     </style>
 </head>
@@ -1101,12 +1137,12 @@
                     <i class="fas fa-gift"></i>
                     <div>
                         <strong>Free AI Reading Included!</strong>
-                        <div style="font-size: 0.9rem; opacity: 0.9;">Powered by OpenRouter with DeepSeek & Gemini AI</div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;">Powered by Crystal Tarot AI</div>
                     </div>
                 </div>
                 
                 <div class="question-actions">
-                    <button class="btn-secondary" onclick="window.location.href='index.html'">
+                    <button class="btn-secondary back" onclick="window.location.href='index.html'">
                         <i class="fas fa-arrow-left"></i> Back to Home
                     </button>
                     <button class="btn" id="proceedToCardsBtn">
@@ -1128,11 +1164,6 @@
                 
                 <div class="card-filter">
                     <button class="filter-btn active" data-filter="all">All Cards</button>
-                    <button class="filter-btn" data-filter="major">Major Arcana</button>
-                    <button class="filter-btn" data-filter="cups">Cups</button>
-                    <button class="filter-btn" data-filter="wands">Wands</button>
-                    <button class="filter-btn" data-filter="swords">Swords</button>
-                    <button class="filter-btn" data-filter="pentacles">Pentacles</button>
                 </div>
                 
                 <!-- Selected Cards Preview -->
@@ -1145,10 +1176,17 @@
                 
                 <!-- Card Deck -->
                 <div class="card-deck-container">
-                    <div class="shuffle-controls" style="margin-bottom:20px; display:flex; gap:10px;">
-                        <button class="btn-secondary" onclick="animatedShuffle(1)">Shuffle (1)</button>
-                        <button class="btn-secondary" onclick="animatedShuffle(3)">Shuffle (3)</button>
-                        <button class="btn-secondary" onclick="animatedShuffle(5)">Shuffle (5)</button>
+                   <!-- Card Selection Section এর মধ্যে -->
+                    <div class="shuffle-controls">
+                        <button onclick="animatedShuffle(1)" class="shuffle-btn">
+                            <i class="fas fa-random"></i> Single Shuffle
+                        </button>
+                        <button onclick="animatedShuffle(3)" class="shuffle-btn">
+                            <i class="fas fa-random"></i> Triple Shuffle
+                        </button>
+                        <button onclick="animatedShuffle(5)" class="shuffle-btn">
+                            <i class="fas fa-random"></i> Full Shuffle
+                        </button>
                     </div>
 
 
@@ -1158,7 +1196,7 @@
                 </div>
                 
                 <div class="reading-actions">
-                    <button class="btn-secondary" id="backToQuestionBtn">
+                    <button class="btn-secondary back" style="border:none;" id="backToQuestionBtn">
                         <i class="fas fa-arrow-left"></i> Back to Question
                     </button>
                     <button class="btn" id="getAIReadingBtn" disabled>
@@ -1203,7 +1241,7 @@
                         </div>
                     </div>
                     
-                    <div class="ai-insights" style="display: none;">
+                    <div class="ai-insights" style="display: block;">
                         <h3><i class="fas fa-lightbulb"></i> AI-Generated Insights</h3>
                         <div class="insights-grid" id="insightsGrid">
                             <!-- Insights will appear here -->
@@ -1287,94 +1325,95 @@
         // ===== Tarot Card Data (Complete 78-card deck) =====
         const tarotDeck = {
             major: [
-                { id: 0, name: "The Fool", meaning: "New beginnings, innocence, spontaneity, a free spirit", icon: "👤", element: "Air", shortMeaning: "New beginnings, innocence", color: "#FFD700", keywords: ["beginnings", "faith", "spontaneity", "free spirit"] },
-                { id: 1, name: "The Magician", meaning: "Manifestation, resourcefulness, power, inspired action", icon: "⚡", element: "Air", shortMeaning: "Manifestation, power", color: "#3498db", keywords: ["manifestation", "power", "skill", "concentration"] },
-                { id: 2, name: "The High Priestess", meaning: "Intuition, unconscious knowledge, divine feminine, mystery", icon: "🌙", element: "Water", shortMeaning: "Intuition, mystery", color: "#8e44ad", keywords: ["intuition", "mystery", "subconscious", "divine feminine"] },
-                { id: 3, name: "The Empress", meaning: "Femininity, beauty, nature, abundance, nurturing", icon: "👑", element: "Earth", shortMeaning: "Femininity, abundance", color: "#2ecc71", keywords: ["femininity", "abundance", "nature", "nurturing"] },
-                { id: 4, name: "The Emperor", meaning: "Authority, structure, control, fatherhood, foundation", icon: "🏛️", element: "Fire", shortMeaning: "Authority, structure", color: "#e74c3c", keywords: ["authority", "structure", "control", "foundation"] },
-                { id: 5, name: "The Hierophant", meaning: "Tradition, conformity, morality, ethics, spiritual guidance", icon: "⛪", element: "Earth", shortMeaning: "Tradition, conformity", color: "#f39c12", keywords: ["tradition", "conformity", "morality", "beliefs"] },
-                { id: 6, name: "The Lovers", meaning: "Love, harmony, relationships, values alignment, choices", icon: "💑", element: "Air", shortMeaning: "Love, relationships", color: "#e84393", keywords: ["love", "relationships", "alignment", "choices"] },
-                { id: 7, name: "The Chariot", meaning: "Control, willpower, success, action, determination", icon: "🛡️", element: "Water", shortMeaning: "Control, willpower", color: "#00cec9", keywords: ["control", "willpower", "success", "determination"] },
-                { id: 8, name: "Strength", meaning: "Courage, persuasion, influence, compassion, inner strength", icon: "🦁", element: "Fire", shortMeaning: "Courage, compassion", color: "#e17055", keywords: ["courage", "compassion", "influence", "inner strength"] },
-                { id: 9, name: "The Hermit", meaning: "Soul-searching, introspection, being alone, inner guidance", icon: "🧙", element: "Earth", shortMeaning: "Introspection, solitude", color: "#636e72", keywords: ["introspection", "solitude", "inner guidance", "searching"] },
-                { id: 10, name: "Wheel of Fortune", meaning: "Good luck, karma, life cycles, destiny, turning points", icon: "🔄", element: "Fire", shortMeaning: "Luck, destiny, cycles", color: "#a29bfe", keywords: ["luck", "destiny", "cycles", "turning points"] },
-                { id: 11, name: "Justice", meaning: "Justice, fairness, truth, cause and effect, law", icon: "⚖️", element: "Air", shortMeaning: "Justice, fairness", color: "#0984e3", keywords: ["justice", "fairness", "truth", "karma"] },
-                { id: 12, name: "The Hanged Man", meaning: "Surrender, new perspective, enlightenment, sacrifice", icon: "🙃", element: "Water", shortMeaning: "Surrender, new perspective", color: "#00b894", keywords: ["surrender", "perspective", "enlightenment", "sacrifice"] },
-                { id: 13, name: "Death", meaning: "Endings, change, transformation, transition, rebirth", icon: "💀", element: "Water", shortMeaning: "Endings, transformation", color: "#2d3436", keywords: ["endings", "transformation", "transition", "rebirth"] },
-                { id: 14, name: "Temperance", meaning: "Balance, moderation, patience, purpose, meaning", icon: "⚗️", element: "Fire", shortMeaning: "Balance, moderation", color: "#fd79a8", keywords: ["balance", "moderation", "patience", "purpose"] },
-                { id: 15, name: "The Devil", meaning: "Shadow self, attachment, addiction, restriction, bondage", icon: "😈", element: "Earth", shortMeaning: "Shadow self, addiction", color: "#6c5ce7", keywords: ["shadow self", "addiction", "restriction", "bondage"] },
-                { id: 16, name: "The Tower", meaning: "Sudden change, upheaval, chaos, revelation, awakening", icon: "🏰", element: "Fire", shortMeaning: "Sudden change, upheaval", color: "#d63031", keywords: ["sudden change", "upheaval", "chaos", "awakening"] },
-                { id: 17, name: "The Star", meaning: "Hope, faith, purpose, renewal, spirituality, inspiration", icon: "⭐", element: "Air", shortMeaning: "Hope, faith, inspiration", color: "#74b9ff", keywords: ["hope", "faith", "inspiration", "spirituality"] },
-                { id: 18, name: "The Moon", meaning: "Illusion, fear, anxiety, subconscious, intuition", icon: "🌕", element: "Water", shortMeaning: "Illusion, fear, intuition", color: "#a29bfe", keywords: ["illusion", "fear", "intuition", "subconscious"] },
-                { id: 19, name: "The Sun", meaning: "Joy, success, celebration, positivity, vitality", icon: "☀️", element: "Fire", shortMeaning: "Joy, success, vitality", color: "#fdcb6e", keywords: ["joy", "success", "positivity", "vitality"] },
-                { id: 20, name: "Judgement", meaning: "Judgement, rebirth, inner calling, absolution, awakening", icon: "📯", element: "Fire", shortMeaning: "Judgement, rebirth", color: "#00cec9", keywords: ["judgement", "rebirth", "awakening", "absolution"] },
-                { id: 21, name: "The World", meaning: "Completion, integration, accomplishment, travel, fulfillment", icon: "🌍", element: "Earth", shortMeaning: "Completion, accomplishment", color: "#55efc4", keywords: ["completion", "accomplishment", "integration", "fulfillment"] }
+                { id: 0, name: "The Fool", meaning: "New beginnings, innocence, spontaneity, a free spirit", icon: "👤", element: "Air", shortMeaning: "New beginnings, innocence", color: "#FFD700", keywords: ["beginnings", "faith", "spontaneity", "free spirit"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/RWS_Tarot_00_Fool.jpg/800px-RWS_Tarot_00_Fool.jpg" },
+                { id: 1, name: "The Magician", meaning: "Manifestation, resourcefulness, power, inspired action", icon: "⚡", element: "Air", shortMeaning: "Manifestation, power", color: "#3498db", keywords: ["manifestation", "power", "skill", "concentration"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/RWS_Tarot_01_Magician.jpg/800px-RWS_Tarot_01_Magician.jpg" },
+                { id: 2, name: "The High Priestess", meaning: "Intuition, unconscious knowledge, divine feminine, mystery", icon: "🌙", element: "Water", shortMeaning: "Intuition, mystery", color: "#8e44ad", keywords: ["intuition", "mystery", "subconscious", "divine feminine"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/RWS_Tarot_02_High_Priestess.jpg/800px-RWS_Tarot_02_High_Priestess.jpg" },
+                { id: 3, name: "The Empress", meaning: "Femininity, beauty, nature, abundance, nurturing", icon: "👑", element: "Earth", shortMeaning: "Femininity, abundance", color: "#2ecc71", keywords: ["femininity", "abundance", "nature", "nurturing"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/RWS_Tarot_03_Empress.jpg/800px-RWS_Tarot_03_Empress.jpg" },
+                { id: 4, name: "The Emperor", meaning: "Authority, structure, control, fatherhood, foundation", icon: "🏛️", element: "Fire", shortMeaning: "Authority, structure", color: "#e74c3c", keywords: ["authority", "structure", "control", "foundation"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/RWS_Tarot_04_Emperor.jpg/800px-RWS_Tarot_04_Emperor.jpg" },
+                { id: 5, name: "The Hierophant", meaning: "Tradition, conformity, morality, ethics, spiritual guidance", icon: "⛪", element: "Earth", shortMeaning: "Tradition, conformity", color: "#f39c12", keywords: ["tradition", "conformity", "morality", "beliefs"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/RWS_Tarot_05_Hierophant.jpg/800px-RWS_Tarot_05_Hierophant.jpg" },
+                { id: 6, name: "The Lovers", meaning: "Love, harmony, relationships, values alignment, choices", icon: "💑", element: "Air", shortMeaning: "Love, relationships", color: "#e84393", keywords: ["love", "relationships", "alignment", "choices"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/RWS_Tarot_06_Lovers.jpg/800px-RWS_Tarot_06_Lovers.jpg" },
+                { id: 7, name: "The Chariot", meaning: "Control, willpower, success, action, determination", icon: "🛡️", element: "Water", shortMeaning: "Control, willpower", color: "#00cec9", keywords: ["control", "willpower", "success", "determination"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/RWS_Tarot_07_Chariot.jpg/800px-RWS_Tarot_07_Chariot.jpg" },
+                { id: 8, name: "Strength", meaning: "Courage, persuasion, influence, compassion, inner strength", icon: "🦁", element: "Fire", shortMeaning: "Courage, compassion", color: "#e17055", keywords: ["courage", "compassion", "influence", "inner strength"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/RWS_Tarot_08_Strength.jpg/800px-RWS_Tarot_08_Strength.jpg" },
+                { id: 9, name: "The Hermit", meaning: "Soul-searching, introspection, being alone, inner guidance", icon: "🧙", element: "Earth", shortMeaning: "Introspection, solitude", color: "#636e72", keywords: ["introspection", "solitude", "inner guidance", "searching"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/RWS_Tarot_09_Hermit.jpg/800px-RWS_Tarot_09_Hermit.jpg" },
+                { id: 10, name: "Wheel of Fortune", meaning: "Good luck, karma, life cycles, destiny, turning points", icon: "🔄", element: "Fire", shortMeaning: "Luck, destiny, cycles", color: "#a29bfe", keywords: ["luck", "destiny", "cycles", "turning points"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/RWS_Tarot_10_Wheel_of_Fortune.jpg/800px-RWS_Tarot_10_Wheel_of_Fortune.jpg" },
+                { id: 11, name: "Justice", meaning: "Justice, fairness, truth, cause and effect, law", icon: "⚖️", element: "Air", shortMeaning: "Justice, fairness", color: "#0984e3", keywords: ["justice", "fairness", "truth", "karma"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/RWS_Tarot_11_Justice.jpg/800px-RWS_Tarot_11_Justice.jpg" },
+                { id: 12, name: "The Hanged Man", meaning: "Surrender, new perspective, enlightenment, sacrifice", icon: "🙃", element: "Water", shortMeaning: "Surrender, new perspective", color: "#00b894", keywords: ["surrender", "perspective", "enlightenment", "sacrifice"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/RWS_Tarot_12_Hanged_Man.jpg/800px-RWS_Tarot_12_Hanged_Man.jpg" },
+                { id: 13, name: "Death", meaning: "Endings, change, transformation, transition, rebirth", icon: "💀", element: "Water", shortMeaning: "Endings, transformation", color: "#2d3436", keywords: ["endings", "transformation", "transition", "rebirth"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/RWS_Tarot_13_Death.jpg/800px-RWS_Tarot_13_Death.jpg" },
+                { id: 14, name: "Temperance", meaning: "Balance, moderation, patience, purpose, meaning", icon: "⚗️", element: "Fire", shortMeaning: "Balance, moderation", color: "#fd79a8", keywords: ["balance", "moderation", "patience", "purpose"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/RWS_Tarot_14_Temperance.jpg/800px-RWS_Tarot_14_Temperance.jpg" },
+                { id: 15, name: "The Devil", meaning: "Shadow self, attachment, addiction, restriction, bondage", icon: "😈", element: "Earth", shortMeaning: "Shadow self, addiction", color: "#6c5ce7", keywords: ["shadow self", "addiction", "restriction", "bondage"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/RWS_Tarot_15_Devil.jpg/800px-RWS_Tarot_15_Devil.jpg" },
+                { id: 16, name: "The Tower", meaning: "Sudden change, upheaval, chaos, revelation, awakening", icon: "🏰", element: "Fire", shortMeaning: "Sudden change, upheaval", color: "#d63031", keywords: ["sudden change", "upheaval", "chaos", "awakening"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/RWS_Tarot_16_Tower.jpg/800px-RWS_Tarot_16_Tower.jpg" },
+                { id: 17, name: "The Star", meaning: "Hope, faith, purpose, renewal, spirituality, inspiration", icon: "⭐", element: "Air", shortMeaning: "Hope, faith, inspiration", color: "#74b9ff", keywords: ["hope", "faith", "inspiration", "spirituality"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/RWS_Tarot_17_Star.jpg/800px-RWS_Tarot_17_Star.jpg" },
+                { id: 18, name: "The Moon", meaning: "Illusion, fear, anxiety, subconscious, intuition", icon: "🌕", element: "Water", shortMeaning: "Illusion, fear, intuition", color: "#a29bfe", keywords: ["illusion", "fear", "intuition", "subconscious"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/RWS_Tarot_18_Moon.jpg/800px-RWS_Tarot_18_Moon.jpg" },
+                { id: 19, name: "The Sun", meaning: "Joy, success, celebration, positivity, vitality", icon: "☀️", element: "Fire", shortMeaning: "Joy, success, vitality", color: "#fdcb6e", keywords: ["joy", "success", "positivity", "vitality"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/RWS_Tarot_19_Sun.jpg/800px-RWS_Tarot_19_Sun.jpg" },
+                { id: 20, name: "Judgement", meaning: "Judgement, rebirth, inner calling, absolution, awakening", icon: "📯", element: "Fire", shortMeaning: "Judgement, rebirth", color: "#00cec9", keywords: ["judgement", "rebirth", "awakening", "absolution"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/RWS_Tarot_20_Judgement.jpg/800px-RWS_Tarot_20_Judgement.jpg" },
+                { id: 21, name: "The World", meaning: "Completion, integration, accomplishment, travel, fulfillment", icon: "🌍", element: "Earth", shortMeaning: "Completion, accomplishment", color: "#55efc4", keywords: ["completion", "accomplishment", "integration", "fulfillment"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/RWS_Tarot_21_World.jpg/800px-RWS_Tarot_21_World.jpg" }
             ],
             cups: [
-                { id: 22, name: "Ace of Cups", meaning: "New love, compassion, creativity, spiritual awakening, emotional beginning", icon: "💧", element: "Water", shortMeaning: "New love, emotional beginning", color: "#3498db", keywords: ["love", "compassion", "creativity", "emotional start"] },
-                { id: 23, name: "Two of Cups", meaning: "Unified love, partnership, mutual attraction, connection, harmony", icon: "💑", element: "Water", shortMeaning: "Partnership, mutual attraction", color: "#e84393", keywords: ["partnership", "attraction", "connection", "harmony"] },
-                { id: 24, name: "Three of Cups", meaning: "Celebration, friendship, creativity, community, joyous gatherings", icon: "🎉", element: "Water", shortMeaning: "Celebration, friendship", color: "#9b59b6", keywords: ["celebration", "friendship", "community", "joy"] },
-                { id: 25, name: "Four of Cups", meaning: "Meditation, contemplation, reevaluation, apathy, missed opportunities", icon: "🧘", element: "Water", shortMeaning: "Contemplation, apathy", color: "#34495e", keywords: ["contemplation", "apathy", "reevaluation", "withdrawal"] },
-                { id: 26, name: "Five of Cups", meaning: "Loss, regret, disappointment, mourning, focusing on the negative", icon: "😔", element: "Water", shortMeaning: "Loss, regret, disappointment", color: "#7f8c8d", keywords: ["loss", "regret", "disappointment", "grief"] },
-                { id: 27, name: "Six of Cups", meaning: "Innocence, nostalgia, childhood memories, simplicity, familiarity", icon: "🎠", element: "Water", shortMeaning: "Nostalgia, childhood memories", color: "#f1c40f", keywords: ["nostalgia", "memories", "innocence", "simplicity"] },
-                { id: 28, name: "Seven of Cups", meaning: "Choices, imagination, wishful thinking, opportunities, illusions", icon: "🌈", element: "Water", shortMeaning: "Choices, imagination, illusions", color: "#1abc9c", keywords: ["choices", "imagination", "opportunities", "illusions"] },
-                { id: 29, name: "Eight of Cups", meaning: "Walking away, disillusionment, leaving behind, searching for meaning", icon: "🚶", element: "Water", shortMeaning: "Walking away, disillusionment", color: "#95a5a6", keywords: ["walking away", "disillusionment", "searching", "abandonment"] },
-                { id: 30, name: "Nine of Cups", meaning: "Contentment, satisfaction, gratitude, wish fulfilled, emotional stability", icon: "😊", element: "Water", shortMeaning: "Contentment, wish fulfilled", color: "#f39c12", keywords: ["contentment", "satisfaction", "gratitude", "wishes"] },
-                { id: 31, name: "Ten of Cups", meaning: "Divine love, blissful relationships, harmony, happy family, emotional fulfillment", icon: "🏡", element: "Water", shortMeaning: "Blissful relationships, harmony", color: "#2ecc71", keywords: ["harmony", "family", "emotional fulfillment", "bliss"] },
-                { id: 32, name: "Page of Cups", meaning: "Creative opportunities, intuitive messages, curiosity, new feelings", icon: "🧚", element: "Water", shortMeaning: "Creative opportunities, intuitive messages", color: "#3498db", keywords: ["creativity", "intuition", "curiosity", "new feelings"] },
-                { id: 33, name: "Knight of Cups", meaning: "Romance, charm, imagination, following heart, poetic nature", icon: "🤠", element: "Water", shortMeaning: "Romance, charm, following heart", color: "#9b59b6", keywords: ["romance", "charm", "imagination", "poetic"] },
-                { id: 34, name: "Queen of Cups", meaning: "Compassion, emotional security, intuition, calm, nurturing love", icon: "👸", element: "Water", shortMeaning: "Compassion, emotional security", color: "#e84393", keywords: ["compassion", "intuition", "nurturing", "calm"] },
-                { id: 35, name: "King of Cups", meaning: "Emotional balance, compassion, diplomacy, control of feelings", icon: "🤴", element: "Water", shortMeaning: "Emotional balance, compassion", color: "#0984e3", keywords: ["emotional balance", "compassion", "diplomacy", "control"] }
+                { id: 22, name: "Ace of Cups", meaning: "New love, compassion, creativity, spiritual awakening, emotional beginning", icon: "💧", element: "Water", shortMeaning: "New love, emotional beginning", color: "#3498db", keywords: ["love", "compassion", "creativity", "emotional start"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Cups01.jpg/800px-Cups01.jpg" },
+                { id: 23, name: "Two of Cups", meaning: "Unified love, partnership, mutual attraction, connection, harmony", icon: "💑", element: "Water", shortMeaning: "Partnership, mutual attraction", color: "#e84393", keywords: ["partnership", "attraction", "connection", "harmony"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Cups02.jpg/800px-Cups02.jpg" },
+                { id: 24, name: "Three of Cups", meaning: "Celebration, friendship, creativity, community, joyous gatherings", icon: "🎉", element: "Water", shortMeaning: "Celebration, friendship", color: "#9b59b6", keywords: ["celebration", "friendship", "community", "joy"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Cups03.jpg/500px-Cups03.jpg" },
+                { id: 25, name: "Four of Cups", meaning: "Meditation, contemplation, reevaluation, apathy, missed opportunities", icon: "🧘", element: "Water", shortMeaning: "Contemplation, apathy", color: "#34495e", keywords: ["contemplation", "apathy", "reevaluation", "withdrawal"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Cups04.jpg/500px-Cups04.jpg" },
+                { id: 26, name: "Five of Cups", meaning: "Loss, regret, disappointment, mourning, focusing on the negative", icon: "😔", element: "Water", shortMeaning: "Loss, regret, disappointment", color: "#7f8c8d", keywords: ["loss", "regret", "disappointment", "grief"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Cups05.jpg/500px-Cups05.jpg" },
+                { id: 27, name: "Six of Cups", meaning: "Innocence, nostalgia, childhood memories, simplicity, familiarity", icon: "🎠", element: "Water", shortMeaning: "Nostalgia, childhood memories", color: "#f1c40f", keywords: ["nostalgia", "memories", "innocence", "simplicity"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Cups06.jpg/500px-Cups06.jpg" },
+                { id: 28, name: "Seven of Cups", meaning: "Choices, imagination, wishful thinking, opportunities, illusions", icon: "🌈", element: "Water", shortMeaning: "Choices, imagination, illusions", color: "#1abc9c", keywords: ["choices", "imagination", "opportunities", "illusions"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Cups07.jpg/500px-Cups07.jpg" },
+                { id: 29, name: "Eight of Cups", meaning: "Walking away, disillusionment, leaving behind, searching for meaning", icon: "🚶", element: "Water", shortMeaning: "Walking away, disillusionment", color: "#95a5a6", keywords: ["walking away", "disillusionment", "searching", "abandonment"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Cups08.jpg/500px-Cups08.jpg" },
+                { id: 30, name: "Nine of Cups", meaning: "Contentment, satisfaction, gratitude, wish fulfilled, emotional stability", icon: "😊", element: "Water", shortMeaning: "Contentment, wish fulfilled", color: "#f39c12", keywords: ["contentment", "satisfaction", "gratitude", "wishes"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Cups09.jpg/500px-Cups09.jpg" },
+                { id: 31, name: "Ten of Cups", meaning: "Divine love, blissful relationships, harmony, happy family, emotional fulfillment", icon: "🏡", element: "Water", shortMeaning: "Blissful relationships, harmony", color: "#2ecc71", keywords: ["harmony", "family", "emotional fulfillment", "bliss"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Cups10.jpg/500px-Cups10.jpg" },
+                { id: 32, name: "Page of Cups", meaning: "Creative opportunities, intuitive messages, curiosity, new feelings", icon: "🧚", element: "Water", shortMeaning: "Creative opportunities, intuitive messages", color: "#3498db", keywords: ["creativity", "intuition", "curiosity", "new feelings"], image: "hhttps://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Cups11.jpg/500px-Cups11.jpg" },
+                { id: 33, name: "Knight of Cups", meaning: "Romance, charm, imagination, following heart, poetic nature", icon: "🤠", element: "Water", shortMeaning: "Romance, charm, following heart", color: "#9b59b6", keywords: ["romance", "charm", "imagination", "poetic"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Cups12.jpg/500px-Cups12.jpg" },
+                { id: 34, name: "Queen of Cups", meaning: "Compassion, emotional security, intuition, calm, nurturing love", icon: "👸", element: "Water", shortMeaning: "Compassion, emotional security", color: "#e84393", keywords: ["compassion", "intuition", "nurturing", "calm"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Cups13.jpg/500px-Cups13.jpg" },
+                { id: 35, name: "King of Cups", meaning: "Emotional balance, compassion, diplomacy, control of feelings", icon: "🤴", element: "Water", shortMeaning: "Emotional balance, compassion", color: "#0984e3", keywords: ["emotional balance", "compassion", "diplomacy", "control"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Cups14.jpg/500px-Cups14.jpg" }
             ],
             wands: [
-                { id: 36, name: "Ace of Wands", meaning: "Inspiration, new opportunities, growth, potential, creative spark", icon: "🔥", element: "Fire", shortMeaning: "Inspiration, new opportunities", color: "#e74c3c", keywords: ["inspiration", "opportunities", "growth", "creative spark"] },
-                { id: 37, name: "Two of Wands", meaning: "Future planning, progress, decisions, discovery, leaving comfort zone", icon: "🗺️", element: "Fire", shortMeaning: "Future planning, decisions", color: "#d35400", keywords: ["planning", "decisions", "progress", "discovery"] },
-                { id: 38, name: "Three of Wands", meaning: "Expansion, foresight, overseas opportunities, progress, leadership", icon: "👁️", element: "Fire", shortMeaning: "Expansion, foresight", color: "#f39c12", keywords: ["expansion", "foresight", "opportunities", "leadership"] },
-                { id: 39, name: "Four of Wands", meaning: "Celebration, harmony, marriage, home, community, stability", icon: "🏠", element: "Fire", shortMeaning: "Celebration, harmony, home", color: "#2ecc71", keywords: ["celebration", "harmony", "home", "community"] },
-                { id: 40, name: "Five of Wands", meaning: "Conflict, disagreements, competition, tension, rivals", icon: "⚔️", element: "Fire", shortMeaning: "Conflict, competition, tension", color: "#c0392b", keywords: ["conflict", "competition", "tension", "rivalry"] },
-                { id: 41, name: "Six of Wands", meaning: "Victory, success, public recognition, progress, self-confidence", icon: "🏆", element: "Fire", shortMeaning: "Victory, success, recognition", color: "#f1c40f", keywords: ["victory", "success", "recognition", "confidence"] },
-                { id: 42, name: "Seven of Wands", meaning: "Challenge, competition, perseverance, defense, maintaining control", icon: "🛡️", element: "Fire", shortMeaning: "Challenge, perseverance", color: "#7f8c8d", keywords: ["challenge", "perseverance", "defense", "control"] },
-                { id: 43, name: "Eight of Wands", meaning: "Swift action, movement, quick decisions, travel, rapid progress", icon: "💨", element: "Fire", shortMeaning: "Swift action, movement", color: "#3498db", keywords: ["action", "movement", "progress", "travel"] },
-                { id: 44, name: "Nine of Wands", meaning: "Resilience, courage, persistence, boundaries, defensive position", icon: "🛡️", element: "Fire", shortMeaning: "Resilience, persistence", color: "#8e44ad", keywords: ["resilience", "courage", "persistence", "boundaries"] },
-                { id: 45, name: "Ten of Wands", meaning: "Burden, responsibility, hard work, completion, stress", icon: "💼", element: "Fire", shortMeaning: "Burden, responsibility, hard work", color: "#2c3e50", keywords: ["burden", "responsibility", "hard work", "stress"] },
-                { id: 46, name: "Page of Wands", meaning: "Exploration, excitement, freedom, discovery, enthusiasm", icon: "🧚", element: "Fire", shortMeaning: "Exploration, excitement, freedom", color: "#e74c3c", keywords: ["exploration", "excitement", "freedom", "enthusiasm"] },
-                { id: 47, name: "Knight of Wands", meaning: "Action, adventure, fearlessness, energy, passion", icon: "🤠", element: "Fire", shortMeaning: "Action, adventure, passion", color: "#f39c12", keywords: ["action", "adventure", "passion", "energy"] },
-                { id: 48, name: "Queen of Wands", meaning: "Courage, determination, joy, vibrancy, confidence", icon: "👸", element: "Fire", shortMeaning: "Courage, determination, confidence", color: "#f1c40f", keywords: ["courage", "determination", "confidence", "vibrancy"] },
-                { id: 49, name: "King of Wands", meaning: "Natural-born leader, vision, entrepreneur, charisma, taking action", icon: "🤴", element: "Fire", shortMeaning: "Leadership, vision, charisma", color: "#d35400", keywords: ["leadership", "vision", "charisma", "action"] }
+                { id: 36, name: "Ace of Wands", meaning: "Inspiration, new opportunities, growth, potential, creative spark", icon: "🔥", element: "Fire", shortMeaning: "Inspiration, new opportunities", color: "#e74c3c", keywords: ["inspiration", "opportunities", "growth", "creative spark"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Wands01.jpg/800px-Wands01.jpg" },
+                { id: 37, name: "Two of Wands", meaning: "Future planning, progress, decisions, discovery, leaving comfort zone", icon: "🗺️", element: "Fire", shortMeaning: "Future planning, decisions", color: "#d35400", keywords: ["planning", "decisions", "progress", "discovery"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Wands02.jpg/500px-Wands02.jpg" },
+                { id: 38, name: "Three of Wands", meaning: "Expansion, foresight, overseas opportunities, progress, leadership", icon: "👁️", element: "Fire", shortMeaning: "Expansion, foresight", color: "#f39c12", keywords: ["expansion", "foresight", "opportunities", "leadership"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Wands03.jpg/500px-Wands03.jpg" },
+                { id: 39, name: "Four of Wands", meaning: "Celebration, harmony, marriage, home, community, stability", icon: "🏠", element: "Fire", shortMeaning: "Celebration, harmony, home", color: "#2ecc71", keywords: ["celebration", "harmony", "home", "community"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Wands04.jpg/500px-Wands04.jpg" },
+                { id: 40, name: "Five of Wands", meaning: "Conflict, disagreements, competition, tension, rivals", icon: "⚔️", element: "Fire", shortMeaning: "Conflict, competition, tension", color: "#c0392b", keywords: ["conflict", "competition", "tension", "rivalry"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Wands05.jpg/500px-Wands05.jpg" },
+                { id: 41, name: "Six of Wands", meaning: "Victory, success, public recognition, progress, self-confidence", icon: "🏆", element: "Fire", shortMeaning: "Victory, success, recognition", color: "#f1c40f", keywords: ["victory", "success", "recognition", "confidence"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Wands06.jpg/500px-Wands06.jpg" },
+                { id: 42, name: "Seven of Wands", meaning: "Challenge, competition, perseverance, defense, maintaining control", icon: "🛡️", element: "Fire", shortMeaning: "Challenge, perseverance", color: "#7f8c8d", keywords: ["challenge", "perseverance", "defense", "control"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Wands07.jpg/500px-Wands07.jpg" },
+                { id: 43, name: "Eight of Wands", meaning: "Swift action, movement, quick decisions, travel, rapid progress", icon: "💨", element: "Fire", shortMeaning: "Swift action, movement", color: "#3498db", keywords: ["action", "movement", "progress", "travel"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Wands08.jpg/500px-Wands08.jpg" },
+                { id: 44, name: "Nine of Wands", meaning: "Resilience, courage, persistence, boundaries, defensive position", icon: "🛡️", element: "Fire", shortMeaning: "Resilience, persistence", color: "#8e44ad", keywords: ["resilience", "courage", "persistence", "boundaries"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Tarot_Nine_of_Wands.jpg/500px-Tarot_Nine_of_Wands.jpg" },
+                { id: 45, name: "Ten of Wands", meaning: "Burden, responsibility, hard work, completion, stress", icon: "💼", element: "Fire", shortMeaning: "Burden, responsibility, hard work", color: "#2c3e50", keywords: ["burden", "responsibility", "hard work", "stress"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Wands10.jpg/500px-Wands10.jpg" },
+                { id: 46, name: "Page of Wands", meaning: "Exploration, excitement, freedom, discovery, enthusiasm", icon: "🧚", element: "Fire", shortMeaning: "Exploration, excitement, freedom", color: "#e74c3c", keywords: ["exploration", "excitement", "freedom", "enthusiasm"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Wands11.jpg/500px-Wands11.jpg" },
+                { id: 47, name: "Knight of Wands", meaning: "Action, adventure, fearlessness, energy, passion", icon: "🤠", element: "Fire", shortMeaning: "Action, adventure, passion", color: "#f39c12", keywords: ["action", "adventure", "passion", "energy"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Wands12.jpg/500px-Wands12.jpg" },
+                { id: 48, name: "Queen of Wands", meaning: "Courage, determination, joy, vibrancy, confidence", icon: "👸", element: "Fire", shortMeaning: "Courage, determination, confidence", color: "#f1c40f", keywords: ["courage", "determination", "confidence", "vibrancy"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Wands13.jpg/500px-Wands13.jpg" },
+                { id: 49, name: "King of Wands", meaning: "Natural-born leader, vision, entrepreneur, charisma, taking action", icon: "🤴", element: "Fire", shortMeaning: "Leadership, vision, charisma", color: "#d35400", keywords: ["leadership", "vision", "charisma", "action"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Wands14.jpg/500px-Wands14.jpg" }
             ],
             swords: [
-                { id: 50, name: "Ace of Swords", meaning: "Breakthrough, clarity, sharp mind, new idea, truth", icon: "⚔️", element: "Air", shortMeaning: "Breakthrough, clarity, truth", color: "#95a5a6", keywords: ["breakthrough", "clarity", "truth", "new idea"] },
-                { id: 51, name: "Two of Swords", meaning: "Difficult decisions, indecision, stalemate, blocked emotions", icon: "⚖️", element: "Air", shortMeaning: "Indecision, stalemate", color: "#7f8c8d", keywords: ["indecision", "stalemate", "choices", "blocked"] },
-                { id: 52, name: "Three of Swords", meaning: "Heartbreak, emotional pain, sorrow, grief, separation", icon: "💔", element: "Air", shortMeaning: "Heartbreak, sorrow, grief", color: "#c0392b", keywords: ["heartbreak", "sorrow", "grief", "pain"] },
-                { id: 53, name: "Four of Swords", meaning: "Rest, restoration, contemplation, recuperation, meditation", icon: "😴", element: "Air", shortMeaning: "Rest, restoration, contemplation", color: "#3498db", keywords: ["rest", "restoration", "contemplation", "recuperation"] },
-                { id: 54, name: "Five of Swords", meaning: "Conflict, tension, loss, defeat, betrayal, winning at all costs", icon: "😞", element: "Air", shortMeaning: "Conflict, defeat, betrayal", color: "#2c3e50", keywords: ["conflict", "defeat", "betrayal", "tension"] },
-                { id: 55, name: "Six of Swords", meaning: "Transition, change, rite of passage, release, moving on", icon: "⛵", element: "Air", shortMeaning: "Transition, change, moving on", color: "#00cec9", keywords: ["transition", "change", "moving on", "release"] },
-                { id: 56, name: "Seven of Swords", meaning: "Betrayal, deception, getting away with something, stealth, strategy", icon: "🦹", element: "Air", shortMeaning: "Betrayal, deception, strategy", color: "#636e72", keywords: ["betrayal", "deception", "strategy", "stealth"] },
-                { id: 57, name: "Eight of Swords", meaning: "Restriction, confusion, powerlessness, victim mentality", icon: "😖", element: "Air", shortMeaning: "Restriction, confusion, powerlessness", color: "#2c3e50", keywords: ["restriction", "confusion", "powerlessness", "victim"] },
-                { id: 58, name: "Nine of Swords", meaning: "Anxiety, worry, fear, depression, nightmares, guilt", icon: "😰", element: "Air", shortMeaning: "Anxiety, worry, fear", color: "#34495e", keywords: ["anxiety", "worry", "fear", "guilt"] },
-                { id: 59, name: "Ten of Swords", meaning: "Painful endings, deep wounds, betrayal, loss, rock bottom", icon: "🗡️", element: "Air", shortMeaning: "Painful endings, betrayal", color: "#2c3e50", keywords: ["endings", "betrayal", "pain", "rock bottom"] },
-                { id: 60, name: "Page of Swords", meaning: "Curiosity, restlessness, mental energy, new ideas, vigilance", icon: "🧚", element: "Air", shortMeaning: "Curiosity, mental energy, new ideas", color: "#3498db", keywords: ["curiosity", "mental energy", "ideas", "vigilance"] },
-                { id: 61, name: "Knight of Swords", meaning: "Ambitious, action-oriented, direct communication, haste, impulsiveness", icon: "🤠", element: "Air", shortMeaning: "Ambition, action, directness", color: "#7f8c8d", keywords: ["ambition", "action", "directness", "haste"] },
-                { id: 62, name: "Queen of Swords", meaning: "Independent, unbiased judgment, clear boundaries, perceptive, honest", icon: "👸", element: "Air", shortMeaning: "Independence, clear judgment, honesty", color: "#95a5a6", keywords: ["independence", "judgment", "honesty", "perceptive"] },
-                { id: 63, name: "King of Swords", meaning: "Mental clarity, intellectual power, authority, truth, command", icon: "🤴", element: "Air", shortMeaning: "Mental clarity, authority, truth", color: "#2c3e50", keywords: ["clarity", "authority", "truth", "intellect"] }
+                { id: 50, name: "Ace of Swords", meaning: "Breakthrough, clarity, sharp mind, new idea, truth", icon: "⚔️", element: "Air", shortMeaning: "Breakthrough, clarity, truth", color: "#95a5a6", keywords: ["breakthrough", "clarity", "truth", "new idea"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Swords01.jpg/500px-Swords01.jpg" },
+                { id: 51, name: "Two of Swords", meaning: "Difficult decisions, indecision, stalemate, blocked emotions", icon: "⚖️", element: "Air", shortMeaning: "Indecision, stalemate", color: "#7f8c8d", keywords: ["indecision", "stalemate", "choices", "blocked"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Swords02.jpg/500px-Swords02.jpg" },
+                { id: 52, name: "Three of Swords", meaning: "Heartbreak, emotional pain, sorrow, grief, separation", icon: "💔", element: "Air", shortMeaning: "Heartbreak, sorrow, grief", color: "#c0392b", keywords: ["heartbreak", "sorrow", "grief", "pain"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Swords03.jpg/500px-Swords03.jpg" },
+                { id: 53, name: "Four of Swords", meaning: "Rest, restoration, contemplation, recuperation, meditation", icon: "😴", element: "Air", shortMeaning: "Rest, restoration, contemplation", color: "#3498db", keywords: ["rest", "restoration", "contemplation", "recuperation"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Swords04.jpg/500px-Swords04.jpg" },
+                { id: 54, name: "Five of Swords", meaning: "Conflict, tension, loss, defeat, betrayal, winning at all costs", icon: "😞", element: "Air", shortMeaning: "Conflict, defeat, betrayal", color: "#2c3e50", keywords: ["conflict", "defeat", "betrayal", "tension"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Swords05.jpg/500px-Swords05.jpg" },
+                { id: 55, name: "Six of Swords", meaning: "Transition, change, rite of passage, release, moving on", icon: "⛵", element: "Air", shortMeaning: "Transition, change, moving on", color: "#00cec9", keywords: ["transition", "change", "moving on", "release"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Swords06.jpg/500px-Swords06.jpg" },
+                { id: 56, name: "Seven of Swords", meaning: "Betrayal, deception, getting away with something, stealth, strategy", icon: "🦹", element: "Air", shortMeaning: "Betrayal, deception, strategy", color: "#636e72", keywords: ["betrayal", "deception", "strategy", "stealth"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Swords07.jpg/500px-Swords07.jpg" },
+                { id: 57, name: "Eight of Swords", meaning: "Restriction, confusion, powerlessness, victim mentality", icon: "😖", element: "Air", shortMeaning: "Restriction, confusion, powerlessness", color: "#2c3e50", keywords: ["restriction", "confusion", "powerlessness", "victim"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Swords08.jpg/500px-Swords08.jpg" },
+                { id: 58, name: "Nine of Swords", meaning: "Anxiety, worry, fear, depression, nightmares, guilt", icon: "😰", element: "Air", shortMeaning: "Anxiety, worry, fear", color: "#34495e", keywords: ["anxiety", "worry", "fear", "guilt"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Swords09.jpg/500px-Swords09.jpg" },
+                { id: 59, name: "Ten of Swords", meaning: "Painful endings, deep wounds, betrayal, loss, rock bottom", icon: "🗡️", element: "Air", shortMeaning: "Painful endings, betrayal", color: "#2c3e50", keywords: ["endings", "betrayal", "pain", "rock bottom"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Swords10.jpg/500px-Swords10.jpg" },
+                { id: 60, name: "Page of Swords", meaning: "Curiosity, restlessness, mental energy, new ideas, vigilance", icon: "🧚", element: "Air", shortMeaning: "Curiosity, mental energy, new ideas", color: "#3498db", keywords: ["curiosity", "mental energy", "ideas", "vigilance"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Swords11.jpg/500px-Swords11.jpg" },
+                { id: 61, name: "Knight of Swords", meaning: "Ambitious, action-oriented, direct communication, haste, impulsiveness", icon: "🤠", element: "Air", shortMeaning: "Ambition, action, directness", color: "#7f8c8d", keywords: ["ambition", "action", "directness", "haste"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Swords12.jpg/500px-Swords12.jpg" },
+                { id: 62, name: "Queen of Swords", meaning: "Independent, unbiased judgment, clear boundaries, perceptive, honest", icon: "👸", element: "Air", shortMeaning: "Independence, clear judgment, honesty", color: "#95a5a6", keywords: ["independence", "judgment", "honesty", "perceptive"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Swords13.jpg/500px-Swords13.jpg" },
+                { id: 63, name: "King of Swords", meaning: "Mental clarity, intellectual power, authority, truth, command", icon: "🤴", element: "Air", shortMeaning: "Mental clarity, authority, truth", color: "#2c3e50", keywords: ["clarity", "authority", "truth", "intellect"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Swords14.jpg/500px-Swords14.jpg" }
             ],
             pentacles: [
-                { id: 64, name: "Ace of Pentacles", meaning: "New financial opportunity, prosperity, new job, manifestation", icon: "💰", element: "Earth", shortMeaning: "Financial opportunity, prosperity", color: "#27ae60", keywords: ["opportunity", "prosperity", "manifestation", "wealth"] },
-                { id: 65, name: "Two of Pentacles", meaning: "Balance, adaptability, time management, prioritization, juggling", icon: "⚖️", element: "Earth", shortMeaning: "Balance, adaptability, juggling", color: "#2ecc71", keywords: ["balance", "adaptability", "juggling", "priorities"] },
-                { id: 66, name: "Three of Pentacles", meaning: "Teamwork, collaboration, learning, implementation, mastery", icon: "👥", element: "Earth", shortMeaning: "Teamwork, collaboration, learning", color: "#f39c12", keywords: ["teamwork", "collaboration", "learning", "mastery"] },
-                { id: 67, name: "Four of Pentacles", meaning: "Conservation, frugality, security, control, possessiveness", icon: "💎", element: "Earth", shortMeaning: "Security, control, possessiveness", color: "#d35400", keywords: ["security", "control", "possessiveness", "conservation"] },
-                { id: 68, name: "Five of Pentacles", meaning: "Financial loss, poverty, isolation, worry, hardship", icon: "😔", element: "Earth", shortMeaning: "Financial loss, hardship, isolation", color: "#7f8c8d", keywords: ["loss", "hardship", "isolation", "poverty"] },
-                { id: 69, name: "Six of Pentacles", meaning: "Generosity, charity, giving, receiving, sharing wealth, balance", icon: "🤲", element: "Earth", shortMeaning: "Generosity, charity, sharing", color: "#27ae60", keywords: ["generosity", "charity", "sharing", "balance"] },
-                { id: 70, name: "Seven of Pentacles", meaning: "Long-term view, sustainable results, perseverance, patience, investment", icon: "🌱", element: "Earth", shortMeaning: "Patience, long-term view, investment", color: "#2ecc71", keywords: ["patience", "long-term", "investment", "perseverance"] },
-                { id: 71, name: "Eight of Pentacles", meaning: "Apprenticeship, repetitive tasks, mastery, skill development, diligence", icon: "🔨", element: "Earth", shortMeaning: "Skill development, mastery, diligence", color: "#f39c12", keywords: ["skill", "mastery", "diligence", "craftsmanship"] },
-                { id: 72, name: "Nine of Pentacles", meaning: "Abundance, luxury, self-sufficiency, financial independence, rewards", icon: "🏡", element: "Earth", shortMeaning: "Abundance, self-sufficiency, luxury", color: "#27ae60", keywords: ["abundance", "self-sufficiency", "luxury", "rewards"] },
-                { id: 73, name: "Ten of Pentacles", meaning: "Wealth, financial security, family, long-term success, legacy", icon: "👨‍👩‍👧‍👦", element: "Earth", shortMeaning: "Wealth, family, legacy, security", color: "#2ecc71", keywords: ["wealth", "family", "legacy", "security"] },
-                { id: 74, name: "Page of Pentacles", meaning: "Manifestation, financial opportunity, new skill development, ambition", icon: "🧚", element: "Earth", shortMeaning: "Manifestation, opportunity, ambition", color: "#27ae60", keywords: ["manifestation", "opportunity", "ambition", "learning"] },
-                { id: 75, name: "Knight of Pentacles", meaning: "Efficiency, routine, conservatism, responsibility, hard work", icon: "🤠", element: "Earth", shortMeaning: "Efficiency, responsibility, hard work", color: "#d35400", keywords: ["efficiency", "responsibility", "hard work", "routine"] },
-                { id: 76, name: "Queen of Pentacles", meaning: "Nurturing, practical, provides for others, financially independent, down-to-earth", icon: "👸", element: "Earth", shortMeaning: "Nurturing, practical, financial independence", color: "#2ecc71", keywords: ["nurturing", "practical", "financial independence", "grounded"] },
-                { id: 77, name: "King of Pentacles", meaning: "Wealth, business, leadership, security, abundance, reliability", icon: "🤴", element: "Earth", shortMeaning: "Wealth, business, leadership, reliability", color: "#f39c12", keywords: ["wealth", "business", "leadership", "reliability"] }
+                { id: 64, name: "Ace of Pentacles", meaning: "New financial opportunity, prosperity, new job, manifestation", icon: "💰", element: "Earth", shortMeaning: "Financial opportunity, prosperity", color: "#27ae60", keywords: ["opportunity", "prosperity", "manifestation", "wealth"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Pents01.jpg/500px-Pents01.jpg" },
+                { id: 65, name: "Two of Pentacles", meaning: "Balance, adaptability, time management, prioritization, juggling", icon: "⚖️", element: "Earth", shortMeaning: "Balance, adaptability, juggling", color: "#2ecc71", keywords: ["balance", "adaptability", "juggling", "priorities"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Pents02.jpg/500px-Pents02.jpg" },
+                { id: 66, name: "Three of Pentacles", meaning: "Teamwork, collaboration, learning, implementation, mastery", icon: "👥", element: "Earth", shortMeaning: "Teamwork, collaboration, learning", color: "#f39c12", keywords: ["teamwork", "collaboration", "learning", "mastery"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Pents03.jpg/500px-Pents03.jpg" },
+                { id: 67, name: "Four of Pentacles", meaning: "Conservation, frugality, security, control, possessiveness", icon: "💎", element: "Earth", shortMeaning: "Security, control, possessiveness", color: "#d35400", keywords: ["security", "control", "possessiveness", "conservation"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Pents04.jpg/500px-Pents04.jpg" },
+                { id: 68, name: "Five of Pentacles", meaning: "Financial loss, poverty, isolation, worry, hardship", icon: "😔", element: "Earth", shortMeaning: "Financial loss, hardship, isolation", color: "#7f8c8d", keywords: ["loss", "hardship", "isolation", "poverty"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Pents05.jpg/500px-Pents05.jpg" },
+                { id: 69, name: "Six of Pentacles", meaning: "Generosity, charity, giving, receiving, sharing wealth, balance", icon: "🤲", element: "Earth", shortMeaning: "Generosity, charity, sharing", color: "#27ae60", keywords: ["generosity", "charity", "sharing", "balance"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Pents06.jpg/500px-Pents06.jpg" },
+                { id: 70, name: "Seven of Pentacles", meaning: "Long-term view, sustainable results, perseverance, patience, investment", icon: "🌱", element: "Earth", shortMeaning: "Patience, long-term view, investment", color: "#2ecc71", keywords: ["patience", "long-term", "investment", "perseverance"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Pents07.jpg/500px-Pents07.jpg" },
+                { id: 71, name: "Eight of Pentacles", meaning: "Apprenticeship, repetitive tasks, mastery, skill development, diligence", icon: "🔨", element: "Earth", shortMeaning: "Skill development, mastery, diligence", color: "#f39c12", keywords: ["skill", "mastery", "diligence", "craftsmanship"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Pents08.jpg/500px-Pents08.jpg" },
+                { id: 72, name: "Nine of Pentacles", meaning: "Abundance, luxury, self-sufficiency, financial independence, rewards", icon: "🏡", element: "Earth", shortMeaning: "Abundance, self-sufficiency, luxury", color: "#27ae60", keywords: ["abundance", "self-sufficiency", "luxury", "rewards"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Pents09.jpg/500px-Pents09.jpg" },
+                { id: 73, name: "Ten of Pentacles", meaning: "Wealth, financial security, family, long-term success, legacy", icon: "👨‍👩‍👧‍👦", element: "Earth", shortMeaning: "Wealth, family, legacy, security", color: "#2ecc71", keywords: ["wealth", "family", "legacy", "security"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Pents10.jpg/500px-Pents10.jpg" },
+                { id: 74, name: "Page of Pentacles", meaning: "Manifestation, financial opportunity, new skill development, ambition", icon: "🧚", element: "Earth", shortMeaning: "Manifestation, opportunity, ambition", color: "#27ae60", keywords: ["manifestation", "opportunity", "ambition", "learning"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Pents11.jpg/500px-Pents11.jpg" },
+                { id: 75, name: "Knight of Pentacles", meaning: "Efficiency, routine, conservatism, responsibility, hard work", icon: "🤠", element: "Earth", shortMeaning: "Efficiency, responsibility, hard work", color: "#d35400", keywords: ["efficiency", "responsibility", "hard work", "routine"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Pents12.jpg/500px-Pents12.jpg" },
+                { id: 76, name: "Queen of Pentacles", meaning: "Nurturing, practical, provides for others, financially independent, down-to-earth", icon: "👸", element: "Earth", shortMeaning: "Nurturing, practical, financial independence", color: "#2ecc71", keywords: ["nurturing", "practical", "financial independence", "grounded"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Pents13.jpg/500px-Pents13.jpg" },
+                { id: 77, name: "King of Pentacles", meaning: "Wealth, business, leadership, security, abundance, reliability", icon: "🤴", element: "Earth", shortMeaning: "Wealth, business, leadership, reliability", color: "#f39c12", keywords: ["wealth", "business", "leadership", "reliability"], image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Pents14.jpg/500px-Pents14.jpg" }
             ]
         };
+
 
         // ===== Application State =====
         let userQuestion = "";
@@ -1441,7 +1480,7 @@
         ];
 
         // Get a free OpenRouter API key
-        const OPENROUTER_API_KEY = "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";
+        const OPENROUTER_API_KEY = "{{ aikey }}";
 
         // ===== Initialize Application =====
         document.addEventListener('DOMContentLoaded', function() {
@@ -1471,80 +1510,72 @@
         });
 
         // ===== Initialize All 78 Cards =====
-        function initializeCards() {
-            cardDeck.innerHTML = '';
-            
-            // Combine all cards into one array
-            const allCards = [];
-            
-            // Add Major Arcana cards
-            tarotDeck.major.forEach(card => {
-                allCards.push({...card, type: 'major'});
+        // ===== Initialize All 78 Cards =====
+function initializeCards() {
+    cardDeck.innerHTML = '';
+    
+    // Combine all cards into one array PROPERLY
+    const allCards = [];
+    
+    // Add ALL cards in one go
+    Object.keys(tarotDeck).forEach(suit => {
+        tarotDeck[suit].forEach(card => {
+            allCards.push({
+                ...card,
+                type: suit // 'major', 'cups', 'wands', etc.
             });
-            
-            // Add Minor Arcana cards
-            tarotDeck.cups.forEach(card => {
-                allCards.push({...card, type: 'cups'});
-            });
-            
-            tarotDeck.wands.forEach(card => {
-                allCards.push({...card, type: 'wands'});
-            });
-            
-            tarotDeck.swords.forEach(card => {
-                allCards.push({...card, type: 'swords'});
-            });
-            
-            tarotDeck.pentacles.forEach(card => {
-                allCards.push({...card, type: 'pentacles'});
-            });
-            
-            // Shuffle the cards
-            const shuffledCards = shuffleArray([...allCards]);
-            
-            // Create card elements
-            shuffledCards.forEach(card => {
-                const cardElement = document.createElement('div');
-                cardElement.className = 'tarot-card';
-                cardElement.dataset.id = card.id;
-                cardElement.dataset.type = card.type;
-                
-                // Check if this card is already selected
-                const isSelected = selectedCards.some(selected => selected.id === card.id);
-                
-                cardElement.innerHTML = `
-                    <div class="tarot-card-inner ${isSelected ? 'selected' : ''}">
-                        <div class="tarot-card-front" style="background: linear-gradient(135deg, ${card.color}, ${getTypeColor(card.type)})">
-                            <div class="card-icon">${card.icon}</div>
-                            <div class="card-name">${card.name}</div>
-                            <div class="card-meaning">${card.shortMeaning}</div>
-                            <div class="card-symbol">${getTypeSymbol(card.type)}</div>
-                            <div class="card-type">${getTypeName(card.type)}</div>
-                        </div>
-                        <div class="tarot-card-back">
-                            <div class="card-symbol">
-                                <i class="fas fa-star"></i>
-                            </div>
-                           
-                        </div>
+        });
+    });
+    
+    // ✅ CORRECT: Shuffle the CARD DATA
+    const shuffledCards = shuffleArray(allCards);
+    
+    // Create card elements from SHUFFLED data
+    shuffledCards.forEach(card => {
+        const cardElement = document.createElement('div');
+        cardElement.className = 'tarot-card';
+        cardElement.dataset.id = card.id;
+        cardElement.dataset.type = card.type;
+        
+        // Check if this card is already selected
+        const isSelected = selectedCards.some(selected => selected.id === card.id);
+        
+        cardElement.innerHTML = `
+            <div class="tarot-card-inner ${isSelected ? 'selected' : ''}">
+                <div class="tarot-card-front" style="background: linear-gradient(135deg, ${card.color}, ${getTypeColor(card.type)})">
+                    <div class="card-icon">${card.icon}</div>
+                    <div class="card-name">${card.name}</div>
+                    <div class="card-meaning">${card.shortMeaning}</div>
+                    <div class="card-symbol">${getTypeSymbol(card.type)}</div>
+                    <div class="card-type">${getTypeName(card.type)}</div>
+                </div>
+                <div class="tarot-card-back">
+                    <div class="card-symbol">
+                        <i class="fas fa-star"></i>
                     </div>
-                `;
-                
-                // Add click event to select/deselect card
-                cardElement.addEventListener('click', function() {
-                    toggleCardSelection(card);
-                });
-                
-                cardDeck.appendChild(cardElement);
-            });
-            
-            // Update selected counter
-            updateSelectedCounter();
-        }
+                </div>
+            </div>
+        `;
+        
+        cardElement.addEventListener('click', function() {
+            toggleCardSelection(card);
+        });
+        
+        cardDeck.appendChild(cardElement);
+    });
+    
+    // Update selected counter
+    updateSelectedCounter();
+}
 
         // ===== Card Selection Functions =====
         function toggleCardSelection(card) {
             const cardIndex = selectedCards.findIndex(c => c.id === card.id);
+            const isAlreadySelected = selectedCards.some(c => c.id === card.id);
+                    if (isAlreadySelected) {
+                // Card is already selected - do nothing (can't unselect)
+                return;
+            }
             
             if (cardIndex !== -1) {
                 // Deselect card
@@ -1552,7 +1583,7 @@
             } else {
                 // Check if we can select more cards
                 if (selectedCards.length >= 3) {
-                    alert('You can only select 3 cards for a reading. Please deselect a card first.');
+                    alert('You can only select 3 cards for a reading.');
                     return;
                 }
                 
@@ -1566,7 +1597,8 @@
                     color: card.color,
                     type: card.type,
                     element: card.element,
-                    keywords: card.keywords
+                    keywords: card.keywords,
+                    image: card.image
                 });
             }
             
@@ -1612,10 +1644,9 @@
                 cardElement.className = 'selected-card-item';
                 cardElement.innerHTML = `
                     <div class="selected-card-visual" style="background: linear-gradient(135deg, ${card.color}, ${getTypeColor(card.type)})">
-                        ${card.icon}
-                        <div style="font-size: 1rem; margin-top: 10px;">${position}</div>
+                         <img src="${card.image}" alt="${card.name}" style="width:100%;height: 190px;object-fit: fill;object-position:center;">
+                         <div class="selected-card-name">${card.name}</div>
                     </div>
-                    <div class="selected-card-name">${card.name}</div>
                     <div class="selected-card-position">${position}</div>
                 `;
                 
@@ -2039,19 +2070,535 @@ Format your response as a clear, well-structured tarot reading.`;
         }
 
         // Format AI response with better readability
-        function formatAIResponse(text) {
-            if (!text) return "<p>No interpretation available.</p>";
-            
-            // Add paragraph breaks
-            let formatted = text.replace(/\n\s*\n/g, '</p><p>');
-            formatted = formatted.replace(/\n/g, '<br>');
-            
-            // Add section headers
-            formatted = formatted.replace(/(\d+\.\s+[A-Z][^:]+:)/g, '<strong>$1</strong>');
-            formatted = formatted.replace(/([A-Z][^:.!?]{10,}?:)/g, '<strong>$1</strong>');
-            
-            return `<p>${formatted}</p>`;
+       function formatAIResponse(text) {
+    if (!text) return '<div class="no-interpretation">No interpretation available.</div>';
+    
+    // Process the text into beautiful HTML
+    let formattedHTML = '';
+    
+    // Split by main sections (based on common tarot reading formats)
+    const sections = text.split(/\n---\n|\n\*\*\*/g);
+    
+    sections.forEach((section, sectionIndex) => {
+        const trimmedSection = section.trim();
+        if (!trimmedSection) return;
+        
+        // Check if this is the title section
+        if (sectionIndex === 0 && trimmedSection.includes('**Tarot Reading:**')) {
+            formattedHTML += formatTitleSection(trimmedSection);
         }
+        // Check if this is a card interpretation section
+        else if (trimmedSection.includes('Card 1:') || trimmedSection.includes('Card 2:') || trimmedSection.includes('Card 3:')) {
+            formattedHTML += formatCardSection(trimmedSection);
+        }
+        // Check if this is "How the Cards Connect"
+        else if (trimmedSection.includes('How the Cards Connect')) {
+            formattedHTML += formatConnectionSection(trimmedSection);
+        }
+        // Check if this is "Practical Insights and Guidance"
+        else if (trimmedSection.includes('Practical Insights and Guidance')) {
+            formattedHTML += formatInsightsSection(trimmedSection);
+        }
+        // Check if this is "Final Message"
+        else if (trimmedSection.includes('Final Message')) {
+            formattedHTML += formatFinalMessage(trimmedSection);
+        }
+        // Generic section (may contain markdown headings)
+        else {
+            formattedHTML += formatGenericSection(trimmedSection);
+        }
+    });
+    
+    // If no sections were identified (e.g., plain text response), format as generic
+    if (!formattedHTML && text) {
+        formattedHTML = formatGenericSection(text);
+    }
+    
+    return formattedHTML;
+}
+
+// Helper functions for different section types
+function formatTitleSection(section) {
+    const lines = section.split('\n');
+    let html = '';
+    let questionFound = false;
+    
+    lines.forEach((line, index) => {
+        const trimmedLine = line.trim();
+        
+        if (trimmedLine.includes('**Tarot Reading:**')) {
+            const title = trimmedLine.replace('**Tarot Reading:**', '').trim();
+            html += `
+                <div class="reading-title-section" style="text-align: center; margin-bottom: 40px;">
+                    <h2 style="
+                        font-size: 2.2rem;
+                        color: var(--primary);
+                        margin-bottom: 15px;
+                        font-family: 'Playfair Display', serif;
+                        line-height: 1.3;
+                    ">
+                        <i class="fas fa-crystal-ball" style="margin-right: 10px;"></i>
+                        ${title}
+                    </h2>
+            `;
+        } else if (trimmedLine.includes('Question:')) {
+            const question = trimmedLine.replace('Question:', '').trim().replace(/["']/g, '');
+            html += `
+                    <div style="
+                        font-size: 1.2rem;
+                        color: var(--text-light);
+                        font-style: italic;
+                        max-width: 800px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        background: linear-gradient(135deg, rgba(139, 95, 191, 0.05), rgba(255, 107, 139, 0.05));
+                        border-radius: var(--radius);
+                        border-left: 4px solid var(--primary);
+                    ">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                            <i class="fas fa-question-circle" style="color: var(--primary);"></i>
+                            <strong style="color: var(--primary);">Your Question:</strong>
+                        </div>
+                        "${question}"
+                    </div>
+                </div>
+                <hr style="
+                    border: none;
+                    height: 2px;
+                    background: linear-gradient(to right, transparent, var(--primary), transparent);
+                    margin: 40px 0;
+                ">
+            `;
+            questionFound = true;
+        }
+    });
+    
+    // Close div if question wasn't found
+    if (!questionFound) {
+        html += `</div>`;
+    }
+    
+    return html;
+}
+
+function formatCardSection(section) {
+    const lines = section.split('\n').filter(line => line.trim());
+    let html = '';
+    let cardNumber = '';
+    let cardTitle = '';
+    let cardContent = '';
+    
+    lines.forEach((line, index) => {
+        const trimmedLine = line.trim();
+        
+        if (index === 0) {
+            // First line contains card info
+            const match = trimmedLine.match(/(Card \d+: Past Influences|Present Situation|Future Potential) - (.*)/);
+            if (match) {
+                cardNumber = match[1].split(':')[0];
+                cardTitle = match[1];
+                const cardName = match[2];
+                
+                // Find the corresponding selected card
+                const cardIndex = parseInt(cardNumber.replace('Card ', '')) - 1;
+                const card = selectedCards[cardIndex];
+                const cardColor = card ? card.color : 'var(--primary)';
+                
+                html += `
+                    <div class="card-interpretation" style="
+                        background: ${cardIndex % 2 === 0 ? 'white' : 'var(--light)'};
+                        padding: 30px;
+                        border-radius: var(--radius);
+                        margin-bottom: 30px;
+                        border-left: 5px solid ${cardColor};
+                        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+                        position: relative;
+                        overflow: hidden;
+                    ">
+                        <div style="
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            width: 80px;
+                            height: 80px;
+                            background: ${cardColor};
+                            opacity: 0.1;
+                            border-radius: 0 0 0 80px;
+                        "></div>
+                        
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
+                            <div style="
+                                width: 50px;
+                                height: 50px;
+                                background: ${cardColor};
+                                color: white;
+                                border-radius: 50%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                font-weight: bold;
+                                font-size: 1.2rem;
+                                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                            ">
+                                ${cardNumber.replace('Card ', '')}
+                            </div>
+                            <div>
+                                <h3 style="
+                                    color: var(--dark);
+                                    margin: 0 0 5px 0;
+                                    font-size: 1.4rem;
+                                    font-family: 'Playfair Display', serif;
+                                ">
+                                    ${cardTitle.replace(cardNumber + ': ', '')}
+                                </h3>
+                                <div style="
+                                    color: ${cardColor};
+                                    font-weight: 600;
+                                    font-size: 1.1rem;
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 8px;
+                                ">
+                                    <i class="fas fa-star" style="font-size: 0.9rem;"></i>
+                                    ${cardName}
+                                </div>
+                            </div>
+                        </div>
+                `;
+            }
+        } else {
+            // Handle markdown headings within card sections
+            if (trimmedLine.startsWith('### ')) {
+                const headingText = trimmedLine.replace('### ', '').trim();
+                cardContent += `<h4 style="
+                    color: var(--secondary);
+                    margin: 25px 0 15px 0;
+                    font-size: 1.3rem;
+                    font-family: 'Playfair Display', serif;
+                    border-bottom: 2px solid var(--border);
+                    padding-bottom: 8px;
+                ">${headingText}</h4>`;
+            } else if (trimmedLine.startsWith('#### ')) {
+                const subheadingText = trimmedLine.replace('#### ', '').trim();
+                cardContent += `<h5 style="
+                    color: var(--accent);
+                    margin: 20px 0 12px 0;
+                    font-size: 1.2rem;
+                    font-family: 'Playfair Display', serif;
+                ">${subheadingText}</h5>`;
+            } else {
+                // Regular content lines
+                const formattedLine = formatTextLine(trimmedLine, true);
+                cardContent += formattedLine;
+            }
+        }
+    });
+    
+    html += `
+            <div style="
+                font-size: 1.1rem;
+                line-height: 1.8;
+                color: var(--text);
+                font-family: 'Cormorant Garamond', serif;
+            ">
+                ${cardContent}
+            </div>
+        </div>
+    `;
+    
+    return html;
+}
+
+function formatConnectionSection(section) {
+    const content = section.replace('How the Cards Connect', '').trim();
+    return `
+        <div class="cards-connection" style="
+            background: linear-gradient(135deg, rgba(139, 95, 191, 0.03), rgba(255, 107, 139, 0.03));
+            padding: 35px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border: 2px solid var(--border);
+            position: relative;
+        ">
+            <div style="
+                position: absolute;
+                top: -15px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: white;
+                padding: 0 20px;
+            ">
+                <h3 style="
+                    color: var(--secondary);
+                    margin: 0;
+                    font-size: 1.5rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    white-space: nowrap;
+                    font-family: 'Playfair Display', serif;
+                ">
+                    <i class="fas fa-link"></i> How the Cards Connect
+                </h3>
+            </div>
+            
+            <div style="
+                font-size: 1.15rem;
+                line-height: 1.8;
+                color: var(--text);
+                font-family: 'Cormorant Garamond', serif;
+                margin-top: 15px;
+            ">
+                ${formatTextLine(content, true)}
+            </div>
+        </div>
+    `;
+}
+
+function formatInsightsSection(section) {
+    const content = section.replace('Practical Insights and Guidance', '').trim();
+    
+    // Check if content has markdown headings
+    if (content.includes('### ')) {
+        return formatGenericSection(section);
+    }
+    
+    const insights = content.split(/\d+\.\s+/).filter(item => item.trim());
+    
+    let insightsHTML = '';
+    
+    insights.forEach((insight, index) => {
+        if (insight.trim()) {
+            const insightParts = insight.split(':');
+            const title = insightParts[0]?.trim() || `Insight ${index + 1}`;
+            const text = insightParts.slice(1).join(':').trim();
+            
+            insightsHTML += `
+                <div style="
+                    background: white;
+                    padding: 25px;
+                    border-radius: var(--radius);
+                    border-left: 4px solid var(--accent);
+                    box-shadow: var(--shadow);
+                    margin-bottom: 20px;
+                    transition: transform 0.3s ease;
+                " onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='none'">
+                    <div style="display: flex; align-items: flex-start; gap: 20px;">
+                        <div style="
+                            width: 40px;
+                            height: 40px;
+                            min-width: 40px;
+                            background: var(--accent);
+                            color: white;
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-weight: bold;
+                            font-size: 1.2rem;
+                            box-shadow: 0 4px 10px rgba(0, 201, 183, 0.3);
+                        ">
+                            ${index + 1}
+                        </div>
+                        <div style="flex: 1;">
+                            <h4 style="
+                                font-size: 1.2rem;
+                                color: var(--dark);
+                                margin: 0 0 10px 0;
+                                font-family: 'Playfair Display', serif;
+                            ">
+                                ${title}
+                            </h4>
+                            <div style="
+                                font-size: 1.05rem;
+                                line-height: 1.7;
+                                color: var(--text);
+                                font-family: 'Cormorant Garamond', serif;
+                            ">
+                                ${formatTextLine(text, true)}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    });
+    
+    return `
+        <div class="practical-insights" style="margin: 50px 0;">
+            <h3 style="
+                color: var(--accent);
+                margin-bottom: 30px;
+                font-size: 1.6rem;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-family: 'Playfair Display', serif;
+            ">
+                <i class="fas fa-lightbulb" style="color: var(--accent);"></i>
+                Practical Insights and Guidance
+            </h3>
+            <div class="insights-grid" style="display: grid; gap: 25px;">
+                ${insightsHTML}
+            </div>
+        </div>
+    `;
+}
+
+function formatFinalMessage(section) {
+    const content = section.replace('Final Message', '').trim();
+    return `
+        <div class="final-message" style="
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 50px 40px;
+            border-radius: var(--radius);
+            margin-top: 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        ">
+            <div style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+                pointer-events: none;
+            "></div>
+            
+            <div style="position: relative; z-index: 2;">
+                <h3 style="
+                    color: white;
+                    margin-bottom: 25px;
+                    font-size: 1.8rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 15px;
+                    font-family: 'Playfair Display', serif;
+                ">
+                    <i class="fas fa-heart" style="color: #FF6B8B;"></i>
+                    Final Message
+                    <i class="fas fa-heart" style="color: #FF6B8B;"></i>
+                </h3>
+                
+                <div style="
+                    font-size: 1.2rem;
+                    line-height: 1.8;
+                    opacity: 0.95;
+                    max-width: 800px;
+                    margin: 0 auto;
+                    font-family: 'Cormorant Garamond', serif;
+                    font-weight: 500;
+                ">
+                    ${formatTextLine(content, true)}
+                </div>
+                
+                <div style="
+                    margin-top: 40px;
+                    font-size: 2.5rem;
+                    opacity: 0.8;
+                    display: flex;
+                    justify-content: center;
+                    gap: 20px;
+                ">
+                    <span>✨</span>
+                    <span>🌟</span>
+                    <span>💫</span>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function formatGenericSection(section) {
+    // Process markdown headings in generic sections
+    const lines = section.split('\n');
+    let contentHTML = '';
+    
+    lines.forEach(line => {
+        const trimmedLine = line.trim();
+        
+        if (trimmedLine.startsWith('### ')) {
+            const headingText = trimmedLine.replace('### ', '').trim();
+            contentHTML += `<h3 style="
+                color: var(--primary);
+                margin: 30px 0 15px 0;
+                font-size: 1.5rem;
+                font-family: 'Playfair Display', serif;
+                border-bottom: 2px solid var(--border);
+                padding-bottom: 10px;
+            ">${headingText}</h3>`;
+        } else if (trimmedLine.startsWith('#### ')) {
+            const subheadingText = trimmedLine.replace('#### ', '').trim();
+            contentHTML += `<h4 style="
+                color: var(--secondary);
+                margin: 25px 0 12px 0;
+                font-size: 1.3rem;
+                font-family: 'Playfair Display', serif;
+            ">${subheadingText}</h4>`;
+        } else if (trimmedLine.startsWith('##### ')) {
+            const subsubheadingText = trimmedLine.replace('##### ', '').trim();
+            contentHTML += `<h5 style="
+                color: var(--accent);
+                margin: 20px 0 10px 0;
+                font-size: 1.2rem;
+                font-family: 'Playfair Display', serif;
+            ">${subsubheadingText}</h5>`;
+        } else if (trimmedLine) {
+            contentHTML += formatTextLine(trimmedLine, true);
+        }
+    });
+    
+    return `
+        <div style="
+            margin: 20px 0;
+            padding: 25px;
+            background: white;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        ">
+            <div style="
+                font-size: 1.1rem;
+                line-height: 1.8;
+                color: var(--text);
+                font-family: 'Cormorant Garamond', serif;
+            ">
+                ${contentHTML}
+            </div>
+        </div>
+    `;
+}
+
+function formatTextLine(line, isParagraph = true) {
+    if (!line.trim()) return '';
+    
+    // Format bold text
+    let formatted = line.replace(/\*\*(.*?)\*\*/g, '<strong style="color: var(--primary-dark); font-weight: 600;">$1</strong>');
+    
+    // Format italic text
+    formatted = formatted.replace(/\*(.*?)\*/g, '<em style="font-style: italic; color: var(--text-light);">$1</em>');
+    
+    // Format bullet points
+    formatted = formatted.replace(/^[-•]\s+(.*)/gm, '<div style="display: flex; align-items: flex-start; margin: 8px 0; padding-left: 5px;"><span style="color: var(--primary); margin-right: 10px; margin-top: 6px;">•</span><span>$1</span></div>');
+    
+    // Format numbered lists
+    formatted = formatted.replace(/^(\d+)\.\s+(.*)/gm, '<div style="display: flex; align-items: flex-start; margin: 10px 0; padding-left: 5px;"><span style="color: var(--primary); font-weight: bold; margin-right: 10px; min-width: 25px;">$1.</span><span>$2</span></div>');
+    
+    // Handle paragraphs vs inline
+    if (isParagraph) {
+        // Check if it's already wrapped in a div (from bullet/number formatting)
+        if (formatted.includes('<div') || formatted.includes('</div>')) {
+            return formatted;
+        }
+        return `<p style="margin-bottom: 20px;">${formatted}</p>`;
+    } else {
+        return formatted;
+    }
+}
 
         function startNewReading() {
             // Reset application state
@@ -2091,87 +2638,212 @@ Format your response as a clear, well-structured tarot reading.`;
         }
 
         // ===== Helper Functions =====
+        // ===== CORRECTED shuffleArray FUNCTION =====
+        // ===== Helper Functions =====
         function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
+            // Create a copy WITHOUT JSON.stringify
+            const newArray = [...array];
+            
+            // Fisher-Yates shuffle
+            for (let i = newArray.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
+                
+                // Swap using destructuring (for arrays) or temp variable
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
             }
-            return array;
+            
+            return newArray;
         }
+        // ===== ENHANCED SMOOTH SHUFFLE ANIMATION =====
+        // ===== SIMPLIFIED animatedShuffle WITH PROPER SHUFFLING =====
+// ===== ENHANCED SMOOTH SHUFFLE ANIMATION WITH FIXED SHUFFLING =====
         async function animatedShuffle(times) {
-
-    disableShuffleButtons(true);
-
-    const cards = Array.from(cardDeck.children);
-
-    for (let t = 0; t < times; t++) {
-
-        // STEP 1 — GATHER TO CENTER
-        const deckRect = cardDeck.getBoundingClientRect();
-
-        cards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-
-            const deltaX =
-                deckRect.left + deckRect.width / 2 -
-                (rect.left + rect.width / 2);
-
-            const deltaY =
-                deckRect.top + deckRect.height / 2 -
-                (rect.top + rect.height / 2);
-
-            card.style.transition = "transform 0.8s ease";
-            card.style.transform =
-                `translate(${deltaX}px, ${deltaY}px)
-                 scale(0.9)
-                 rotate(${Math.random() * 10 - 5}deg)`;
-        });
-
-        await sleep(900);
-
-        // STEP 2 — SMALL SHUFFLE SHAKE
-        cards.forEach(card => {
-            card.style.transform +=
-                ` rotate(${Math.random() * 20 - 10}deg)`;
-        });
-
-        await sleep(400);
-
-        // STEP 3 — REORDER (without destroying layout)
-        let shuffled = shuffleArray([...cards]);
-        shuffled.forEach(card => cardDeck.appendChild(card));
-
-        await sleep(100);
-
-        // STEP 4 — SPREAD BACK
-        cards.forEach(card => {
-            card.style.transform = "translate(0,0) scale(1) rotate(0deg)";
-        });
-
-        await sleep(800);
-    }
-
-    // Reset selection
-    selectedCards = [];
-    updateSelectedCounter();
-    updateSelectedPreview();
-    getAIReadingBtn.disabled = true;
-
-    disableShuffleButtons(false);
-}
-
-
-
-
-
-        function disableShuffleButtons(state) {
-            document.querySelectorAll('.shuffle-controls button')
-                .forEach(btn => btn.disabled = state);
+            // Disable buttons during shuffle
+            disableShuffleButtons(true);
+            
+            const cardDeck = document.getElementById('cardDeck');
+            const cards = Array.from(cardDeck.children);
+            const deckRect = cardDeck.getBoundingClientRect();
+            
+            for (let t = 0; t < times; t++) {
+                // Step 1: Gather cards to center with elegant animation
+                cards.forEach((card, index) => {
+                    const cardInner = card.querySelector('.tarot-card-inner');
+                    if (cardInner) {
+                        cardInner.classList.remove('selected');
+                    }
+                    const rect = card.getBoundingClientRect();
+                    const centerX = deckRect.left + deckRect.width / 2 - (rect.left + rect.width / 2);
+                    const centerY = deckRect.top + deckRect.height / 2 - (rect.top + rect.height / 2);
+                    
+                    // Staggered animation with easing
+                    card.style.transition = `transform ${0.5 + index * 0.02}s cubic-bezier(0.34, 1.56, 0.64, 1)`;
+                    card.style.transform = `
+                        translate(${centerX}px, ${centerY}px) 
+                        rotate(${Math.random() * 30 - 15}deg)
+                        scale(${0.85 + Math.random() * 0.1})
+                    `;
+                    card.style.zIndex = cards.length - index;
+                });
+                
+                await sleep(800 + cards.length * 20);
+                
+                // Step 2: Create a beautiful fan/spread effect
+                cards.forEach((card, index) => {
+                    const angle = (index / cards.length) * 180 - 90; // -90 to +90 degrees
+                    const radius = 200 + Math.random() * 50;
+                    const x = Math.cos(angle * Math.PI / 180) * radius;
+                    const y = Math.sin(angle * Math.PI / 180) * radius * 0.3;
+                    
+                    card.style.transition = `transform ${0.7}s cubic-bezier(0.19, 1, 0.22, 1)`;
+                    card.style.transform = `
+                        translate(${x}px, ${y}px) 
+                        rotate(${angle + (Math.random() * 20 - 10)}deg)
+                        scale(${0.9})
+                    `;
+                });
+                
+                await sleep(900);
+                
+                // Step 3: Quick shuffle jiggle effect
+                for (let j = 0; j < 3; j++) {
+                    cards.forEach(card => {
+                        const shakeX = Math.random() * 20 - 10;
+                        const shakeY = Math.random() * 10 - 5;
+                        card.style.transform += ` translate(${shakeX}px, ${shakeY}px)`;
+                    });
+                    await sleep(150);
+                    
+                    cards.forEach(card => {
+                        card.style.transform = card.style.transform.replace(/translate\([^)]+\)/, 'translate(0,0)');
+                    });
+                    await sleep(150);
+                }
+                
+                // Step 4: Riffle shuffle simulation (visual trick) - FIXED VERSION
+                if (cards.length > 10) {
+                    const half = Math.floor(cards.length / 2);
+                    const leftHalf = cards.slice(0, half);
+                    const rightHalf = cards.slice(half);
+                    
+                    // Move halves apart
+                    leftHalf.forEach(card => {
+                        card.style.transition = `transform 0.6s ease`;
+                        card.style.transform = `translateX(-80px) rotate(-8deg) scale(0.95)`;
+                    });
+                    
+                    rightHalf.forEach(card => {
+                        card.style.transition = `transform 0.6s ease`;
+                        card.style.transform = `translateX(80px) rotate(8deg) scale(0.95)`;
+                    });
+                    
+                    await sleep(700);
+                    
+                    // ✅ FIXED: Properly shuffle DOM elements
+                    // Collect all cards
+                    const allCardsArray = [...leftHalf, ...rightHalf];
+                    
+                    // Fisher-Yates shuffle for DOM elements
+                    for (let i = allCardsArray.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        // Swap DOM elements
+                        const temp = allCardsArray[i];
+                        allCardsArray[i] = allCardsArray[j];
+                        allCardsArray[j] = temp;
+                    }
+                    
+                    // Clear the deck and re-add shuffled cards
+                    cardDeck.innerHTML = '';
+                    allCardsArray.forEach(card => {
+                        cardDeck.appendChild(card);
+                    });
+                    
+                    // Update cards reference
+                    const updatedCards = Array.from(cardDeck.children);
+                    
+                    // Bring cards back together
+                    updatedCards.forEach(card => {
+                        card.style.transition = `transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)`;
+                        card.style.transform = `translate(0,0) rotate(0deg) scale(1)`;
+                    });
+                    
+                    await sleep(900);
+                }
+                
+                // Step 5: Final gentle spread with physics
+                // const currentCards = Array.from(cardDeck.children);
+                // currentCards.forEach((card, index) => {
+                //     const delay = index * 30;
+                //     const x = (Math.random() - 0.5) * 40;
+                //     const y = (Math.random() - 0.5) * 20;
+                //     const rotation = (Math.random() - 0.5) * 10;
+                    
+                //     setTimeout(() => {
+                //         card.style.transition = `transform ${0.5}s cubic-bezier(0.18, 0.89, 0.32, 1.28)`;
+                //         card.style.transform = `
+                //             translate(${x}px, ${y}px) 
+                //             rotate(${rotation}deg)
+                //             scale(1)
+                //         `;
+                //         card.style.zIndex = Math.floor(Math.random() * 1000);
+                //     }, delay);
+                // });
+                
+                await sleep(500 + cards.length * 30);
+            }
+            
+            // // ✅ FINAL SHUFFLE: One more shuffle after animations
+            // const finalCards = Array.from(cardDeck.children);
+            
+            // // Simple shuffle for final mixing
+            // for (let i = finalCards.length - 1; i > 0; i--) {
+            //     const j = Math.floor(Math.random() * (i + 1));
+            //     cardDeck.appendChild(finalCards[j]);
+            // }
+            
+            // Final reset to original positions
+            const allFinalCards = Array.from(cardDeck.children);
+            allFinalCards.forEach(card => {
+                card.style.transition = `transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)`;
+                card.style.transform = `translate(0,0) rotate(0deg) scale(1)`;
+                card.style.zIndex = '';
+            });
+            
+            //await sleep(700);
+            
+            // Reset card styles
+            allFinalCards.forEach(card => {
+                card.style.transition = '';
+                card.style.transform = '';
+                card.style.zIndex = '';
+            });
+            
+            // Reset selection
+            selectedCards = [];
+            updateSelectedCounter();
+            updateSelectedPreview();
+            getAIReadingBtn.disabled = true;
+            
+            disableShuffleButtons(false);
         }
-
+        // Helper function for smooth sleep
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
+
+        // Disable/enable shuffle buttons
+        function disableShuffleButtons(state) {
+            document.querySelectorAll('.shuffle-controls button')
+                .forEach(btn => {
+                    btn.disabled = state;
+                    btn.style.opacity = state ? '0.6' : '1';
+                    btn.style.cursor = state ? 'not-allowed' : 'pointer';
+                });
+        }
+
+
+
+
 
 
 
