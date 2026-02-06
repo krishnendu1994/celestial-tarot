@@ -26,6 +26,7 @@
             --shadow: 0 10px 30px rgba(139, 95, 191, 0.1);
             --transition: all 0.3s ease;
             --radius: 15px;
+            --primary-light: rgba(139, 95, 191, 0.1);
         }
         
         /* ===== Global Styles ===== */
@@ -485,6 +486,79 @@
             border: 6px solid #8e44ad;
             
         } */
+         /* ===== Language Selector Styles ===== */
+        .language-selector {
+            position: static;
+            top: 0;
+            overflow: scroll;
+            height: 500px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 15px;
+            border: 2px solid var(--border);
+            min-width: 180px;
+        }
+
+        .language-selector h4 {
+            font-size: 1rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .language-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .language-btn {
+            padding: 10px 15px;
+            background: var(--light);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .language-btn:hover {
+            background: var(--primary-light);
+            transform: translateX(-3px);
+        }
+
+        .language-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .language-btn .flag {
+            font-size: 1.2rem;
+        }
+
+        .language-btn .name {
+            flex-grow: 1;
+        }
+
+        @media (max-width: 768px) {
+            .language-selector {
+                position: static;
+                margin: 20px auto;
+                max-width: 300px;
+            }
+        }
+
+        
         
         .tarot-card:hover {
             transform: translateY(-10px) scale(1.03);
@@ -1113,7 +1187,104 @@
                 
                 <div class="question-input-container">
                     <textarea class="question-input" id="questionInput" placeholder="Type your question here... For example: 'What should I focus on in my career for the next 6 months?' or 'What is blocking my progress in my current relationship?'"></textarea>
+                    <!-- Language Selector -->
+                    <div class="language-selector" id="languageSelector">
+                        <h4><i class="fas fa-globe"></i> Language</h4>
+                        <div class="language-options">
+                            <!-- English -->
+                            <button class="language-btn active" data-lang="English">
+                                <span class="flag">🇺🇸</span>
+                                <span class="name">English</span>
+                                <i class="fas fa-check"></i>
+                            </button>
+                            
+                            <!-- Indian Languages -->
+                            <button class="language-btn" data-lang="Hindi">
+                                <span class="flag">🇮🇳</span>
+                                <span class="name">हिन्दी</span>
+                            </button>
+                            <button class="language-btn" data-lang="Bengali">
+                                <span class="flag">🇮🇳</span>
+                                <span class="name">বাংলা</span>
+                            </button>
+                            <button class="language-btn" data-lang="Tamil">
+                                <span class="flag">🇮🇳</span>
+                                <span class="name">தமிழ்</span>
+                            </button>
+                            <button class="language-btn" data-lang="Telugu">
+                                <span class="flag">🇮🇳</span>
+                                <span class="name">తెలుగు</span>
+                            </button>
+                            <button class="language-btn" data-lang="Marathi">
+                                <span class="flag">🇮🇳</span>
+                                <span class="name">मराठी</span>
+                            </button>
+                            <button class="language-btn" data-lang="Gujarati">
+                                <span class="flag">🇮🇳</span>
+                                <span class="name">ગુજરાતી</span>
+                            </button>
+                            <button class="language-btn" data-lang="Kannada">
+                                <span class="flag">🇮🇳</span>
+                                <span class="name">ಕನ್ನಡ</span>
+                            </button>
+                            <button class="language-btn" data-lang="Malayalam">
+                                <span class="flag">🇮🇳</span>
+                                <span class="name">മലയാളം</span>
+                            </button>
+                            <button class="language-btn" data-lang="Punjabi">
+                                <span class="flag">🇮🇳</span>
+                                <span class="name">ਪੰਜਾਬੀ</span>
+                            </button>
+                            <button class="language-btn" data-lang="Urdu">
+                                <span class="flag">🇮🇳</span>
+                                <span class="name">اردو</span>
+                            </button>
+                            
+                            <!-- Other International Languages -->
+                            <button class="language-btn" data-lang="Spanish">
+                                <span class="flag">🇪🇸</span>
+                                <span class="name">Español</span>
+                            </button>
+                            <button class="language-btn" data-lang="French">
+                                <span class="flag">🇫🇷</span>
+                                <span class="name">Français</span>
+                            </button>
+                            <button class="language-btn" data-lang="German">
+                                <span class="flag">🇩🇪</span>
+                                <span class="name">Deutsch</span>
+                            </button>
+                            <button class="language-btn" data-lang="Italian">
+                                <span class="flag">🇮🇹</span>
+                                <span class="name">Italiano</span>
+                            </button>
+                            <button class="language-btn" data-lang="Portuguese">
+                                <span class="flag">🇧🇷</span>
+                                <span class="name">Português</span>
+                            </button>
+                            <button class="language-btn" data-lang="Arabic">
+                                <span class="flag">🇸🇦</span>
+                                <span class="name">العربية</span>
+                            </button>
+                            <button class="language-btn" data-lang="Chinese">
+                                <span class="flag">🇨🇳</span>
+                                <span class="name">中文</span>
+                            </button>
+                            <button class="language-btn" data-lang="Japanese">
+                                <span class="flag">🇯🇵</span>
+                                <span class="name">日本語</span>
+                            </button>
+                            <button class="language-btn" data-lang="Korean">
+                                <span class="flag">🇰🇷</span>
+                                <span class="name">한국어</span>
+                            </button>
+                            <button class="language-btn" data-lang="Russian">
+                                <span class="flag">🇷🇺</span>
+                                <span class="name">Русский</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
+                
                 
                 <div class="question-examples">
                     <h4><i class="fas fa-lightbulb"></i> Example Questions:</h4>
@@ -1698,6 +1869,26 @@ function initializeCards() {
             // Scroll to top of section
             questionSection.scrollIntoView({ behavior: 'smooth' });
         }
+        // Language selector functionality
+        let selectedLanguage = "English";
+
+        // Set up language selector buttons
+        document.querySelectorAll('.language-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active button
+                document.querySelectorAll('.language-btn').forEach(b => {
+                    b.classList.remove('active');
+                    b.querySelector('i')?.remove();
+                });
+                
+                this.classList.add('active');
+                this.innerHTML += '<i class="fas fa-check"></i>';
+                
+                // Set selected language
+                selectedLanguage = this.dataset.lang;
+                console.log(`Language set to: ${selectedLanguage}`);
+            });
+        });
 
         // ===== FREE AI Functions =====
         async function callFreeAI() {
@@ -1710,6 +1901,7 @@ function initializeCards() {
                 const cardDescriptions = selectedCards.map((card, index) => 
                     `• ${positions[index]}: ${card.name} - ${card.meaning}`
                 ).join('\n');
+                 const languageToUse = selectedLanguage;
                 
                 const prompt = `As an expert tarot reader, analyze this 3-card tarot spread:
 
@@ -1725,7 +1917,7 @@ Please provide a detailed tarot reading that:
 4. Offers practical insights and guidance
 5. Maintains a compassionate, insightful tone
 
-Format your response as a clear, well-structured tarot reading.`;
+Format your response as a clear, well-structured tarot reading and answer in ${languageToUse} language.`;
 
                 // Call OpenRouter API (free tier)
                 const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
