@@ -1,0 +1,2251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tarot Reading | Celestial Tarot</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+            --primary: #8B5FBF;
+            --primary-dark: #6B3FA0;
+            --secondary: #FF6B8B;
+            --accent: #00C9B7;
+            --light: #F8F5FF;
+            --dark: #2D2B55;
+            --text: #333333;
+            --text-light: #666666;
+            --border: #E6E1F0;
+            --shadow: 0 10px 30px rgba(139, 95, 191, 0.1);
+            --transition: all 0.3s ease;
+            --radius: 15px;
+        }
+        
+        /* ===== Global Styles ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            background-color: white;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--dark);
+            line-height: 1.3;
+        }
+        
+        p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 16px 38px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            letter-spacing: 0.5px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(139, 95, 191, 0.2);
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* ===== Header & Navigation ===== */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 12px;
+            font-size: 1.8rem;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 40px;
+        }
+        
+        nav ul li a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--dark);
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        nav ul li a.active {
+            color: var(--primary);
+        }
+        
+        nav ul li a.active:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        
+        /* ===== Reading Container ===== */
+        .reading-container {
+            padding: 180px 0 100px;
+            margin-top: 80px;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                        url('https://images.unsplash.com/photo-1533237264985-ee6c6d2be6d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        /* ===== Question Section ===== */
+        .question-section {
+            background: white;
+            padding: 50px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 60px;
+            border-top: 5px solid var(--primary);
+        }
+        
+        .question-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .question-section h2 i {
+            color: var(--primary);
+        }
+        
+        .question-input-container {
+            margin-bottom: 30px;
+        }
+        
+        .question-input {
+            width: 100%;
+            padding: 25px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            resize: vertical;
+            min-height: 150px;
+            transition: var(--transition);
+            background: var(--light);
+            line-height: 1.8;
+        }
+        
+        .question-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 95, 191, 0.1);
+            background: white;
+        }
+        
+        .question-examples {
+            background: var(--light);
+            padding: 25px;
+            border-radius: var(--radius);
+            margin-top: 30px;
+        }
+        
+        .question-examples h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .example-questions {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .example-btn {
+            padding: 15px 20px;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: left;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+        
+        .example-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .question-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        /* Free AI Badge */
+        .free-ai-badge {
+            background: linear-gradient(135deg, #00C9B7, #00a896);
+            color: white;
+            padding: 12px 25px;
+            border-radius: var(--radius);
+            margin: 20px 0;
+            text-align: center;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        /* ===== Card Selection Section ===== */
+        .card-selection-section {
+            background: white;
+            padding: 50px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 60px;
+            border-top: 5px solid var(--secondary);
+            display: none;
+        }
+        
+        .selection-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .selection-header h2 {
+            font-size: 2.2rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .selection-header h2 i {
+            color: var(--secondary);
+        }
+        
+        .selected-counter {
+            background: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .card-filter {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 12px 28px;
+            background: var(--light);
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        /* ===== Card Deck ===== */
+        .card-deck-container {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        .card-deck {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 25px;
+            max-height: 600px;
+            overflow-y: auto;
+            padding: 20px;
+            background: var(--light);
+            border-radius: var(--radius);
+        }
+        
+        /* Individual Tarot Card Design */
+        .tarot-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            height: 130px;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        
+
+        
+        .tarot-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .tarot-card.selected .tarot-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .tarot-card-front, .tarot-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .tarot-card-front {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            transform: rotateY(180deg);
+        }
+        
+        .tarot-card-back {
+            background: linear-gradient(45deg, #8e44ad, #3498db);
+            color: white;
+        }
+        
+        .tarot-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(139, 95, 191, 0.2);
+        }
+        
+        .tarot-card.selected {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px rgba(139, 95, 191, 0.4);
+            border: 3px solid var(--primary);
+        }
+        
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .card-meaning {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.5;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        .card-symbol {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.2rem;
+            opacity: 0.7;
+        }
+        
+        .card-back .card-symbol {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            opacity: 0.3;
+        }
+        
+        .card-back-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .card-type {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            font-size: 0.8rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        /* ===== Selected Cards Preview ===== */
+        .selected-preview {
+            background: var(--light);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin-bottom: 40px;
+            display: none;
+        }
+        
+        .selected-preview h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .selected-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .selected-card-item {
+            width: 180px;
+            text-align: center;
+        }
+        
+        .selected-card-visual {
+            height: 220px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 2.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .selected-card-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .selected-card-position {
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 500;
+            background: var(--light);
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        /* ===== Reading Actions ===== */
+        .reading-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        /* ===== AI Reading Result ===== */
+        .ai-reading-section {
+            background: white;
+            padding: 50px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 60px;
+            border-top: 5px solid var(--accent);
+            display: none;
+        }
+        
+        .ai-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .ai-header h2 {
+            font-size: 2.2rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .ai-header h2 i {
+            color: var(--accent);
+        }
+        
+        .ai-loading {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .ai-loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--light);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .ai-error {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .ai-error i {
+            font-size: 3rem;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+        
+        .ai-reading-content {
+            display: none;
+        }
+        
+        .card-positions {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .position-card {
+            width: 220px;
+            background: var(--light);
+            padding: 25px;
+            border-radius: var(--radius);
+            text-align: center;
+            position: relative;
+        }
+        
+        .position-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: var(--radius) var(--radius) 0 0;
+        }
+        
+        .position-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .position-card-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .position-card-meaning {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            min-height: 60px;
+        }
+        
+        .ai-interpretation {
+            background: var(--light);
+            padding: 40px;
+            border-radius: var(--radius);
+            margin-bottom: 40px;
+        }
+        
+        .ai-interpretation h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .interpretation-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text);
+        }
+        
+        .ai-insights {
+            background: white;
+            border: 2px solid var(--border);
+            padding: 30px;
+            border-radius: var(--radius);
+        }
+        
+        .ai-insights h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .insight-item {
+            background: var(--light);
+            padding: 20px;
+            border-radius: var(--radius);
+        }
+        
+        .insight-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        /* ===== Footer ===== */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 80px 0 40px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h4 {
+            color: white;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-col h4:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-col p, .footer-col a {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 12px;
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .footer-col a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 42px;
+            height: 42px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            padding-left: 0;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* ===== Responsive Design ===== */
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .card-deck {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+            
+            .position-card {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .insights-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 15px 0;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                padding: 30px 20px;
+                transform: translateY(-150%);
+                transition: var(--transition);
+            }
+            
+            nav.active {
+                transform: translateY(0);
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 0 0 20px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .reading-container {
+                padding: 150px 0 80px;
+            }
+            
+            .question-section,
+            .card-selection-section,
+            .ai-reading-section {
+                padding: 30px;
+            }
+            
+            .selection-header,
+            .ai-header,
+            .question-actions {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .selected-counter {
+                align-self: flex-start;
+            }
+            
+            .card-deck {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+            
+            .tarot-card {
+                height: 250px;
+            }
+            
+            .reading-actions {
+                flex-direction: column;
+            }
+            
+            .reading-actions .btn {
+                width: 100%;
+            }
+            
+            section {
+                padding: 70px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .example-questions {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-filter {
+                justify-content: center;
+            }
+            
+            .card-deck {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 15px;
+            }
+            
+            .tarot-card {
+                height: 220px;
+            }
+            
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* Tarot Spread Shuffle Animation */
+        .tarot-card {
+            transition: transform 0.8s ease, opacity 0.6s ease;
+        }
+
+        .spread-phase {
+            opacity: 0.7;
+        }
+
+        .reset-phase {
+            opacity: 1;
+            transform: translate(0, 0) rotate(0deg) scale(1);
+        }
+.tarot-card {
+    transition: 
+        transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.6s ease;
+    will-change: transform;
+}
+
+.deck-stacking .tarot-card {
+    pointer-events: none;
+}
+
+.riffle-stack {
+    /* position: relative; */
+}
+
+.riffle-anim {
+    /* position: absolute !important; */
+    transition: transform 0.7s ease, opacity 0.6s ease;
+    z-index: 999;
+}
+
+.riffle-left {
+    transform: translateX(-120px) rotate(-8deg);
+}
+
+.riffle-right {
+    transform: translateX(120px) rotate(8deg);
+}
+
+.riffle-merge {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-crystal-ball"></i>
+                Celestial<span>Tarot</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#" class="active">Tarot Reading</a></li>
+                    <li><a href="cards.html">All Cards</a></li>
+                    <li><a href="guidance.html">Guidance</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Reading Container -->
+    <div class="reading-container">
+        <div class="container">
+            <!-- Question Section -->
+            <div class="question-section" id="questionSection">
+                <h2><i class="fas fa-question-circle"></i> What Would You Like to Know?</h2>
+                <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 30px;">
+                    Ask your question below. Our AI-powered tarot system will analyze your question and selected cards to provide a personalized, insightful reading using real AI models.
+                </p>
+                
+                <div class="question-input-container">
+                    <textarea class="question-input" id="questionInput" placeholder="Type your question here... For example: 'What should I focus on in my career for the next 6 months?' or 'What is blocking my progress in my current relationship?'"></textarea>
+                </div>
+                
+                <div class="question-examples">
+                    <h4><i class="fas fa-lightbulb"></i> Example Questions:</h4>
+                    <div class="example-questions">
+                        <button class="example-btn" data-question="What do I need to know about my love life right now?">
+                            <i class="fas fa-heart"></i> Love & Relationships
+                        </button>
+                        <button class="example-btn" data-question="What career path should I pursue for maximum fulfillment and success?">
+                            <i class="fas fa-briefcase"></i> Career Guidance
+                        </button>
+                        <button class="example-btn" data-question="What is the main lesson I need to learn at this point in my life?">
+                            <i class="fas fa-spa"></i> Personal Growth
+                        </button>
+                        <button class="example-btn" data-question="How can I improve my financial situation in the coming months?">
+                            <i class="fas fa-coins"></i> Finance & Abundance
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="free-ai-badge">
+                    <i class="fas fa-gift"></i>
+                    <div>
+                        <strong>Free AI Reading Included!</strong>
+                        <div style="font-size: 0.9rem; opacity: 0.9;">Powered by OpenRouter with DeepSeek & Gemini AI</div>
+                    </div>
+                </div>
+                
+                <div class="question-actions">
+                    <button class="btn-secondary" onclick="window.location.href='index.html'">
+                        <i class="fas fa-arrow-left"></i> Back to Home
+                    </button>
+                    <button class="btn" id="proceedToCardsBtn">
+                        Next: Select Cards <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Card Selection Section -->
+            <div class="card-selection-section" id="cardSelectionSection">
+                <div class="selection-header">
+                    <h2><i class="fas fa-layer-group"></i> Select 3 Tarot Cards</h2>
+                    <div class="selected-counter" id="selectedCounter">Selected: 0/3</div>
+                </div>
+                
+                <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 30px;">
+                    Click on cards to select them. The cards will flip to reveal their meaning. Trust your intuition when choosing.
+                </p>
+                
+                <div class="card-filter">
+                    <button class="filter-btn active" data-filter="all">All Cards</button>
+                    <button class="filter-btn" data-filter="major">Major Arcana</button>
+                    <button class="filter-btn" data-filter="cups">Cups</button>
+                    <button class="filter-btn" data-filter="wands">Wands</button>
+                    <button class="filter-btn" data-filter="swords">Swords</button>
+                    <button class="filter-btn" data-filter="pentacles">Pentacles</button>
+                </div>
+                
+                <!-- Selected Cards Preview -->
+                <div class="selected-preview" id="selectedPreview">
+                    <h3><i class="fas fa-check-circle"></i> Your Selected Cards</h3>
+                    <div class="selected-cards" id="selectedCardsContainer">
+                        <!-- Selected cards will appear here -->
+                    </div>
+                </div>
+                
+                <!-- Card Deck -->
+                <div class="card-deck-container">
+                    <div class="shuffle-controls" style="margin-bottom:20px; display:flex; gap:10px;">
+                        <button class="btn-secondary" onclick="animatedShuffle(1)">Shuffle (1)</button>
+                        <button class="btn-secondary" onclick="animatedShuffle(3)">Shuffle (3)</button>
+                        <button class="btn-secondary" onclick="animatedShuffle(5)">Shuffle (5)</button>
+                    </div>
+
+
+                    <div class="card-deck" id="cardDeck">
+                        <!-- 78 cards will be generated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="reading-actions">
+                    <button class="btn-secondary" id="backToQuestionBtn">
+                        <i class="fas fa-arrow-left"></i> Back to Question
+                    </button>
+                    <button class="btn" id="getAIReadingBtn" disabled>
+                        <i class="fas fa-robot"></i> Get Free AI Reading
+                    </button>
+                </div>
+            </div>
+            
+            <!-- AI Reading Result Section -->
+            <div class="ai-reading-section" id="aiReadingSection">
+                <div class="ai-header">
+                    <h2><i class="fas fa-crystal-ball"></i> Your AI Tarot Reading</h2>
+                    <div style="color: var(--accent); font-weight: 600;">
+                        <i class="far fa-clock"></i> Generated just now
+                    </div>
+                </div>
+                
+                <div class="ai-loading" id="aiLoading">
+                    <div class="ai-loading-spinner"></div>
+                    <h3>Consulting AI Tarot Expert...</h3>
+                    <p>Our AI is analyzing your question and selected cards to provide you with a personalized reading.</p>
+                </div>
+                
+                <div class="ai-error" id="aiError">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Connection Error</h3>
+                    <p id="errorMessage">Unable to connect to AI service. Using offline interpretation instead.</p>
+                    <button class="btn" id="retryAIButton" style="margin-top: 20px;">
+                        <i class="fas fa-redo"></i> Retry Connection
+                    </button>
+                </div>
+                
+                <div class="ai-reading-content" id="aiReadingContent">
+                    <div class="card-positions" id="cardPositionsContainer">
+                        <!-- Card positions will appear here -->
+                    </div>
+                    
+                    <div class="ai-interpretation">
+                        <h3><i class="fas fa-book-open"></i> AI Interpretation</h3>
+                        <div class="interpretation-text" id="interpretationText">
+                            <!-- AI-generated interpretation will appear here -->
+                        </div>
+                    </div>
+                    
+                    <div class="ai-insights">
+                        <h3><i class="fas fa-lightbulb"></i> AI-Generated Insights</h3>
+                        <div class="insights-grid" id="insightsGrid">
+                            <!-- Insights will appear here -->
+                        </div>
+                    </div>
+                    
+                    <div class="reading-actions">
+                        <button class="btn-secondary" id="backToCardsFromReadingBtn">
+                            <i class="fas fa-arrow-left"></i> Back to Card Selection
+                        </button>
+                        <button class="btn" id="newReadingBtn">
+                            <i class="fas fa-redo"></i> Start New Reading
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Celestial Tarot</h4>
+                    <p>Powered by real AI for authentic, personalized tarot readings.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="#" class="active">Tarot Reading</a>
+                    <a href="cards.html">All Cards</a>
+                    <a href="guidance.html">Learn Tarot</a>
+                    <a href="about.html">About Us</a>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Reading Types</h4>
+                    <a href="#">Three-Card Spread</a>
+                    <a href="#">Celtic Cross</a>
+                    <a href="#">Relationship Reading</a>
+                    <a href="#">Career Guidance</a>
+                    <a href="#">Past Life Reading</a>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>AI Integration</h4>
+                    <p><i class="fas fa-robot"></i> Free AI Readings</p>
+                    <p><i class="fas fa-gem"></i> DeepSeek & Gemini AI</p>
+                    <p><i class="fas fa-bolt"></i> Real-time interpretations</p>
+                    <p style="margin-top: 20px; font-size: 0.9rem;">No API key required • Completely free</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Celestial Tarot. All rights reserved. | <a href="#" style="color: var(--accent);">Privacy Policy</a> | <a href="#" style="color: var(--accent);">Terms of Service</a></p>
+                <p style="margin-top: 10px; font-size: 0.85rem;">This system uses OpenRouter AI to generate authentic tarot interpretations. Readings are for guidance purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== Mobile Menu Toggle =====
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // ===== Tarot Card Data (Complete 78-card deck) =====
+        const tarotDeck = {
+            major: [
+                { id: 0, name: "The Fool", meaning: "New beginnings, innocence, spontaneity, a free spirit", icon: "👤", element: "Air", shortMeaning: "New beginnings, innocence", color: "#FFD700", keywords: ["beginnings", "faith", "spontaneity", "free spirit"] },
+                { id: 1, name: "The Magician", meaning: "Manifestation, resourcefulness, power, inspired action", icon: "⚡", element: "Air", shortMeaning: "Manifestation, power", color: "#3498db", keywords: ["manifestation", "power", "skill", "concentration"] },
+                { id: 2, name: "The High Priestess", meaning: "Intuition, unconscious knowledge, divine feminine, mystery", icon: "🌙", element: "Water", shortMeaning: "Intuition, mystery", color: "#8e44ad", keywords: ["intuition", "mystery", "subconscious", "divine feminine"] },
+                { id: 3, name: "The Empress", meaning: "Femininity, beauty, nature, abundance, nurturing", icon: "👑", element: "Earth", shortMeaning: "Femininity, abundance", color: "#2ecc71", keywords: ["femininity", "abundance", "nature", "nurturing"] },
+                { id: 4, name: "The Emperor", meaning: "Authority, structure, control, fatherhood, foundation", icon: "🏛️", element: "Fire", shortMeaning: "Authority, structure", color: "#e74c3c", keywords: ["authority", "structure", "control", "foundation"] },
+                { id: 5, name: "The Hierophant", meaning: "Tradition, conformity, morality, ethics, spiritual guidance", icon: "⛪", element: "Earth", shortMeaning: "Tradition, conformity", color: "#f39c12", keywords: ["tradition", "conformity", "morality", "beliefs"] },
+                { id: 6, name: "The Lovers", meaning: "Love, harmony, relationships, values alignment, choices", icon: "💑", element: "Air", shortMeaning: "Love, relationships", color: "#e84393", keywords: ["love", "relationships", "alignment", "choices"] },
+                { id: 7, name: "The Chariot", meaning: "Control, willpower, success, action, determination", icon: "🛡️", element: "Water", shortMeaning: "Control, willpower", color: "#00cec9", keywords: ["control", "willpower", "success", "determination"] },
+                { id: 8, name: "Strength", meaning: "Courage, persuasion, influence, compassion, inner strength", icon: "🦁", element: "Fire", shortMeaning: "Courage, compassion", color: "#e17055", keywords: ["courage", "compassion", "influence", "inner strength"] },
+                { id: 9, name: "The Hermit", meaning: "Soul-searching, introspection, being alone, inner guidance", icon: "🧙", element: "Earth", shortMeaning: "Introspection, solitude", color: "#636e72", keywords: ["introspection", "solitude", "inner guidance", "searching"] },
+                { id: 10, name: "Wheel of Fortune", meaning: "Good luck, karma, life cycles, destiny, turning points", icon: "🔄", element: "Fire", shortMeaning: "Luck, destiny, cycles", color: "#a29bfe", keywords: ["luck", "destiny", "cycles", "turning points"] },
+                { id: 11, name: "Justice", meaning: "Justice, fairness, truth, cause and effect, law", icon: "⚖️", element: "Air", shortMeaning: "Justice, fairness", color: "#0984e3", keywords: ["justice", "fairness", "truth", "karma"] },
+                { id: 12, name: "The Hanged Man", meaning: "Surrender, new perspective, enlightenment, sacrifice", icon: "🙃", element: "Water", shortMeaning: "Surrender, new perspective", color: "#00b894", keywords: ["surrender", "perspective", "enlightenment", "sacrifice"] },
+                { id: 13, name: "Death", meaning: "Endings, change, transformation, transition, rebirth", icon: "💀", element: "Water", shortMeaning: "Endings, transformation", color: "#2d3436", keywords: ["endings", "transformation", "transition", "rebirth"] },
+                { id: 14, name: "Temperance", meaning: "Balance, moderation, patience, purpose, meaning", icon: "⚗️", element: "Fire", shortMeaning: "Balance, moderation", color: "#fd79a8", keywords: ["balance", "moderation", "patience", "purpose"] },
+                { id: 15, name: "The Devil", meaning: "Shadow self, attachment, addiction, restriction, bondage", icon: "😈", element: "Earth", shortMeaning: "Shadow self, addiction", color: "#6c5ce7", keywords: ["shadow self", "addiction", "restriction", "bondage"] },
+                { id: 16, name: "The Tower", meaning: "Sudden change, upheaval, chaos, revelation, awakening", icon: "🏰", element: "Fire", shortMeaning: "Sudden change, upheaval", color: "#d63031", keywords: ["sudden change", "upheaval", "chaos", "awakening"] },
+                { id: 17, name: "The Star", meaning: "Hope, faith, purpose, renewal, spirituality, inspiration", icon: "⭐", element: "Air", shortMeaning: "Hope, faith, inspiration", color: "#74b9ff", keywords: ["hope", "faith", "inspiration", "spirituality"] },
+                { id: 18, name: "The Moon", meaning: "Illusion, fear, anxiety, subconscious, intuition", icon: "🌕", element: "Water", shortMeaning: "Illusion, fear, intuition", color: "#a29bfe", keywords: ["illusion", "fear", "intuition", "subconscious"] },
+                { id: 19, name: "The Sun", meaning: "Joy, success, celebration, positivity, vitality", icon: "☀️", element: "Fire", shortMeaning: "Joy, success, vitality", color: "#fdcb6e", keywords: ["joy", "success", "positivity", "vitality"] },
+                { id: 20, name: "Judgement", meaning: "Judgement, rebirth, inner calling, absolution, awakening", icon: "📯", element: "Fire", shortMeaning: "Judgement, rebirth", color: "#00cec9", keywords: ["judgement", "rebirth", "awakening", "absolution"] },
+                { id: 21, name: "The World", meaning: "Completion, integration, accomplishment, travel, fulfillment", icon: "🌍", element: "Earth", shortMeaning: "Completion, accomplishment", color: "#55efc4", keywords: ["completion", "accomplishment", "integration", "fulfillment"] }
+            ],
+            cups: [
+                { id: 22, name: "Ace of Cups", meaning: "New love, compassion, creativity, spiritual awakening, emotional beginning", icon: "💧", element: "Water", shortMeaning: "New love, emotional beginning", color: "#3498db", keywords: ["love", "compassion", "creativity", "emotional start"] },
+                { id: 23, name: "Two of Cups", meaning: "Unified love, partnership, mutual attraction, connection, harmony", icon: "💑", element: "Water", shortMeaning: "Partnership, mutual attraction", color: "#e84393", keywords: ["partnership", "attraction", "connection", "harmony"] },
+                { id: 24, name: "Three of Cups", meaning: "Celebration, friendship, creativity, community, joyous gatherings", icon: "🎉", element: "Water", shortMeaning: "Celebration, friendship", color: "#9b59b6", keywords: ["celebration", "friendship", "community", "joy"] },
+                { id: 25, name: "Four of Cups", meaning: "Meditation, contemplation, reevaluation, apathy, missed opportunities", icon: "🧘", element: "Water", shortMeaning: "Contemplation, apathy", color: "#34495e", keywords: ["contemplation", "apathy", "reevaluation", "withdrawal"] },
+                { id: 26, name: "Five of Cups", meaning: "Loss, regret, disappointment, mourning, focusing on the negative", icon: "😔", element: "Water", shortMeaning: "Loss, regret, disappointment", color: "#7f8c8d", keywords: ["loss", "regret", "disappointment", "grief"] },
+                { id: 27, name: "Six of Cups", meaning: "Innocence, nostalgia, childhood memories, simplicity, familiarity", icon: "🎠", element: "Water", shortMeaning: "Nostalgia, childhood memories", color: "#f1c40f", keywords: ["nostalgia", "memories", "innocence", "simplicity"] },
+                { id: 28, name: "Seven of Cups", meaning: "Choices, imagination, wishful thinking, opportunities, illusions", icon: "🌈", element: "Water", shortMeaning: "Choices, imagination, illusions", color: "#1abc9c", keywords: ["choices", "imagination", "opportunities", "illusions"] },
+                { id: 29, name: "Eight of Cups", meaning: "Walking away, disillusionment, leaving behind, searching for meaning", icon: "🚶", element: "Water", shortMeaning: "Walking away, disillusionment", color: "#95a5a6", keywords: ["walking away", "disillusionment", "searching", "abandonment"] },
+                { id: 30, name: "Nine of Cups", meaning: "Contentment, satisfaction, gratitude, wish fulfilled, emotional stability", icon: "😊", element: "Water", shortMeaning: "Contentment, wish fulfilled", color: "#f39c12", keywords: ["contentment", "satisfaction", "gratitude", "wishes"] },
+                { id: 31, name: "Ten of Cups", meaning: "Divine love, blissful relationships, harmony, happy family, emotional fulfillment", icon: "🏡", element: "Water", shortMeaning: "Blissful relationships, harmony", color: "#2ecc71", keywords: ["harmony", "family", "emotional fulfillment", "bliss"] },
+                { id: 32, name: "Page of Cups", meaning: "Creative opportunities, intuitive messages, curiosity, new feelings", icon: "🧚", element: "Water", shortMeaning: "Creative opportunities, intuitive messages", color: "#3498db", keywords: ["creativity", "intuition", "curiosity", "new feelings"] },
+                { id: 33, name: "Knight of Cups", meaning: "Romance, charm, imagination, following heart, poetic nature", icon: "🤠", element: "Water", shortMeaning: "Romance, charm, following heart", color: "#9b59b6", keywords: ["romance", "charm", "imagination", "poetic"] },
+                { id: 34, name: "Queen of Cups", meaning: "Compassion, emotional security, intuition, calm, nurturing love", icon: "👸", element: "Water", shortMeaning: "Compassion, emotional security", color: "#e84393", keywords: ["compassion", "intuition", "nurturing", "calm"] },
+                { id: 35, name: "King of Cups", meaning: "Emotional balance, compassion, diplomacy, control of feelings", icon: "🤴", element: "Water", shortMeaning: "Emotional balance, compassion", color: "#0984e3", keywords: ["emotional balance", "compassion", "diplomacy", "control"] }
+            ],
+            wands: [
+                { id: 36, name: "Ace of Wands", meaning: "Inspiration, new opportunities, growth, potential, creative spark", icon: "🔥", element: "Fire", shortMeaning: "Inspiration, new opportunities", color: "#e74c3c", keywords: ["inspiration", "opportunities", "growth", "creative spark"] },
+                { id: 37, name: "Two of Wands", meaning: "Future planning, progress, decisions, discovery, leaving comfort zone", icon: "🗺️", element: "Fire", shortMeaning: "Future planning, decisions", color: "#d35400", keywords: ["planning", "decisions", "progress", "discovery"] },
+                { id: 38, name: "Three of Wands", meaning: "Expansion, foresight, overseas opportunities, progress, leadership", icon: "👁️", element: "Fire", shortMeaning: "Expansion, foresight", color: "#f39c12", keywords: ["expansion", "foresight", "opportunities", "leadership"] },
+                { id: 39, name: "Four of Wands", meaning: "Celebration, harmony, marriage, home, community, stability", icon: "🏠", element: "Fire", shortMeaning: "Celebration, harmony, home", color: "#2ecc71", keywords: ["celebration", "harmony", "home", "community"] },
+                { id: 40, name: "Five of Wands", meaning: "Conflict, disagreements, competition, tension, rivals", icon: "⚔️", element: "Fire", shortMeaning: "Conflict, competition, tension", color: "#c0392b", keywords: ["conflict", "competition", "tension", "rivalry"] },
+                { id: 41, name: "Six of Wands", meaning: "Victory, success, public recognition, progress, self-confidence", icon: "🏆", element: "Fire", shortMeaning: "Victory, success, recognition", color: "#f1c40f", keywords: ["victory", "success", "recognition", "confidence"] },
+                { id: 42, name: "Seven of Wands", meaning: "Challenge, competition, perseverance, defense, maintaining control", icon: "🛡️", element: "Fire", shortMeaning: "Challenge, perseverance", color: "#7f8c8d", keywords: ["challenge", "perseverance", "defense", "control"] },
+                { id: 43, name: "Eight of Wands", meaning: "Swift action, movement, quick decisions, travel, rapid progress", icon: "💨", element: "Fire", shortMeaning: "Swift action, movement", color: "#3498db", keywords: ["action", "movement", "progress", "travel"] },
+                { id: 44, name: "Nine of Wands", meaning: "Resilience, courage, persistence, boundaries, defensive position", icon: "🛡️", element: "Fire", shortMeaning: "Resilience, persistence", color: "#8e44ad", keywords: ["resilience", "courage", "persistence", "boundaries"] },
+                { id: 45, name: "Ten of Wands", meaning: "Burden, responsibility, hard work, completion, stress", icon: "💼", element: "Fire", shortMeaning: "Burden, responsibility, hard work", color: "#2c3e50", keywords: ["burden", "responsibility", "hard work", "stress"] },
+                { id: 46, name: "Page of Wands", meaning: "Exploration, excitement, freedom, discovery, enthusiasm", icon: "🧚", element: "Fire", shortMeaning: "Exploration, excitement, freedom", color: "#e74c3c", keywords: ["exploration", "excitement", "freedom", "enthusiasm"] },
+                { id: 47, name: "Knight of Wands", meaning: "Action, adventure, fearlessness, energy, passion", icon: "🤠", element: "Fire", shortMeaning: "Action, adventure, passion", color: "#f39c12", keywords: ["action", "adventure", "passion", "energy"] },
+                { id: 48, name: "Queen of Wands", meaning: "Courage, determination, joy, vibrancy, confidence", icon: "👸", element: "Fire", shortMeaning: "Courage, determination, confidence", color: "#f1c40f", keywords: ["courage", "determination", "confidence", "vibrancy"] },
+                { id: 49, name: "King of Wands", meaning: "Natural-born leader, vision, entrepreneur, charisma, taking action", icon: "🤴", element: "Fire", shortMeaning: "Leadership, vision, charisma", color: "#d35400", keywords: ["leadership", "vision", "charisma", "action"] }
+            ],
+            swords: [
+                { id: 50, name: "Ace of Swords", meaning: "Breakthrough, clarity, sharp mind, new idea, truth", icon: "⚔️", element: "Air", shortMeaning: "Breakthrough, clarity, truth", color: "#95a5a6", keywords: ["breakthrough", "clarity", "truth", "new idea"] },
+                { id: 51, name: "Two of Swords", meaning: "Difficult decisions, indecision, stalemate, blocked emotions", icon: "⚖️", element: "Air", shortMeaning: "Indecision, stalemate", color: "#7f8c8d", keywords: ["indecision", "stalemate", "choices", "blocked"] },
+                { id: 52, name: "Three of Swords", meaning: "Heartbreak, emotional pain, sorrow, grief, separation", icon: "💔", element: "Air", shortMeaning: "Heartbreak, sorrow, grief", color: "#c0392b", keywords: ["heartbreak", "sorrow", "grief", "pain"] },
+                { id: 53, name: "Four of Swords", meaning: "Rest, restoration, contemplation, recuperation, meditation", icon: "😴", element: "Air", shortMeaning: "Rest, restoration, contemplation", color: "#3498db", keywords: ["rest", "restoration", "contemplation", "recuperation"] },
+                { id: 54, name: "Five of Swords", meaning: "Conflict, tension, loss, defeat, betrayal, winning at all costs", icon: "😞", element: "Air", shortMeaning: "Conflict, defeat, betrayal", color: "#2c3e50", keywords: ["conflict", "defeat", "betrayal", "tension"] },
+                { id: 55, name: "Six of Swords", meaning: "Transition, change, rite of passage, release, moving on", icon: "⛵", element: "Air", shortMeaning: "Transition, change, moving on", color: "#00cec9", keywords: ["transition", "change", "moving on", "release"] },
+                { id: 56, name: "Seven of Swords", meaning: "Betrayal, deception, getting away with something, stealth, strategy", icon: "🦹", element: "Air", shortMeaning: "Betrayal, deception, strategy", color: "#636e72", keywords: ["betrayal", "deception", "strategy", "stealth"] },
+                { id: 57, name: "Eight of Swords", meaning: "Restriction, confusion, powerlessness, victim mentality", icon: "😖", element: "Air", shortMeaning: "Restriction, confusion, powerlessness", color: "#2c3e50", keywords: ["restriction", "confusion", "powerlessness", "victim"] },
+                { id: 58, name: "Nine of Swords", meaning: "Anxiety, worry, fear, depression, nightmares, guilt", icon: "😰", element: "Air", shortMeaning: "Anxiety, worry, fear", color: "#34495e", keywords: ["anxiety", "worry", "fear", "guilt"] },
+                { id: 59, name: "Ten of Swords", meaning: "Painful endings, deep wounds, betrayal, loss, rock bottom", icon: "🗡️", element: "Air", shortMeaning: "Painful endings, betrayal", color: "#2c3e50", keywords: ["endings", "betrayal", "pain", "rock bottom"] },
+                { id: 60, name: "Page of Swords", meaning: "Curiosity, restlessness, mental energy, new ideas, vigilance", icon: "🧚", element: "Air", shortMeaning: "Curiosity, mental energy, new ideas", color: "#3498db", keywords: ["curiosity", "mental energy", "ideas", "vigilance"] },
+                { id: 61, name: "Knight of Swords", meaning: "Ambitious, action-oriented, direct communication, haste, impulsiveness", icon: "🤠", element: "Air", shortMeaning: "Ambition, action, directness", color: "#7f8c8d", keywords: ["ambition", "action", "directness", "haste"] },
+                { id: 62, name: "Queen of Swords", meaning: "Independent, unbiased judgment, clear boundaries, perceptive, honest", icon: "👸", element: "Air", shortMeaning: "Independence, clear judgment, honesty", color: "#95a5a6", keywords: ["independence", "judgment", "honesty", "perceptive"] },
+                { id: 63, name: "King of Swords", meaning: "Mental clarity, intellectual power, authority, truth, command", icon: "🤴", element: "Air", shortMeaning: "Mental clarity, authority, truth", color: "#2c3e50", keywords: ["clarity", "authority", "truth", "intellect"] }
+            ],
+            pentacles: [
+                { id: 64, name: "Ace of Pentacles", meaning: "New financial opportunity, prosperity, new job, manifestation", icon: "💰", element: "Earth", shortMeaning: "Financial opportunity, prosperity", color: "#27ae60", keywords: ["opportunity", "prosperity", "manifestation", "wealth"] },
+                { id: 65, name: "Two of Pentacles", meaning: "Balance, adaptability, time management, prioritization, juggling", icon: "⚖️", element: "Earth", shortMeaning: "Balance, adaptability, juggling", color: "#2ecc71", keywords: ["balance", "adaptability", "juggling", "priorities"] },
+                { id: 66, name: "Three of Pentacles", meaning: "Teamwork, collaboration, learning, implementation, mastery", icon: "👥", element: "Earth", shortMeaning: "Teamwork, collaboration, learning", color: "#f39c12", keywords: ["teamwork", "collaboration", "learning", "mastery"] },
+                { id: 67, name: "Four of Pentacles", meaning: "Conservation, frugality, security, control, possessiveness", icon: "💎", element: "Earth", shortMeaning: "Security, control, possessiveness", color: "#d35400", keywords: ["security", "control", "possessiveness", "conservation"] },
+                { id: 68, name: "Five of Pentacles", meaning: "Financial loss, poverty, isolation, worry, hardship", icon: "😔", element: "Earth", shortMeaning: "Financial loss, hardship, isolation", color: "#7f8c8d", keywords: ["loss", "hardship", "isolation", "poverty"] },
+                { id: 69, name: "Six of Pentacles", meaning: "Generosity, charity, giving, receiving, sharing wealth, balance", icon: "🤲", element: "Earth", shortMeaning: "Generosity, charity, sharing", color: "#27ae60", keywords: ["generosity", "charity", "sharing", "balance"] },
+                { id: 70, name: "Seven of Pentacles", meaning: "Long-term view, sustainable results, perseverance, patience, investment", icon: "🌱", element: "Earth", shortMeaning: "Patience, long-term view, investment", color: "#2ecc71", keywords: ["patience", "long-term", "investment", "perseverance"] },
+                { id: 71, name: "Eight of Pentacles", meaning: "Apprenticeship, repetitive tasks, mastery, skill development, diligence", icon: "🔨", element: "Earth", shortMeaning: "Skill development, mastery, diligence", color: "#f39c12", keywords: ["skill", "mastery", "diligence", "craftsmanship"] },
+                { id: 72, name: "Nine of Pentacles", meaning: "Abundance, luxury, self-sufficiency, financial independence, rewards", icon: "🏡", element: "Earth", shortMeaning: "Abundance, self-sufficiency, luxury", color: "#27ae60", keywords: ["abundance", "self-sufficiency", "luxury", "rewards"] },
+                { id: 73, name: "Ten of Pentacles", meaning: "Wealth, financial security, family, long-term success, legacy", icon: "👨‍👩‍👧‍👦", element: "Earth", shortMeaning: "Wealth, family, legacy, security", color: "#2ecc71", keywords: ["wealth", "family", "legacy", "security"] },
+                { id: 74, name: "Page of Pentacles", meaning: "Manifestation, financial opportunity, new skill development, ambition", icon: "🧚", element: "Earth", shortMeaning: "Manifestation, opportunity, ambition", color: "#27ae60", keywords: ["manifestation", "opportunity", "ambition", "learning"] },
+                { id: 75, name: "Knight of Pentacles", meaning: "Efficiency, routine, conservatism, responsibility, hard work", icon: "🤠", element: "Earth", shortMeaning: "Efficiency, responsibility, hard work", color: "#d35400", keywords: ["efficiency", "responsibility", "hard work", "routine"] },
+                { id: 76, name: "Queen of Pentacles", meaning: "Nurturing, practical, provides for others, financially independent, down-to-earth", icon: "👸", element: "Earth", shortMeaning: "Nurturing, practical, financial independence", color: "#2ecc71", keywords: ["nurturing", "practical", "financial independence", "grounded"] },
+                { id: 77, name: "King of Pentacles", meaning: "Wealth, business, leadership, security, abundance, reliability", icon: "🤴", element: "Earth", shortMeaning: "Wealth, business, leadership, reliability", color: "#f39c12", keywords: ["wealth", "business", "leadership", "reliability"] }
+            ]
+        };
+
+        // ===== Application State =====
+        let userQuestion = "";
+        let selectedCards = [];
+        let currentFilter = "all";
+        
+        // ===== DOM Elements =====
+        const questionSection = document.getElementById('questionSection');
+        const cardSelectionSection = document.getElementById('cardSelectionSection');
+        const aiReadingSection = document.getElementById('aiReadingSection');
+        const cardDeck = document.getElementById('cardDeck');
+        const selectedCounter = document.getElementById('selectedCounter');
+        const selectedPreview = document.getElementById('selectedPreview');
+        const selectedCardsContainer = document.getElementById('selectedCardsContainer');
+        const questionInput = document.getElementById('questionInput');
+        const proceedToCardsBtn = document.getElementById('proceedToCardsBtn');
+        const backToQuestionBtn = document.getElementById('backToQuestionBtn');
+        const getAIReadingBtn = document.getElementById('getAIReadingBtn');
+        const aiLoading = document.getElementById('aiLoading');
+        const aiError = document.getElementById('aiError');
+        const errorMessage = document.getElementById('errorMessage');
+        const retryAIButton = document.getElementById('retryAIButton');
+        const aiReadingContent = document.getElementById('aiReadingContent');
+        const cardPositionsContainer = document.getElementById('cardPositionsContainer');
+        const interpretationText = document.getElementById('interpretationText');
+        const insightsGrid = document.getElementById('insightsGrid');
+        const backToCardsFromReadingBtn = document.getElementById('backToCardsFromReadingBtn');
+        const newReadingBtn = document.getElementById('newReadingBtn');
+
+        // ===== FREE AI Integration with OpenRouter =====
+
+        // List of FREE AI models available through OpenRouter
+        const FREE_AI_MODELS = [
+            {
+                id: "openai/gpt-5.2",
+                name: "Open AI",
+                free: true,
+                provider: "OpenAI"
+            },
+            {
+                id: "deepseek/deepseek-chat",
+                name: "DeepSeek Chat",
+                free: true,
+                provider: "DeepSeek"
+            },
+            {
+                id: "google/gemini-pro",
+                name: "Google Gemini Pro",
+                free: true,
+                provider: "Google"
+            },
+            {
+                id: "mistralai/mistral-7b-instruct",
+                name: "Mistral 7B",
+                free: true,
+                provider: "Mistral"
+            },
+            {
+                id: "huggingfaceh4/zephyr-7b-beta",
+                name: "Zephyr 7B",
+                free: true,
+                provider: "Hugging Face"
+            }
+        ];
+
+        // Get a free OpenRouter API key
+        const OPENROUTER_API_KEY = "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";
+
+        // ===== Initialize Application =====
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCards();
+            setupEventListeners();
+            
+            // Set up example question buttons
+            document.querySelectorAll('.example-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    questionInput.value = this.dataset.question;
+                    userQuestion = this.dataset.question;
+                });
+            });
+            
+            // Set up filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Update active filter button
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter cards
+                    currentFilter = this.dataset.filter;
+                    filterCards(currentFilter);
+                });
+            });
+        });
+
+        // ===== Initialize All 78 Cards =====
+        function initializeCards() {
+            cardDeck.innerHTML = '';
+            
+            // Combine all cards into one array
+            const allCards = [];
+            
+            // Add Major Arcana cards
+            tarotDeck.major.forEach(card => {
+                allCards.push({...card, type: 'major'});
+            });
+            
+            // Add Minor Arcana cards
+            tarotDeck.cups.forEach(card => {
+                allCards.push({...card, type: 'cups'});
+            });
+            
+            tarotDeck.wands.forEach(card => {
+                allCards.push({...card, type: 'wands'});
+            });
+            
+            tarotDeck.swords.forEach(card => {
+                allCards.push({...card, type: 'swords'});
+            });
+            
+            tarotDeck.pentacles.forEach(card => {
+                allCards.push({...card, type: 'pentacles'});
+            });
+            
+            // Shuffle the cards
+            const shuffledCards = shuffleArray([...allCards]);
+            
+            // Create card elements
+            shuffledCards.forEach(card => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'tarot-card';
+                cardElement.dataset.id = card.id;
+                cardElement.dataset.type = card.type;
+                
+                // Check if this card is already selected
+                const isSelected = selectedCards.some(selected => selected.id === card.id);
+                
+                cardElement.innerHTML = `
+                    <div class="tarot-card-inner ${isSelected ? 'selected' : ''}">
+                        <div class="tarot-card-front" style="background: linear-gradient(135deg, ${card.color}, ${getTypeColor(card.type)})">
+                            <div class="card-icon">${card.icon}</div>
+                            <div class="card-name">${card.name}</div>
+                            <div class="card-meaning">${card.shortMeaning}</div>
+                            <div class="card-symbol">${getTypeSymbol(card.type)}</div>
+                            <div class="card-type">${getTypeName(card.type)}</div>
+                        </div>
+                        <div class="tarot-card-back">
+                            <div class="card-symbol">
+                                <i class="fas fa-star"></i>
+                            </div>
+                           
+                        </div>
+                    </div>
+                `;
+                
+                // Add click event to select/deselect card
+                cardElement.addEventListener('click', function() {
+                    toggleCardSelection(card);
+                });
+                
+                cardDeck.appendChild(cardElement);
+            });
+            
+            // Update selected counter
+            updateSelectedCounter();
+        }
+
+        // ===== Card Selection Functions =====
+        function toggleCardSelection(card) {
+            const cardIndex = selectedCards.findIndex(c => c.id === card.id);
+            
+            if (cardIndex !== -1) {
+                // Deselect card
+                selectedCards.splice(cardIndex, 1);
+            } else {
+                // Check if we can select more cards
+                if (selectedCards.length >= 3) {
+                    alert('You can only select 3 cards for a reading. Please deselect a card first.');
+                    return;
+                }
+                
+                // Add card to selection
+                selectedCards.push({
+                    id: card.id,
+                    name: card.name,
+                    meaning: card.meaning,
+                    shortMeaning: card.shortMeaning,
+                    icon: card.icon,
+                    color: card.color,
+                    type: card.type,
+                    element: card.element,
+                    keywords: card.keywords
+                });
+            }
+            
+            // Update card visual state
+            const cardElement = document.querySelector(`.tarot-card[data-id="${card.id}"]`);
+            if (cardElement) {
+                const cardInner = cardElement.querySelector('.tarot-card-inner');
+                if (selectedCards.some(c => c.id === card.id)) {
+                    cardInner.classList.add('selected');
+                } else {
+                    cardInner.classList.remove('selected');
+                }
+            }
+            
+            // Update UI
+            updateSelectedCounter();
+            updateSelectedPreview();
+            
+            // Enable/disable reading button
+            getAIReadingBtn.disabled = selectedCards.length !== 3;
+        }
+
+        function updateSelectedCounter() {
+            selectedCounter.textContent = `Selected: ${selectedCards.length}/3`;
+            
+            // Show/hide preview section
+            if (selectedCards.length > 0) {
+                selectedPreview.style.display = 'block';
+            } else {
+                selectedPreview.style.display = 'none';
+            }
+        }
+
+        function updateSelectedPreview() {
+            selectedCardsContainer.innerHTML = '';
+            
+            const positions = ["Past", "Present", "Future"];
+            
+            selectedCards.forEach((card, index) => {
+                const position = positions[index] || "Additional";
+                
+                const cardElement = document.createElement('div');
+                cardElement.className = 'selected-card-item';
+                cardElement.innerHTML = `
+                    <div class="selected-card-visual" style="background: linear-gradient(135deg, ${card.color}, ${getTypeColor(card.type)})">
+                        ${card.icon}
+                        <div style="font-size: 1rem; margin-top: 10px;">${position}</div>
+                    </div>
+                    <div class="selected-card-name">${card.name}</div>
+                    <div class="selected-card-position">${position}</div>
+                `;
+                
+                selectedCardsContainer.appendChild(cardElement);
+            });
+        }
+
+        function filterCards(filterType) {
+            const cards = document.querySelectorAll('.tarot-card');
+            
+            cards.forEach(card => {
+                if (filterType === 'all' || card.dataset.type === filterType) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // ===== Navigation Functions =====
+        function proceedToCardSelection() {
+            // Get user's question
+            userQuestion = questionInput.value.trim();
+            
+            if (!userQuestion) {
+                alert('Please enter your question before proceeding.');
+                return;
+            }
+            
+            // Simple validation
+            if (userQuestion.length < 5) {
+                alert('Please enter a more detailed question for a meaningful reading.');
+                return;
+            }
+            
+            // Hide question section, show card selection
+            questionSection.style.display = 'none';
+            cardSelectionSection.style.display = 'block';
+            
+            // Scroll to top of section
+            cardSelectionSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function backToQuestion() {
+            // Hide card selection, show question section
+            cardSelectionSection.style.display = 'none';
+            questionSection.style.display = 'block';
+            
+            // Scroll to top of section
+            questionSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ===== FREE AI Functions =====
+        async function callFreeAI() {
+            try {
+                // Select a random free model
+                const model = FREE_AI_MODELS[Math.floor(Math.random() * FREE_AI_MODELS.length)];
+                
+                // Prepare the prompt for AI
+                const positions = ["Past Influences", "Present Situation", "Future Potential"];
+                const cardDescriptions = selectedCards.map((card, index) => 
+                    `• ${positions[index]}: ${card.name} - ${card.meaning}`
+                ).join('\n');
+                
+                const prompt = `As an expert tarot reader, analyze this 3-card tarot spread:
+
+USER'S QUESTION: "${userQuestion}"
+
+SELECTED CARDS:
+${cardDescriptions}
+
+Please provide a detailed tarot reading that:
+1. Interprets each card in its position (past, present, future)
+2. Shows how the cards connect to each other
+3. Relates the reading to the user's specific question
+4. Offers practical insights and guidance
+5. Maintains a compassionate, insightful tone
+
+Format your response as a clear, well-structured tarot reading.`;
+
+                // Call OpenRouter API (free tier)
+                const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+                        'HTTP-Referer': window.location.origin, // Required for OpenRouter
+                        'X-Title': 'Celestial Tarot' // Your app name
+                    },
+                    body: JSON.stringify({
+                        model: model.id,
+                        messages: [
+                            {
+                                role: 'system',
+                                content: 'You are an expert tarot reader with deep knowledge of tarot symbolism, psychology, and spiritual guidance. Provide thoughtful, nuanced interpretations that are both insightful and practical. Focus on empowerment and self-discovery.'
+                            },
+                            {
+                                role: 'user',
+                                content: prompt
+                            }
+                        ],
+                        max_tokens: 2000,
+                        temperature: 0.7
+                    })
+                });
+
+                if (!response.ok) {
+                    // Try with alternative model if first fails
+                    return await callAlternativeAI();
+                }
+
+                const data = await response.json();
+                const aiResponse = data.choices[0]?.message?.content;
+                
+                return {
+                    interpretation: aiResponse || "No interpretation provided.",
+                    insights: generateAIInsights(aiResponse),
+                    modelUsed: model.name,
+                    provider: model.provider
+                };
+                
+            } catch (error) {
+                console.error('OpenRouter API error:', error);
+                throw new Error(`AI service temporarily unavailable. Using offline interpretation.`);
+            }
+        }
+
+        // Alternative free AI service
+        async function callAlternativeAI() {
+            try {
+                // Try using a different approach - some models might work better
+                const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+                        'HTTP-Referer': window.location.origin,
+                        'X-Title': 'Celestial Tarot'
+                    },
+                    body: JSON.stringify({
+                        model: 'mistralai/mistral-7b-instruct', // Usually reliable and free
+                        messages: [
+                            {
+                                role: 'system',
+                                content: 'You are a tarot reading expert. Provide detailed, compassionate tarot interpretations.'
+                            },
+                            {
+                                role: 'user',
+                                content: `Interpret this tarot reading for question: "${userQuestion}" with cards: ${selectedCards.map(c => c.name).join(', ')}`
+                            }
+                        ],
+                        max_tokens: 1500,
+                        temperature: 0.7
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Alternative service failed');
+                }
+
+                const data = await response.json();
+                return {
+                    interpretation: data.choices[0]?.message?.content || "Interpretation generated.",
+                    insights: ["Trust your intuition", "Consider all perspectives", "Take aligned action"],
+                    modelUsed: "Mistral 7B",
+                    provider: "Mistral AI"
+                };
+                
+            } catch (error) {
+                throw error;
+            }
+        }
+
+        // Generate insights from AI response
+        function generateAIInsights(aiResponse) {
+            const insights = [];
+            
+            // Extract key insights from AI response
+            if (aiResponse && aiResponse.includes('action') || aiResponse.includes('take') || aiResponse.includes('move')) {
+                insights.push({
+                    icon: "fas fa-running",
+                    title: "Action Required",
+                    text: "Your reading suggests taking decisive steps forward."
+                });
+            }
+            
+            if (aiResponse && (aiResponse.includes('patience') || aiResponse.includes('wait') || aiResponse.includes('time'))) {
+                insights.push({
+                    icon: "fas fa-hourglass-half",
+                    title: "Patience Needed",
+                    text: "The cards indicate timing is important."
+                });
+            }
+            
+            if (aiResponse && (aiResponse.includes('intuition') || aiResponse.includes('feel') || aiResponse.includes('gut'))) {
+                insights.push({
+                    icon: "fas fa-brain",
+                    title: "Trust Intuition",
+                    text: "Your inner wisdom is your best guide."
+                });
+            }
+            
+            if (aiResponse && (aiResponse.includes('balance') || aiResponse.includes('harmony') || aiResponse.includes('middle'))) {
+                insights.push({
+                    icon: "fas fa-balance-scale",
+                    title: "Seek Balance",
+                    text: "Find equilibrium in your approach."
+                });
+            }
+            
+            // Add default insights if not enough extracted
+            if (insights.length < 3) {
+                insights.push(
+                    {
+                        icon: "fas fa-lightbulb",
+                        title: "Self-Reflection",
+                        text: "Take time to reflect on what resonates with you."
+                    },
+                    {
+                        icon: "fas fa-heart",
+                        title: "Emotional Awareness",
+                        text: "Pay attention to your emotional responses."
+                    },
+                    {
+                        icon: "fas fa-road",
+                        title: "Path Forward",
+                        text: "Each step you take creates your journey."
+                    }
+                );
+            }
+            
+            return insights.slice(0, 4); // Return max 4 insights
+        }
+
+        // Generate offline interpretation (fallback)
+        function generateOfflineInterpretation() {
+            const question = userQuestion.toLowerCase();
+            let focusArea = "your situation";
+            
+            if (question.includes('love') || question.includes('relationship')) {
+                focusArea = "your relationships and emotional life";
+            } else if (question.includes('career') || question.includes('job') || question.includes('work')) {
+                focusArea = "your professional path and career";
+            } else if (question.includes('money') || question.includes('finance') || question.includes('wealth')) {
+                focusArea = "your financial situation and abundance";
+            }
+            
+            const card1 = selectedCards[0];
+            const card2 = selectedCards[1];
+            const card3 = selectedCards[2];
+            
+            let interpretation = `<p>Your question about <strong>${focusArea}</strong> has drawn an insightful combination of cards.</p>`;
+            
+            interpretation += `<p><strong>${card1.name}</strong> in the past position indicates that ${card1.meaning.toLowerCase()}.</p>`;
+            interpretation += `<p><strong>${card2.name}</strong> in the present position suggests ${card2.meaning.toLowerCase()}.</p>`;
+            interpretation += `<p><strong>${card3.name}</strong> in the future position points toward ${card3.meaning.toLowerCase()}.</p>`;
+            
+            interpretation += `<p>Consider how these three energies interact and what guidance they offer for your specific question.</p>`;
+            
+            return interpretation;
+        }
+
+        // Generate offline insights (fallback)
+        function generateOfflineInsights() {
+            return [
+                {
+                    icon: "fas fa-star",
+                    title: "Major Life Lessons",
+                    text: "Your reading contains significant cards that indicate important life lessons and spiritual growth opportunities."
+                },
+                {
+                    icon: "fas fa-balance-scale",
+                    title: "Practical Guidance",
+                    text: "Your reading focuses on practical, day-to-day matters with actionable insights for your current situation."
+                },
+                {
+                    icon: "fas fa-hourglass-half",
+                    title: "Timing Considerations",
+                    text: "The cards suggest influences that may unfold over several months, with particular emphasis on future development."
+                },
+                {
+                    icon: "fas fa-lightbulb",
+                    title: "Intuitive Guidance",
+                    text: "Trust your intuition when applying this reading to your specific circumstances and life path."
+                }
+            ];
+        }
+
+        // ===== Main AI Reading Function =====
+        async function generateAIReading() {
+            // Validate selection
+            if (selectedCards.length !== 3) {
+                alert('Please select exactly 3 cards for a reading.');
+                return;
+            }
+            
+            // Hide card selection, show AI reading section
+            cardSelectionSection.style.display = 'none';
+            aiReadingSection.style.display = 'block';
+            
+            // Show loading state
+            aiLoading.style.display = 'block';
+            aiError.style.display = 'none';
+            aiReadingContent.style.display = 'none';
+            
+            // Scroll to top of section
+            aiReadingSection.scrollIntoView({ behavior: 'smooth' });
+            
+            try {
+                let aiResult;
+                
+                // Try free AI first
+                try {
+                    aiResult = await callFreeAI();
+                    
+                    // Hide loading, show content
+                    aiLoading.style.display = 'none';
+                    aiReadingContent.style.display = 'block';
+                    
+                    // Display the reading with AI info
+                    displayAIReading(aiResult.interpretation, aiResult.insights, aiResult.modelUsed, aiResult.provider);
+                    
+                } catch (aiError) {
+                    // Fallback to offline
+                    console.log('Falling back to offline interpretation:', aiError);
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    
+                    aiLoading.style.display = 'none';
+                    aiReadingContent.style.display = 'block';
+                    
+                    const interpretation = generateOfflineInterpretation();
+                    const insights = generateOfflineInsights();
+                    
+                    displayAIReading(interpretation, insights, "Offline Tarot Expert", "Celestial Tarot");
+                }
+                
+            } catch (error) {
+                // Final fallback
+                aiLoading.style.display = 'none';
+                aiReadingContent.style.display = 'block';
+                
+                const interpretation = generateOfflineInterpretation();
+                const insights = generateOfflineInsights();
+                
+                displayAIReading(interpretation, insights, "Tarot Wisdom System", "Celestial Tarot");
+            }
+        }
+
+        // Modified displayAIReading to show AI info
+        function displayAIReading(interpretation, insights, modelName = "AI Tarot Expert", provider = "AI Service") {
+            // Clear previous content
+            cardPositionsContainer.innerHTML = '';
+            insightsGrid.innerHTML = '';
+            
+            // Add AI info badge
+            const aiHeader = document.querySelector('.ai-header');
+            
+            // Remove existing badge if any
+            const existingBadge = aiHeader.querySelector('.ai-info-badge');
+            if (existingBadge) {
+                existingBadge.remove();
+            }
+            
+            const aiInfoBadge = document.createElement('div');
+            aiInfoBadge.className = 'ai-info-badge';
+            aiInfoBadge.style.cssText = `
+                background: linear-gradient(135deg, var(--accent), #00a896);
+                color: white;
+                padding: 8px 20px;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                font-weight: 500;
+                margin-bottom: 20px;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+            `;
+            aiInfoBadge.innerHTML = `<i class="fas fa-robot"></i> Powered by ${modelName} (${provider})`;
+            
+            if (aiHeader) {
+                aiHeader.appendChild(aiInfoBadge);
+            }
+            
+            // Define positions
+            const positions = [
+                { title: "PAST INFLUENCES", description: "What has brought you to this point" },
+                { title: "PRESENT SITUATION", description: "Your current circumstances" },
+                { title: "FUTURE POTENTIAL", description: "Possible outcomes and directions" }
+            ];
+            
+            // Create position cards
+            selectedCards.forEach((card, index) => {
+                const position = positions[index];
+                
+                const positionCard = document.createElement('div');
+                positionCard.className = 'position-card';
+                positionCard.innerHTML = `
+                    <div class="position-title">${position.title}</div>
+                    <div class="position-card-name">${card.name}</div>
+                    <div class="position-card-meaning">${card.shortMeaning}</div>
+                    <div style="color: ${card.color}; font-size: 2rem; margin: 15px 0;">${card.icon}</div>
+                    <div style="font-size: 0.9rem; color: var(--text-light);">${position.description}</div>
+                `;
+                
+                cardPositionsContainer.appendChild(positionCard);
+            });
+            
+            // Display interpretation
+            interpretationText.innerHTML = formatAIResponse(interpretation);
+            
+            // Display insights
+            insights.forEach(insight => {
+                const insightElement = document.createElement('div');
+                insightElement.className = 'insight-item';
+                insightElement.innerHTML = `
+                    <h4><i class="${insight.icon}"></i> ${insight.title}</h4>
+                    <p>${insight.text}</p>
+                `;
+                insightsGrid.appendChild(insightElement);
+            });
+        }
+
+        // Format AI response with better readability
+        function formatAIResponse(text) {
+            if (!text) return "<p>No interpretation available.</p>";
+            
+            // Add paragraph breaks
+            let formatted = text.replace(/\n\s*\n/g, '</p><p>');
+            formatted = formatted.replace(/\n/g, '<br>');
+            
+            // Add section headers
+            formatted = formatted.replace(/(\d+\.\s+[A-Z][^:]+:)/g, '<strong>$1</strong>');
+            formatted = formatted.replace(/([A-Z][^:.!?]{10,}?:)/g, '<strong>$1</strong>');
+            
+            return `<p>${formatted}</p>`;
+        }
+
+        function startNewReading() {
+            // Reset application state
+            userQuestion = "";
+            selectedCards = [];
+            currentFilter = "all";
+            
+            // Reset UI
+            questionInput.value = "";
+            aiReadingSection.style.display = 'none';
+            cardSelectionSection.style.display = 'none';
+            questionSection.style.display = 'block';
+            
+            // Reinitialize cards
+            initializeCards();
+            
+            // Reset filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.filter === 'all') {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            // Reset selected counter
+            updateSelectedCounter();
+            
+            // Scroll to top
+            questionSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function backToCardsFromReading() {
+            aiReadingSection.style.display = 'none';
+            cardSelectionSection.style.display = 'block';
+            cardSelectionSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ===== Helper Functions =====
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+        async function animatedShuffle(times) {
+
+    disableShuffleButtons(true);
+
+    const cards = Array.from(cardDeck.children);
+
+    for (let t = 0; t < times; t++) {
+
+        // STEP 1 — GATHER TO CENTER
+        const deckRect = cardDeck.getBoundingClientRect();
+
+        cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+
+            const deltaX =
+                deckRect.left + deckRect.width / 2 -
+                (rect.left + rect.width / 2);
+
+            const deltaY =
+                deckRect.top + deckRect.height / 2 -
+                (rect.top + rect.height / 2);
+
+            card.style.transition = "transform 0.8s ease";
+            card.style.transform =
+                `translate(${deltaX}px, ${deltaY}px)
+                 scale(0.9)
+                 rotate(${Math.random() * 10 - 5}deg)`;
+        });
+
+        await sleep(900);
+
+        // STEP 2 — SMALL SHUFFLE SHAKE
+        cards.forEach(card => {
+            card.style.transform +=
+                ` rotate(${Math.random() * 20 - 10}deg)`;
+        });
+
+        await sleep(400);
+
+        // STEP 3 — REORDER (without destroying layout)
+        let shuffled = shuffleArray([...cards]);
+        shuffled.forEach(card => cardDeck.appendChild(card));
+
+        await sleep(100);
+
+        // STEP 4 — SPREAD BACK
+        cards.forEach(card => {
+            card.style.transform = "translate(0,0) scale(1) rotate(0deg)";
+        });
+
+        await sleep(800);
+    }
+
+    // Reset selection
+    selectedCards = [];
+    updateSelectedCounter();
+    updateSelectedPreview();
+    getAIReadingBtn.disabled = true;
+
+    disableShuffleButtons(false);
+}
+
+
+
+
+
+        function disableShuffleButtons(state) {
+            document.querySelectorAll('.shuffle-controls button')
+                .forEach(btn => btn.disabled = state);
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+
+
+
+        function getTypeColor(type) {
+            switch(type) {
+                case 'major': return '#8B5FBF';
+                case 'cups': return '#3498db';
+                case 'wands': return '#e74c3c';
+                case 'swords': return '#95a5a6';
+                case 'pentacles': return '#27ae60';
+                default: return '#8B5FBF';
+            }
+        }
+
+        function getTypeSymbol(type) {
+            switch(type) {
+                case 'major': return '🌟';
+                case 'cups': return '💧';
+                case 'wands': return '🔥';
+                case 'swords': return '⚔️';
+                case 'pentacles': return '💰';
+                default: return '🃏';
+            }
+        }
+
+        function getTypeName(type) {
+            switch(type) {
+                case 'major': return 'Major Arcana';
+                case 'cups': return 'Cups';
+                case 'wands': return 'Wands';
+                case 'swords': return 'Swords';
+                case 'pentacles': return 'Pentacles';
+                default: return 'Tarot';
+            }
+        }
+
+        // ===== Event Listeners Setup =====
+        function setupEventListeners() {
+            // Question section
+            questionInput.addEventListener('input', function() {
+                userQuestion = this.value;
+            });
+            
+            proceedToCardsBtn.addEventListener('click', proceedToCardSelection);
+            
+            // Card selection section
+            backToQuestionBtn.addEventListener('click', backToQuestion);
+            getAIReadingBtn.addEventListener('click', generateAIReading);
+            
+            // AI reading section
+            backToCardsFromReadingBtn.addEventListener('click', backToCardsFromReading);
+            newReadingBtn.addEventListener('click', startNewReading);
+            retryAIButton.addEventListener('click', generateAIReading);
+            
+            // Mobile menu
+            mobileMenuBtn.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Close mobile menu on link click
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
